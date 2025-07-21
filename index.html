@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meghana | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="home-hero" id="home">
+    <div class="overlay">
+      <div class="hero-text reveal">
+        <h1>Meghana Lakshminarayana Swamy</h1>
+        <p>Data-driven thinker, Business Analyst, Enthusiast, and Creative Builder</p>
+
+        <div class="hero-icons">
+          <div class="icon-wrapper" title="Power BI">
+            <img src="icons/powerbi.png" alt="Power BI">
+          </div>
+          <div class="icon-wrapper" title="Data Modeling">
+            <img src="icons/table_edit.png" alt="Data Modeling">
+          </div>
+          <div class="icon-wrapper" title="Excel Reports">
+            <img src="icons/excel.png" alt="Excel">
+          </div>
+          <div class="icon-wrapper" title="ETL Process">
+            <img src="icons/etl_process.png" alt="ETL">
+          </div>
+          <div class="icon-wrapper" title="SQL Tools">
+            <img src="icons/sql_logos.png" alt="SQL Logos">
+          </div>
+          <div class="icon-wrapper" title="Data Warehousing">
+            <img src="icons/db_arrows.png" alt="Databases">
+          </div>
+        </div>
+
+        <a href="Meghana_Resume.pdf" class="resume-link" target="_blank">
+          Resume<span class="arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+ <!-- ABOUT SECTION -->
+<!-- ABOUT SECTION -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <img src="meghana2.jpg" alt="About Meghana" class="about-photo-wide">
+    <div class="about-text">
+      <h4 class="subheader">About</h4>
+      <h2 class="typewriter" id="meghana-intro"></h2>
+
+      <div class="about-details" id="aboutContent">
+        <p>
+          I’m a Business Analytics graduate student at the University of New Haven, with a background in Information Science Engineering and a deep interest in solving real-world problems through data. I enjoy working at the intersection of logic and creativity—digging into datasets, uncovering patterns, and turning raw information into visuals or reports that actually drive decisions.
+        </p>
+        <p>
+          Along the way, I’ve built up experience with tools like Power BI, SQL, Excel, and Tableau. I’ve also worked extensively with Visual Studio 2022 to design and run ETL packages, and I’ve used Microsoft SQL Server and SSMS for writing queries and managing data warehouses. These skills help me go beyond just analysis—I can structure data pipelines, clean and transform datasets, and create dashboards that make sense to any audience.
+        </p>
+        <p>
+          Outside academics, I’ve been involved in campus life in more hands-on ways—managing social media pages for student clubs, creating event posters, and contributing to student engagement activities. It’s this mix of data, design, and communication that I really enjoy bringing into every project I work on.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- JOURNEY SECTION -->
+  <section class="journey-section" id="journey">
+    <div class="journey-overlay">
+      <h2 class="journey-title slide-in-left">My Journey</h2>
+<div class="timeline-wrapper" id="journey-timeline">
+        <div class="timeline-line">
+          <div class="arrow-down">↓</div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-icon"><img src="journey_icons/school.png" alt="School"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Sindhi High School</h3>
+            <p>1st to 10th Grade<br>June 2007 – March 2017<br>Bengaluru, India</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-icon"><img src="journey_icons/highschool.png" alt="High School"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Deeksha Learning Center Yelahanka</h3>
+            <p>11th & 12th Grade<br>May 2017 – Feb 2019<br>Bengaluru, India</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-icon"><img src="journey_icons/college.png" alt="College"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>BMS Institute of Technology</h3>
+            <p>Bachelor’s in ISE<br>Aug 2019 – June 2023<br>Bengaluru, India</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-icon"><img src="journey_icons/freelance.png" alt="Freelancing"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Freelancing</h3>
+            <p>Marketing & Editing<br>1 year<br>Bengaluru, India</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-icon"><img src="journey_icons/masters.png" alt="Masters"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>University of New Haven</h3>
+            <p>Master’s in Business Analytics<br>Aug 2024 – May 2026<br>West Haven, USA</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROJECTS SECTION -->
+<section class="projects-section" id="projects">
+  <h2 class="projects-title">Projects</h2>
+
+  <div class="project-wrapper">
+    <button id="prevBtn" class="nav-btn nav-left">&#10094;</button>
+
+    <div class="project-card" id="projectContent">
+      <!-- JS loads project -->
+    </div>
+
+    <button id="nextBtn" class="nav-btn nav-right">&#10095;</button>
+  </div>
+</section>
+
+
+
+
+
+<!-- CERTIFICATIONS SECTION -->
+<section class="certifications-section" id="certifications">
+  <h2 class="certifications-title">Certifications</h2>
+  <div class="cert-grid">
+    <!-- Add your certificate images below. Use same name as in 'images/' and matching PDF in 'pdfs/' -->
+    <div class="cert-card" onclick="openViewer(0)">
+      <img src="images/course_1.png" alt="Certificate 1" />
+    </div>
+    <div class="cert-card" onclick="openViewer(1)">
+      <img src="images/Course_2.png" alt="Certificate 2" />
+    </div>
+    <div class="cert-card" onclick="openViewer(2)">
+      <img src="images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png" alt="Certificate 3" />
+    </div>
+    <div class="cert-card" onclick="openViewer(3)">
+      <img src="images/Meghana.L_1BY19IS094_IoT.png" alt="Certificate 4" />
+    </div>
+    <div class="cert-card" onclick="openViewer(4)">
+      <img src="images/My_Learning___NVIDIA.png" alt="Certificate 5" />
+    </div>
+    <div class="cert-card" onclick="openViewer(5)">
+      <img src="images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png" alt="Certificate 6" />
+    </div>
+    <div class="cert-card" onclick="openViewer(6)">
+      <img src="images/course_r.png" alt="Certificate 7" />
+    </div>
+    <div class="cert-card" onclick="openViewer(7)">
+      <img src="images/excel_2019.png" alt="Certificate 8" />
+    </div>
+    <div class="cert-card" onclick="openViewer(8)">
+      <img src="images/tableau_cert_prep.png" alt="Certificate 9" />
+    </div>
+  </div>
+
+  <!-- Viewer Overlay -->
+  <div class="viewer-overlay" id="viewer">
+    <span class="close-btn" onclick="closeViewer()">×</span>
+    <img id="viewer-image" src="" alt="Zoomed Certificate" onclick="openPDFInNewTab()" />
+    <span class="nav-btn left" id="prev-btn" onclick="prevImage()">❮</span>
+    <span class="nav-btn right" id="next-btn" onclick="nextImage()">❯</span>
+  </div>
+</section>
+
+
+
+  <!-- CONTACTS SECTION -->
+  <section class="contact-section" id="contact">
+  <h2 class="section-title">Contact</h2>
+
+  <div class="contact-container">
+    <!-- Left: Icons -->
+    <div class="contact-icons">
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=meghana.lnswamydr@gmail.com" title="Send an Email" target="_blank">
+        <img src="icons/gmail.png" alt="Gmail" />
+      </a>
+      <a href="https://www.google.com/maps/place/West+Haven,+CT,+USA" title="Currently based in West Haven, CT, USA">
+        <img src="icons/location.png" alt="Location" />
+      </a>
+      <a href="https://www.linkedin.com/in/meghana-swamy" title="LinkedIn" target="_blank">
+        <img src="icons/linkedin.png" alt="LinkedIn" />
+      </a>
+      <a href="https://github.com/Meghana-l" title="GitHub" target="_blank">
+        <img src="icons/github.png" alt="GitHub" />
+      </a>
+      <a href="https://www.instagram.com/meg._hannah/" title="Instagram" target="_blank">
+        <img src="icons/instagram.png" alt="Instagram" />
+      </a>
+    </div>
+
+    <!-- Right: Contact Form -->
+    <div class="contact-form-box">
+      <h3 class="form-heading">Contact Me</h3>
+<form id="contact-form">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send</button>
+</form>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("r7TMuXNdWWMSVexgb");
+
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    emailjs.sendForm("service_ro7a2p9", "template_3vbag6a", this)
+      .then(() => {
+        alert("Message sent successfully!");
+        this.reset();
+      }, (error) => {
+        alert("Failed to send message. Please try again.");
+        console.error(error);
+      });
+  });
+</script>
+
+
+
+  <!-- SCROLL REVEAL -->
+  <script>
+    const reveals = document.querySelectorAll(".reveal, .slide-in-left");
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    reveals.forEach(item => revealObserver.observe(item));
+  </script>
+
+  <!-- TYPEWRITER + ABOUT DISPLAY -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const intro = document.getElementById("meghana-intro");
+      const aboutContent = document.getElementById("aboutContent");
+
+      // Typing effect will trigger via CSS when this is set
+      intro.innerHTML = "Hi, this is Meghana";
+
+      // After animation ends, show about details
+      setTimeout(() => {
+        aboutContent.classList.remove("hidden");
+        aboutContent.classList.add("visible");
+      }, 3000);
+    });
+  </script>
+
+ <!-- Journey Script -->
+ <script>
+  const journeyTitle = document.querySelector(".journey-title");
+  const timelineWrapper = document.getElementById("journey-timeline");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        journeyTitle.classList.add("visible");
+        timelineWrapper.classList.add("visible");
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(journeyTitle);
+</script>
+
+
+ <!-- Projects Script -->
+<script>
+const projects = [
+  {
+    title: "S&P 500 Performance & Risk Analysis",
+    description: `This project helps to analyze the Performance and Risk-Return Profile of S&P 500 Companies to Aid Investment Decision-Making.
+
+This Power BI dashboard helps investors and analysts evaluate the performance, risk, and return potential of S&P 500 companies. By analyzing key metrics such as 10-year % change, 52-week % change, Beta, Profit Margin, and Yield, users can identify high-performing sectors and companies while assessing risk exposure.`,
+    image: "images/Screenshot 2025-07-14 213623.png",
+    github: "https://github.com/Meghana-l/PowerBI_Project_spindex"
+  },
+ {
+  title: "British Airways Review using Tableau",
+  description: `This project is an interactive Dashboard that helps a user to analyse the various parameters of British Airways, like Overall rating, Staff service, Food services, Value for money etc., across the Globe over the past few years.
+
+The end user using this Dashboard will be able to pick a metric that they want to view, with a simple click. The end user will also have other useful filters to find the exact data points that they are looking for. Each of the visuals are dynamic filters themselves, so you can click on the date, the map or select the specific Aircraft that you are interested in.`,
+  image: "images/Screenshot 2025-07-14 214357.png",
+  github: "https://github.com/Meghana-l/Tableau_EndToEnd_Prjct"
+},
+  {
+    title: "Coffee Sales Interactive Dashboard using Excel",
+    description: `This Excel dashboard provides a user-friendly way to analyze coffee sales data. Its interactive design allows users to filter the data by several key criteria, including time-period, coffee roast type, cup size, and customer loyalty status. These filters enable users to drill down into the data and explore specific trends and customer preferences.`,
+    image: "images/Screenshot 2025-07-14 215036.png",
+    github: "https://github.com/Meghana-l/MSExcel_EndToEnd_Project"
+  },
+  {
+    title: "Data Analytics end-to-end Project to meet a business request",
+    description: `This project showcases the development of a dynamic sales dashboard based on a business request from a Sales Manager. Using data from the AdventureWorksDW2022 data warehouse, the following was done:
+
+- Data Cleaning & Transformation: Utilized SQL Server Management Studio (SSMS) to cleanse and standardize internet sales data, focusing on accuracy across key dimensions such as product, customer, and time. 
+
+- Data Extraction: Extracted the cleaned data for further analysis and visualization. 
+
+- Dashboard Development: Designed an interactive Power BI dashboard enabling users to filter sales performance by product, customer, and salesperson. Included visualizations for sales trends over time and comparisons against the 2021 budget. 
+
+- Business Impact: Delivered actionable insights through visual reporting, helping stakeholders track actual performance, evaluate key sales drivers, and make informed decisions based on historical trends and budget comparisons. 
+
+This end-to-end business intelligence solution highlights the capabilities in data warehousing, SQL data transformation, and dashboard creation aligned with business objectives.`,
+    image: "images/Screenshot 2025-07-14 215503.png",
+    github: "https://github.com/Meghana-l/DataAnalystPortfolio"
+  },
+  {
+    title: "Database Management Portfolio",
+    description: `This is a collection of projects/practitioner work that reflects my skills in building efficient database systems, transforming and loading data, designing warehouse models, and performing multidimensional data analysis. 
+
+The work is inspired by real-world scenarios and developed as part of my advanced coursework in Database Management.`,
+    image: "images/Screenshot 2025-07-14 215933.png",
+    github: "https://github.com/Meghana-l/Database-Management-Portfolio"
+  }
+];
+
+let currentProject = 0;
+const contentDiv = document.getElementById("projectContent");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+function loadProject(index) {
+  const project = projects[index];
+  contentDiv.innerHTML = `
+   <a href="${project.github}" target="_blank" title="Link to GitHub">
+
+      <img src="${project.image}" alt="${project.title}" />
+    </a>
+    <div class="project-info">
+      <h3>${project.title}</h3>
+      <p>${project.description}</p>
+    </div>
+  `;
+  prevBtn.style.visibility = index === 0 ? "hidden" : "visible";
+  nextBtn.style.visibility = index === projects.length - 1 ? "hidden" : "visible";
+}
+
+prevBtn.addEventListener("click", () => {
+  if (currentProject > 0) {
+    currentProject--;
+    loadProject(currentProject);
+  }
+});
+
+nextBtn.addEventListener("click", () => {
+  if (currentProject < projects.length - 1) {
+    currentProject++;
+    loadProject(currentProject);
+  }
+});
+
+loadProject(currentProject);
+</script>
+
+
+ <!-- Certificates Script -->
+<script>
+  const certificates = [
+    { image: 'images/course_1.png', pdf: 'pdfs/course 1.pdf' },
+    { image: 'images/Course_2.png', pdf: 'pdfs/Course 2.pdf' },
+    { image: 'images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png', pdf: 'pdfs/Meghana L_Artificial Intelligence_Unschool Certificate2021.pdf' },
+    { image: 'images/Meghana.L_1BY19IS094_IoT.png', pdf: 'pdfs/Meghana.L 1BY19IS094_IoT.pdf' },
+    { image: 'images/My_Learning___NVIDIA.png', pdf: 'pdfs/My Learning _ NVIDIA.pdf' },
+    { image: 'images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png', pdf: 'pdfs/Certificate for Meghana L for _Alumni Session  - _Expectat..._.pdf' },
+    { image: 'images/course_r.png', pdf: 'pdfs/CertificateOfCompletion_R for Data Science Analysis and Visualization.pdf' },
+    { image: 'images/excel_2019.png', pdf: 'pdfs/CertificateOfCompletion_Learning Excel 2019.pdf' },
+    { image: 'images/tableau_cert_prep.png', pdf: 'pdfs/CertificateOfCompletion_Tableau Certified Data Analyst Cert Prep.pdf' }
+  ];
+
+  let currentIndex = 0;
+
+  function openViewer(index) {
+    currentIndex = index;
+    const viewer = document.getElementById("viewer");
+    const img = document.getElementById("viewer-image");
+    img.src = certificates[index].image;
+    viewer.style.display = "flex";
+    updateNavButtons();
+  }
+
+  function closeViewer() {
+    document.getElementById("viewer").style.display = "none";
+  }
+
+  function prevImage() {
+    if (currentIndex > 0) {
+      openViewer(currentIndex - 1);
+    }
+  }
+
+  function nextImage() {
+    if (currentIndex < certificates.length - 1) {
+      openViewer(currentIndex + 1);
+    }
+  }
+
+  function updateNavButtons() {
+    document.getElementById("prev-btn").style.display = currentIndex === 0 ? "none" : "block";
+    document.getElementById("next-btn").style.display = currentIndex === certificates.length - 1 ? "none" : "block";
+  }
+
+  function openPDFInNewTab() {
+    window.open(certificates[currentIndex].pdf, '_blank');
+  }
+</script>
+
+
+</body>
+</html>
