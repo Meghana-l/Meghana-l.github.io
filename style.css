@@ -291,32 +291,32 @@ body::-webkit-scrollbar {
   fill: #ffffff;
 }
 
-/* Scroll-down Arrow */
-.scroll-down {
+/* Scroll-down Arrow */ 
+.scroll-down { 
   margin-top: 50px;
-  font-size: 1.6rem;
-  animation: bounce 1.6s infinite;
-}
+   font-size: 1.6rem;
+    animation: bounce 1.6s infinite; 
+  }
 
-.scroll-down a {
-  color: #ffffff;
-  text-decoration: none;
-  transition: transform 0.2s ease;
-}
+  .scroll-down a {
+     color: #ffffff;
+      text-decoration: none;
+       transition: transform 0.2s ease;
+       }
 
-.scroll-down a:hover {
-  transform: translateY(4px);
-}
+  .scroll-down a:hover {
+     transform: translateY(4px);
+     }
+     
+     .scroll-down i {
+       color: var(--text-light);
+        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
+       }
 
-.scroll-down i {
-  color: var(--text-light);
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
-}
+       @keyframes bounce {
+         0%, 100% { transform: translateY(0);}
+          50% { transform: translateY(8px); }
+         }
 
 /* ABOUT SECTION */
 .about-section {
@@ -523,7 +523,7 @@ body::-webkit-scrollbar {
   border-radius: 8px;
   font-size: 0.95rem;
   width: max-content;
-  max-width: 260px;
+  max-width: 300px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -841,7 +841,7 @@ body::-webkit-scrollbar {
 }
 
 
-/* Certifications Section */
+/* ---------------Certifications Section----------------------- */
 .certifications-section {
   background-image: url('images/spotlight-bg.png');
   background-size: cover;
@@ -869,20 +869,34 @@ body::-webkit-scrollbar {
   z-index: 2;
 }
 
+/* All cards same size & clean layout */
 .cert-card {
-  background: rgba(255, 255, 255, 0.02);
-  padding: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   width: 100%;
+  max-width: 320px;         /* uniform card width */
+  height: 230px;            /* fixed card height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .cert-card img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;         /* makes all images fill evenly */
   border-radius: 10px;
   transition: transform 0.4s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(255, 0, 127, 0.3);
 }
 
 .cert-card:hover img {
@@ -933,16 +947,36 @@ body::-webkit-scrollbar {
   right: 60px;
 }
 
+/* Close Button - shifted below navbar */
 .close-btn {
   position: absolute;
-  top: 30px;
+  top: 100px; /* stays below nav bar */
   right: 60px;
   font-size: 2.8rem;
   color: white;
   cursor: pointer;
   user-select: none;
+  background-color: rgba(0, 0, 0, 0.35);
+  border-radius: 50%;
+  padding: 6px 14px;
+  transition: all 0.2s ease;
 }
 
+.close-btn:hover {
+  background-color: rgba(255, 0, 127, 0.4);
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .certifications-title {
+    font-size: 2.2rem;
+  }
+  .cert-card {
+    max-width: 100%;
+    height: 200px;
+  }
+}
 
 /* Contact Section */
 .contact-section {
