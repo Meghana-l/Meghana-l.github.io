@@ -1,18 +1,47 @@
-// =====================================
-// Page-by-page scroll + keyboard control
-// Stable across dark/light switching (full re-init on theme change)
-// =====================================
+// =====================================================
+// ONE script to rule them all:
+// 1) Theme toggle (dark/light) + persistence
+// 2) Page-by-page scroll + keyboard navigation
+// 3) Theme-switch safe stabilization (no glitches)
+// =====================================================
 
 (() => {
-  const HEADER_OFFSET = 80;
+  // ---- Kill any old instance if it exists (prevents duplicates) ----
+  if (window.__portfolioController && typeof window.__portfolioController.destroy === "function") {
+    window.__portfolioController.destroy();
+  }
 
+  // ---------------- THEME ----------------
+  const THEME_KEY = "themeMode";
+
+  function applyTheme(mode) {
+    document.body.classList.toggle("light", mode === "light");
+    localStorage.setItem(THEME_KEY, mode);
+
+    const sw = document.getElementById("themeSwitch");
+    if (sw) sw.checked = (mode === "light");
+
+    // after theme swap, stabilize scroll
+    stabilizeAfterThemeSwitch();
+  }
+
+  function initTheme() {
+    const saved = localStorage.getItem(THEME_KEY);
+    applyTheme(saved === "light" ? "light" : "dark");
+
+    const sw = document.getElementById("themeSwitch");
+    if (!sw) return;
+
+    sw.addEventListener("change", () => {
+      applyTheme(sw.checked ? "light" : "dark");
+    });
+  }
+
+  // ---------------- SCROLL / NAV ----------------
+  const HEADER_OFFSET = 80;
   const WHEEL_ACCUM_THRESHOLD = 60;
   const WHEEL_RESET_MS = 140;
-
-  const SETTLE_CHECK_MS = 80;
-  const SETTLE_REQUIRED_STEPS = 4;
-
-  const MAX_LOCK_MS = 1300;
+  const MAX_LOCK_MS = 900;
 
   let sections = [];
   let currentIndex = 0;
@@ -23,10 +52,8 @@
   let wheelAccum = 0;
   let wheelResetTimer = null;
 
-  let settleStopper = null;
-
-  // keep references so we can remove + re-add cleanly
   let listenersAttached = false;
+  let themeStabilizeTimer = null;
 
   function getSections() {
     return Array.from(document.querySelectorAll("section[id]"));
@@ -76,22 +103,22 @@
     return bestIdx;
   }
 
-  function clearAllTimers() {
+  function syncState() {
+    sections = getSections();
+    if (!sections.length) return;
+    currentIndex = nearestSectionIndex();
+  }
+
+  function clearTimers() {
     if (lockTimer) clearTimeout(lockTimer);
     lockTimer = null;
 
     if (wheelResetTimer) clearTimeout(wheelResetTimer);
     wheelResetTimer = null;
-
-    if (settleStopper) {
-      settleStopper();
-      settleStopper = null;
-    }
   }
 
   function lockInput() {
     locked = true;
-
     if (lockTimer) clearTimeout(lockTimer);
     lockTimer = setTimeout(() => {
       locked = false;
@@ -104,52 +131,27 @@
     lockTimer = null;
   }
 
-  function waitForSettle() {
-    let lastY = window.scrollY;
-    let stableSteps = 0;
-    let cancelled = false;
-
-    settleStopper = () => { cancelled = true; };
-
-    const check = () => {
-      if (cancelled) return;
-
-      const y = window.scrollY;
-
-      if (Math.abs(y - lastY) < 1) stableSteps++;
-      else stableSteps = 0;
-
-      lastY = y;
-
-      if (stableSteps >= SETTLE_REQUIRED_STEPS) {
-        currentIndex = nearestSectionIndex();
-        unlockInput();
-        settleStopper = null;
-        return;
-      }
-
-      setTimeout(check, SETTLE_CHECK_MS);
-    };
-
-    setTimeout(check, SETTLE_CHECK_MS);
-  }
-
-  function scrollToIndex(idx) {
+  function jumpToIndex(idx, behavior = "smooth") {
     if (!sections.length) return;
 
-    // Always base from real viewport position
     currentIndex = nearestSectionIndex();
     currentIndex = clamp(idx, 0, sections.length - 1);
 
+    const targetTop =
+      window.scrollY + sections[currentIndex].getBoundingClientRect().top - HEADER_OFFSET;
+
     lockInput();
-    sections[currentIndex].scrollIntoView({ behavior: "smooth", block: "start" });
-    waitForSettle();
+    window.scrollTo({ top: targetTop, behavior });
+
+    setTimeout(() => {
+      syncState();
+      unlockInput();
+    }, behavior === "smooth" ? 380 : 140);
   }
 
-  function next() { scrollToIndex(currentIndex + 1); }
-  function prev() { scrollToIndex(currentIndex - 1); }
+  function next() { jumpToIndex(currentIndex + 1, "smooth"); }
+  function prev() { jumpToIndex(currentIndex - 1, "smooth"); }
 
-  // ---------- Handlers (must be stable references) ----------
   function onWheel(e) {
     if (isOverlayOpen()) return;
     if (isTyping()) return;
@@ -165,7 +167,7 @@
     if (wheelResetTimer) clearTimeout(wheelResetTimer);
     wheelResetTimer = setTimeout(() => { wheelAccum = 0; }, WHEEL_RESET_MS);
 
-    // Don’t block native scroll unless we will navigate
+    // don’t block native scroll unless we will navigate
     if (Math.abs(wheelAccum) < WHEEL_ACCUM_THRESHOLD) return;
 
     e.preventDefault();
@@ -182,7 +184,6 @@
     if (isTyping()) return;
 
     const k = e.key;
-
     const nextKeys = ["ArrowDown", "PageDown", " "];
     const prevKeys = ["ArrowUp", "PageUp"];
 
@@ -195,12 +196,10 @@
 
     if (nextKeys.includes(k)) return next();
     if (prevKeys.includes(k)) return prev();
-
-    if (k === "Home") return scrollToIndex(0);
-    if (k === "End") return scrollToIndex(sections.length - 1);
+    if (k === "Home") return jumpToIndex(0, "smooth");
+    if (k === "End") return jumpToIndex(sections.length - 1, "smooth");
   }
 
-  // ---------- Attach / Detach ----------
   function attachListeners() {
     if (listenersAttached) return;
     window.addEventListener("wheel", onWheel, { passive: false });
@@ -215,56 +214,61 @@
     listenersAttached = false;
   }
 
-  function syncState() {
-    sections = getSections();
-    if (!sections.length) return;
-    currentIndex = nearestSectionIndex();
-  }
+  // ✅ Stabilize after theme change (cancel smooth + snap instantly)
+  function stabilizeAfterThemeSwitch() {
+    if (themeStabilizeTimer) clearTimeout(themeStabilizeTimer);
 
-  function hardReInit() {
-    // Full reset so theme switches never poison the state
-    detachListeners();
-    clearAllTimers();
+    themeStabilizeTimer = setTimeout(() => {
+      clearTimers();
+      wheelAccum = 0;
+      unlockInput();
 
-    locked = false;
-    wheelAccum = 0;
+      if (document.activeElement && typeof document.activeElement.blur === "function") {
+        document.activeElement.blur();
+      }
 
-    // allow the theme/layout swap to finish, then re-sync + reattach
-    requestAnimationFrame(() => {
+      const html = document.documentElement;
+      const prevBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = "auto";
+
       requestAnimationFrame(() => {
-        syncState();
-        attachListeners();
+        requestAnimationFrame(() => {
+          syncState();
+          jumpToIndex(nearestSectionIndex(), "auto");
+
+          setTimeout(() => {
+            html.style.scrollBehavior = prevBehavior || "";
+            syncState();
+            unlockInput();
+          }, 220);
+        });
       });
-    });
+    }, 50);
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function initScroll() {
     syncState();
     attachListeners();
 
-    // Keep index accurate when navbar hash links are clicked
-    window.addEventListener("hashchange", () => {
-      setTimeout(() => { syncState(); }, 350);
-    });
+    window.addEventListener("resize", syncState);
+    window.addEventListener("hashchange", () => setTimeout(syncState, 250));
+  }
 
-    window.addEventListener("resize", () => {
-      syncState();
-    });
+  function destroy() {
+    detachListeners();
+    clearTimers();
 
-    // ✅ Re-init whenever theme class changes
-    const observer = new MutationObserver((mutations) => {
-      for (const m of mutations) {
-        if (m.type === "attributes" && m.attributeName === "class") {
-          hardReInit();
-          break;
-        }
-      }
-    });
+    window.removeEventListener("resize", syncState);
 
-    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    if (themeStabilizeTimer) clearTimeout(themeStabilizeTimer);
+    themeStabilizeTimer = null;
+  }
 
-    // Extra safety: re-init on toggle change too
-    const sw = document.getElementById("themeSwitch");
-    if (sw) sw.addEventListener("change", hardReInit);
+  window.__portfolioController = { destroy };
+
+  // ---------------- INIT ----------------
+  document.addEventListener("DOMContentLoaded", () => {
+    initScroll();
+    initTheme(); // theme init calls stabilize too
   });
 })();

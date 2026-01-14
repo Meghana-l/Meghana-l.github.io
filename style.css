@@ -8,13 +8,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth;   /* keeps navbar click smooth */
   overflow-x: hidden;
-  height: 100%;
-
-  /* page snap */
-  scroll-snap-type: y mandatory;
-  scroll-padding-top: 80px; /* fixed header */
 }
 
 body {
@@ -26,9 +21,7 @@ body {
   color: var(--text);
 
   overflow-x: hidden;
-  overflow-y: auto;      /* IMPORTANT */
-  height: 100%;
-
+  overflow-y: auto;         
   scrollbar-width: none;
 }
 
@@ -37,20 +30,6 @@ body::-webkit-scrollbar {
 }
 
 
-/* ============ PAGE-LIKE SECTION SNAP ============ */
-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  scroll-margin-top: 80px;
-}
-
-/* Make the remaining sections page-sized */
-.about-section,
-.projects-section,
-.certifications-section,
-.contact-section {
-  min-height: 100vh;
-}
 
 /* =========================================================
    COLOR VARIABLES
@@ -184,6 +163,11 @@ body.light nav ul li a:hover {
   color: #b1005a;            /* dark pink */
   transform: scale(1.08);   /* subtle zoom */
 }
+
+section {
+  scroll-margin-top: 90px; 
+}
+
 
 /* =========================================================
    THEME TOGGLE SLIDER (Icon inside big white knob)
