@@ -4,18 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Meghana | Portfolio</title>
+
   <link rel="stylesheet" href="style.css" />
- <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-/>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <!-- ✅ makes sure toggle works reliably -->
+  <script src="script.js" defer></script>
 </head>
+
 <body>
 
 <!-- ================= HEADER / NAV ================= -->
 <header id="site-header">
   <div class="container nav">
-    <div class="nav-spacer"></div> <!-- keeps layout balanced -->
+    <div class="nav-spacer"></div>
     <nav>
       <ul class="menu">
         <li><a href="#about">About</a></li>
@@ -24,6 +29,19 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#contact">Contact</a></li>
+
+        <!-- ✅ Slider Toggle -->
+        <li class="theme-toggle-li">
+  <label class="theme-toggle" aria-label="Toggle theme">
+    <input type="checkbox" id="themeSwitch" />
+    <span class="toggle-track">
+      <span class="toggle-thumb">
+        <span class="icon-moon">☾</span>
+        <span class="icon-sun">☀︎</span>
+      </span>
+    </span>
+  </label>
+</li>
       </ul>
     </nav>
   </div>
@@ -33,62 +51,60 @@
 <section id="home" class="hero">
   <div class="hero-inner">
 
-    <!-- Name -->
     <h1><span>Meghana Lakshminarayana Swamy</span></h1>
 
-    <!-- Roles -->
     <p class="roles-tag">Data Engineer | Business Analyst | Business Enthusiast | Creative Builder</p>
 
-    <!-- Tagline -->
     <p class="intro">
       Turning raw data into meaningful insights and real-world solutions.
     </p>
 
- <!-- Location -->
-<p class="location">
-  <i class="fa-solid fa-location-dot"></i>
-  New York, NY, USA
-</p>
+    <p class="location">
+      <i class="fa-solid fa-location-dot"></i>
+      New York Metropolitan Area, USA
+    </p>
 
+    <div class="actions">
+      <a href="Meghana_Resume_2026.pdf" target="_blank" class="btn primary">Download Resume</a>
+    </div>
 
-    <!-- Resume Button -->
-<div class="actions">
-  <a href="Meghana_Resume_2026.pdf" target="_blank" class="btn primary">Download Resume</a>
-</div>
-
-    <!-- Social Icons -->
     <div class="icon-bar">
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=meghana.drlnswamy@gmail.com" target="_blank" aria-label="Email">
-    <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-  </a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=meghana.drlnswamy@gmail.com" target="_blank" aria-label="Email">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+
       <a href="https://www.linkedin.com/in/meghana-swamy" target="_blank" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5v-7.33c0-1.75-.03-4-2.44-4-2.44 0-2.82 1.9-2.82 3.86V24h-5V8z"/></svg>
       </a>
+
       <a href="https://github.com/Meghana-l" target="_blank" aria-label="GitHub">
         <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.2-3.37-1.2-.46-1.16-1.12-1.47-1.12-1.47-.92-.63.07-.62.07-.62 1.02.07 1.56 1.05 1.56 1.05.9 1.54 2.37 1.1 2.95.84.09-.66.35-1.1.63-1.36-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.9-1.3 2.74-1.02 2.74-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
       </a>
+
       <a href="https://www.instagram.com/meg._hannah/" target="_blank" aria-label="Instagram">
         <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3a5.75 5.75 0 1 1 0 11.5 5.75 5.75 0 0 1 0-11.5zm0 1.5a4.25 4.25 0 1 0 0 8.5 4.25 4.25 0 0 0 0-8.5zm5.5-.75a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
       </a>
     </div>
 
-    <!-- Scroll-down cue -->
     <div class="scroll-down">
       <a href="#about" aria-label="Scroll down"><i class="fa-solid fa-chevron-down"></i></a>
     </div>
   </div>
 </section>
 
-
 <!-- ABOUT SECTION -->
 <section class="about-section" id="about">
   <div class="about-grid">
-    <img src="meghana4.jpeg" alt="About Meghana" class="about-photo-wide">
+
+    <!-- About image: dark + light -->
+    <img src="images/meghana4.jpeg" alt="About Meghana" class="about-photo-wide about-photo-dark">
+    <img src="images/Meghana_8.jpeg" alt="About Meghana" class="about-photo-wide about-photo-light">
+
     <div class="about-text">
       <h4 class="subheader">About</h4>
       <h2 class="typewriter" id="meghana-intro"></h2>
 
-      <div class="about-details" id="aboutContent">
+      <div class="about-details hidden" id="aboutContent">
         <p>
           I’m a Business Analytics graduate student at the University of New Haven, with a background in Information Science Engineering and a deep interest in solving real-world problems through data. I enjoy working at the intersection of logic and creativity—digging into datasets, uncovering patterns, and turning raw information into visuals or reports that actually drive decisions.
         </p>
@@ -100,25 +116,21 @@
         </p>
       </div>
     </div>
+
   </div>
 </section>
 
 
-
- 
-<!-- ================= JOURNEY SECTION (World Map Style with PDF Downloads) ================= -->
+<!-- ================= JOURNEY SECTION ================= -->
 <section id="journey" class="journey-section">
   <h2 class="journey-title">My Journey</h2>
 
-  <div class="journey-map">
+  <div class="journey-map" id="journey-timeline">
     <img src="journey_icons/world-map.png" alt="World Map" class="world-map">
 
-    <!-- INDIA STACKED ICONS -->
     <div class="journey-group india-group">
-      <!-- Sindhi High School -->
       <div class="journey-point">
-          <img src="journey_icons/school.png" alt="Sindhi High School">
-        </a>
+        <img src="journey_icons/school.png" alt="Sindhi High School">
         <div class="text">School – Grades 1 to 10</div>
         <div class="tooltip">
           <h3>Sindhi High School</h3>
@@ -126,10 +138,8 @@
         </div>
       </div>
 
-      <!-- Deeksha Learning Center -->
       <div class="journey-point">
-          <img src="journey_icons/highschool.png" alt="Deeksha Learning Center Yelahanka">
-        </a>
+        <img src="journey_icons/highschool.png" alt="Deeksha Learning Center Yelahanka">
         <div class="text">School - Grades 11 & 12</div>
         <div class="tooltip">
           <h3>Deeksha Learning Center Yelahanka</h3>
@@ -137,7 +147,6 @@
         </div>
       </div>
 
-      <!-- BMS Institute -->
       <div class="journey-point">
         <a href="pdfs/Meghana L- Degree Certificate.pdf" target="_blank">
           <img src="journey_icons/college.png" alt="BMS Institute of Technology">
@@ -145,16 +154,14 @@
         <div class="text">Undergraduate Degree – B.E. Information Science</div>
         <div class="tooltip">
           <h3>BMS Institute of Technology & Management</h3>
-          <p>Bachelor’s in Information Science Engineering<br>2019–2023<br>Bengaluru, India </p>
+          <p>Bachelor’s in Information Science Engineering<br>2019–2023<br>Bengaluru, India</p>
         </div>
       </div>
     </div>
 
-    <!-- USA: University of New Haven -->
-    <div class="journey-group usa-group"> 
+    <div class="journey-group usa-group">
       <div class="journey-point">
-          <img src="journey_icons/masters.png" alt="University of New Haven">
-        </a>
+        <img src="journey_icons/masters.png" alt="University of New Haven">
         <div class="text">Graduate Degree – MSc. Business Analytics</div>
         <div class="tooltip">
           <h3>University of New Haven</h3>
@@ -162,16 +169,14 @@
         </div>
       </div>
     </div>
+  </div>
 </section>
-
 
 <!-- ================= EXPERIENCE SECTION ================= -->
 <section id="experience" class="experience-section">
   <h2 class="experience-title">Experience</h2>
 
   <div class="experience-container">
-
-    <!-- Experience Card 1 -->
     <div class="experience-card">
       <div class="experience-content">
         <h3>Teaching Assistant</h3>
@@ -185,7 +190,6 @@
       </div>
     </div>
 
-    <!-- Experience Card 2 -->
     <div class="experience-card">
       <div class="experience-content">
         <h3>Student Worker</h3>
@@ -197,11 +201,10 @@
         </ul>
       </div>
     </div>
-
   </div>
 </section>
 
-  <!-------------- PROJECTS SECTION ------------------->
+<!-------------- PROJECTS SECTION ------------------->
 <section class="projects-section" id="projects">
   <h2 class="projects-title">Projects</h2>
 
@@ -214,75 +217,44 @@
 
     <button id="nextBtn" class="nav-btn nav-right">&#10095;</button>
   </div>
- 
 </section>
-
-
-
-
 
 <!-- CERTIFICATIONS SECTION -->
 <section class="certifications-section" id="certifications">
   <h2 class="certifications-title">Certifications</h2>
   <div class="cert-grid">
-    <!-- Add your certificate images below. Use same name as in 'images/' and matching PDF in 'pdfs/' -->
-    <div class="cert-card" onclick="openViewer(0)">
-      <img src="images/course_1.png" alt="Certificate 1" />
-    </div>
-    <div class="cert-card" onclick="openViewer(1)">
-      <img src="images/Course_2.png" alt="Certificate 2" />
-    </div>
-    <div class="cert-card" onclick="openViewer(2)">
-      <img src="images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png" alt="Certificate 3" />
-    </div>
-    <div class="cert-card" onclick="openViewer(3)">
-      <img src="images/Meghana.L_1BY19IS094_IoT.png" alt="Certificate 4" />
-    </div>
-    <div class="cert-card" onclick="openViewer(4)">
-      <img src="images/My_Learning___NVIDIA.png" alt="Certificate 5" />
-    </div>
-    <div class="cert-card" onclick="openViewer(5)">
-      <img src="images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png" alt="Certificate 6" />
-    </div>
-    <div class="cert-card" onclick="openViewer(6)">
-      <img src="images/course_r.png" alt="Certificate 7" />
-    </div>
-    <div class="cert-card" onclick="openViewer(7)">
-      <img src="images/excel_2019.png" alt="Certificate 8" />
-    </div>
-    <div class="cert-card" onclick="openViewer(8)">
-      <img src="images/tableau_cert_prep.png" alt="Certificate 9" />
-    </div>
+    <div class="cert-card" onclick="openViewer(0)"><img src="images/course_1.png" alt="Certificate 1" /></div>
+    <div class="cert-card" onclick="openViewer(1)"><img src="images/Course_2.png" alt="Certificate 2" /></div>
+    <div class="cert-card" onclick="openViewer(2)"><img src="images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png" alt="Certificate 3" /></div>
+    <div class="cert-card" onclick="openViewer(3)"><img src="images/Meghana.L_1BY19IS094_IoT.png" alt="Certificate 4" /></div>
+    <div class="cert-card" onclick="openViewer(4)"><img src="images/My_Learning___NVIDIA.png" alt="Certificate 5" /></div>
+    <div class="cert-card" onclick="openViewer(5)"><img src="images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png" alt="Certificate 6" /></div>
+    <div class="cert-card" onclick="openViewer(6)"><img src="images/course_r.png" alt="Certificate 7" /></div>
+    <div class="cert-card" onclick="openViewer(7)"><img src="images/excel_2019.png" alt="Certificate 8" /></div>
+    <div class="cert-card" onclick="openViewer(8)"><img src="images/tableau_cert_prep.png" alt="Certificate 9" /></div>
   </div>
 
-  <!-- Viewer Overlay -->
   <div class="viewer-overlay" id="viewer">
     <span class="close-btn" onclick="closeViewer()">×</span>
     <img id="viewer-image" src="" alt="Zoomed Certificate" onclick="openPDFInNewTab()" />
     <span class="nav-btn left" id="prev-btn" onclick="prevImage()">❮</span>
     <span class="nav-btn right" id="next-btn" onclick="nextImage()">❯</span>
   </div>
- 
 </section>
 
-
-
-  <!-- CONTACTS SECTION -->
-  <section class="contact-section" id="contact">
+<!-- CONTACT SECTION -->
+<section class="contact-section" id="contact">
   <h2 class="section-title">Contact</h2>
 
   <div class="contact-container">
-    <!-- Right: Contact Form -->
     <div class="contact-form-box">
       <h3 class="form-heading">Contact Me</h3>
-<form id="contact-form">
-  <input type="text" name="name" placeholder="Your Name" required />
-  <input type="email" name="email" placeholder="Your Email" required />
-  <textarea name="message" placeholder="Your Message" required></textarea>
-  <button type="submit">Send</button>
-</form>
-
-
+      <form id="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
     </div>
   </div>
 </section>
@@ -305,74 +277,36 @@
   });
 </script>
 
+<!-- TYPEWRITER + ABOUT DISPLAY -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const intro = document.getElementById("meghana-intro");
+    const aboutContent = document.getElementById("aboutContent");
 
+    intro.innerHTML = "Hi, this is Meghana";
 
-  <!-- SCROLL REVEAL -->
-  <script>
-    const reveals = document.querySelectorAll(".reveal, .slide-in-left");
-
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-
-    reveals.forEach(item => revealObserver.observe(item));
-  </script>
-
-  <!-- TYPEWRITER + ABOUT DISPLAY -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const intro = document.getElementById("meghana-intro");
-      const aboutContent = document.getElementById("aboutContent");
-
-      // Typing effect will trigger via CSS when this is set
-      intro.innerHTML = "Hi, this is Meghana";
-
-      // After animation ends, show about details
-      setTimeout(() => {
-        aboutContent.classList.remove("hidden");
-        aboutContent.classList.add("visible");
-      }, 3000);
-    });
-  </script>
-
- <!-- Journey Script -->
- <script>
-  const journeyTitle = document.querySelector(".journey-title");
-  const timelineWrapper = document.getElementById("journey-timeline");
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        journeyTitle.classList.add("visible");
-        timelineWrapper.classList.add("visible");
-        observer.disconnect();
-      }
-    });
-  }, { threshold: 0.3 });
-
-  observer.observe(journeyTitle);
+    setTimeout(() => {
+      aboutContent.classList.remove("hidden");
+      aboutContent.classList.add("visible");
+    }, 3000);
+  });
 </script>
 
-
- <!-- Projects Script -->
+<!-- Projects Script -->
 <script>
 const projects = [
-{
-  title: "Port Authority Bus Terminal Passenger Prediction",
-  description: `An advanced data analytics project built to forecast passenger flow and operational reliability for the Port Authority Bus Terminal (2025-2030). It integrates MTA bus performance, weather, and traffic datasets using SQL Server and R to model future demand through regression, classification, and clustering techniques. The Power BI dashboard features forecast charts, carrier-wise distribution visuals, and risk classification indicators, helping stakeholders plan resources, manage failures, and enhance passenger experience through data-driven insights.`,
-  image: "images/PortAuthority.png",
-  github: "https://github.com/Meghana-l/PortAuthority-BusTerminal-Prediction"},
-{
-  title: "Food Insecurity Dashboard - Capital Area Food Bank (CAFB) Dataset",
-  description: `An interactive Excel dashboard built to analyze food insecurity across Washington DC, Maryland, and Virginia using Capital Area Food Bank data (2014-2015). It visualizes pounds of food needed, distributed, and unmet through dynamic pivot tables and calculated KPIs such as Coverage % and Food Insecurity Rate. The dashboard includes comparison charts, a filled state map, and a Top-15 unmet tracts list to highlight regional disparities and guide targeted resource allocation, giving stakeholders a data-driven view of hunger distribution and coverage trends.`,
-  image: "images/CAFB_HungerDashbaord.png",
-  github: "https://github.com/Meghana-l/Measuring-Food-Insecurity-in-the-Capital-Area-Excel-Dashboard"
-},
+  {
+    title: "Port Authority Bus Terminal Passenger Prediction",
+    description: `An advanced data analytics project built to forecast passenger flow and operational reliability for the Port Authority Bus Terminal (2025-2030). It integrates MTA bus performance, weather, and traffic datasets using SQL Server and R to model future demand through regression, classification, and clustering techniques. The Power BI dashboard features forecast charts, carrier-wise distribution visuals, and risk classification indicators, helping stakeholders plan resources, manage failures, and enhance passenger experience through data-driven insights.`,
+    image: "images/PortAuthority.png",
+    github: "https://github.com/Meghana-l/PortAuthority-BusTerminal-Prediction"
+  },
+  {
+    title: "Food Insecurity Dashboard - Capital Area Food Bank (CAFB) Dataset",
+    description: `An interactive Excel dashboard built to analyze food insecurity across Washington DC, Maryland, and Virginia using Capital Area Food Bank data (2014-2015). It visualizes pounds of food needed, distributed, and unmet through dynamic pivot tables and calculated KPIs such as Coverage % and Food Insecurity Rate. The dashboard includes comparison charts, a filled state map, and a Top-15 unmet tracts list to highlight regional disparities and guide targeted resource allocation, giving stakeholders a data-driven view of hunger distribution and coverage trends.`,
+    image: "images/CAFB_HungerDashbaord.png",
+    github: "https://github.com/Meghana-l/Measuring-Food-Insecurity-in-the-Capital-Area-Excel-Dashboard"
+  },
   {
     title: "S&P 500 Performance & Risk Analysis",
     description: `This project helps to analyze the Performance and Risk-Return Profile of S&P 500 Companies to Aid Investment Decision-Making.
@@ -381,14 +315,14 @@ This Power BI dashboard helps investors and analysts evaluate the performance, r
     image: "images/Screenshot 2025-07-14 213623.png",
     github: "https://github.com/Meghana-l/PowerBI_Project_spindex"
   },
- {
-  title: "British Airways Review using Tableau",
-  description: `This project is an interactive Dashboard that helps a user to analyse the various parameters of British Airways, like Overall rating, Staff service, Food services, Value for money etc., across the Globe over the past few years.
+  {
+    title: "British Airways Review using Tableau",
+    description: `This project is an interactive Dashboard that helps a user to analyse the various parameters of British Airways, like Overall rating, Staff service, Food services, Value for money etc., across the Globe over the past few years.
 
 The end user using this Dashboard will be able to pick a metric that they want to view, with a simple click. The end user will also have other useful filters to find the exact data points that they are looking for. Each of the visuals are dynamic filters themselves, so you can click on the date, the map or select the specific Aircraft that you are interested in.`,
-  image: "images/Screenshot 2025-07-14 214357.png",
-  github: "https://github.com/Meghana-l/Tableau_EndToEnd_Prjct"
-},
+    image: "images/Screenshot 2025-07-14 214357.png",
+    github: "https://github.com/Meghana-l/Tableau_EndToEnd_Prjct"
+  },
   {
     title: "Coffee Sales Interactive Dashboard using Excel",
     description: `This Excel dashboard provides a user-friendly way to analyze coffee sales data. Its interactive design allows users to filter the data by several key criteria, including time-period, coffee roast type, cup size, and customer loyalty status. These filters enable users to drill down into the data and explore specific trends and customer preferences.`,
@@ -420,13 +354,11 @@ The work is inspired by real-world scenarios and developed as part of my advance
     github: "https://github.com/Meghana-l/Database-Management-Portfolio"
   },
   {
-  title: "Excel Dashboarding Project",
-  description: `An interactive Excel dashboard designed to monitor key call centre metrics such as call volume, average handle time, customer satisfaction, and agent performance. It uses a Power Pivot data model linking Calls and Customers tables through Customer ID, enabling dynamic analysis with DAX measures and slicers for filters like Representative, Day of Week, and Fiscal Year. The dashboard features KPI cards, trend charts, and conditional formatting to highlight performance insights in real time, giving managers a clear, data-driven view of operational efficiency and customer experience.`,
-  image: "images/excel_dashboard.png",
-  github: "https://github.com/Meghana-l/Excel-Dashboarding-Project"
-}
-
-
+    title: "Excel Dashboarding Project",
+    description: `An interactive Excel dashboard designed to monitor key call centre metrics such as call volume, average handle time, customer satisfaction, and agent performance. It uses a Power Pivot data model linking Calls and Customers tables through Customer ID, enabling dynamic analysis with DAX measures and slicers for filters like Representative, Day of Week, and Fiscal Year. The dashboard features KPI cards, trend charts, and conditional formatting to highlight performance insights in real time, giving managers a clear, data-driven view of operational efficiency and customer experience.`,
+    image: "images/excel_dashboard.png",
+    github: "https://github.com/Meghana-l/Excel-Dashboarding-Project"
+  }
 ];
 
 let currentProject = 0;
@@ -437,8 +369,7 @@ const nextBtn = document.getElementById("nextBtn");
 function loadProject(index) {
   const project = projects[index];
   contentDiv.innerHTML = `
-   <a href="${project.github}" target="_blank" title="Link to GitHub">
-
+    <a href="${project.github}" target="_blank" title="Link to GitHub">
       <img src="${project.image}" alt="${project.title}" />
     </a>
     <div class="project-info">
@@ -467,8 +398,7 @@ nextBtn.addEventListener("click", () => {
 loadProject(currentProject);
 </script>
 
-
- <!-- Certificates Script -->
+<!-- Certificates Script -->
 <script>
   const certificates = [
     { image: 'images/course_1.png', pdf: 'pdfs/course 1.pdf' },
@@ -498,15 +428,11 @@ loadProject(currentProject);
   }
 
   function prevImage() {
-    if (currentIndex > 0) {
-      openViewer(currentIndex - 1);
-    }
+    if (currentIndex > 0) openViewer(currentIndex - 1);
   }
 
   function nextImage() {
-    if (currentIndex < certificates.length - 1) {
-      openViewer(currentIndex + 1);
-    }
+    if (currentIndex < certificates.length - 1) openViewer(currentIndex + 1);
   }
 
   function updateNavButtons() {
@@ -517,6 +443,35 @@ loadProject(currentProject);
   function openPDFInNewTab() {
     window.open(certificates[currentIndex].pdf, '_blank');
   }
+</script>
+
+<!-- Dark/Light Theme Script -->
+<script>
+  (function () {
+    const STORAGE_KEY = "themeMode";
+
+    function applyTheme(mode) {
+      document.body.classList.toggle("light", mode === "light");
+      localStorage.setItem(STORAGE_KEY, mode);
+
+      // checkbox should reflect theme
+      const sw = document.getElementById("themeSwitch");
+      if (sw) sw.checked = (mode === "light");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      applyTheme(saved === "light" ? "light" : "dark"); // default dark
+
+      const sw = document.getElementById("themeSwitch");
+      if (!sw) return;
+
+      sw.addEventListener("change", () => {
+        // ✅ when checked -> LIGHT, when unchecked -> DARK
+        applyTheme(sw.checked ? "light" : "dark");
+      });
+    });
+  })();
 </script>
 
 </body>

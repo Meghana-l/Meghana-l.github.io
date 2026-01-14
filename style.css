@@ -10,19 +10,46 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  height: 100%;
+
+  /* page snap */
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 80px; /* fixed header */
 }
 
 body {
+  margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #0a0a0a;
-  color: #f0f0f0;
+
+  /* theme tokens */
+  background-color: var(--page-bg);
+  color: var(--text);
+
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;      /* IMPORTANT */
+  height: 100%;
+
   scrollbar-width: none;
 }
 
 body::-webkit-scrollbar {
   display: none;
+}
+
+
+/* ============ PAGE-LIKE SECTION SNAP ============ */
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  scroll-margin-top: 80px;
+}
+
+/* Make the remaining sections page-sized */
+.about-section,
+.projects-section,
+.certifications-section,
+.contact-section {
+  min-height: 100vh;
 }
 
 /* =========================================================
@@ -34,8 +61,47 @@ body::-webkit-scrollbar {
   --bg3: #24243e;
   --accent1: #ff007f;
   --accent2: #a64df4;
+
+  /* Theme tokens */
+  --page-bg: #0a0a0a;
+  --section-bg: #111;
+  --section-bg-soft: #0c0c0c;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --card-border: rgba(255, 255, 255, 0.15);
+
+  --text: #f0f0f0;
+  --muted: #d1d5db;
+  --heading: #ffffff;
+  --link: #ffffff;
+
+  --nav-bg: rgba(0, 0, 0, 0.45);
+
   --text-light: #ffffff;
   --text-muted: #d1d5db;
+}
+
+/* ✅ LIGHT THEME OVERRIDES */
+body.light {
+  --page-bg: #e8e6e3;
+  --section-bg: #f1efec;
+  --section-bg-soft: #f6f4f1;
+
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-border: rgba(30, 20, 10, 0.18);
+
+  --text: #2a1c12;
+  --muted: #4a3324;
+
+  --heading: #1f140d;
+  --link: #1f140d;
+
+  --nav-bg: rgba(245, 242, 238, 0.75);
+}
+
+/* Apply theme tokens */
+body {
+  background-color: var(--page-bg);
+  color: var(--text);
 }
 
 /* =========================================================
@@ -47,7 +113,7 @@ body::-webkit-scrollbar {
   left: 0;
   right: 0;
   height: 70px;
-  background: rgba(0, 0, 0, 0.45);
+  background: var(--nav-bg);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
@@ -65,21 +131,6 @@ body::-webkit-scrollbar {
   padding: 0 24px;
 }
 
-/* Brand Name */
-.brand {
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: var(--accent1);
-  text-decoration: none;
-  letter-spacing: 0.5px;
-  transition: color 0.25s ease;
-}
-
-.brand:hover {
-  color: var(--accent2);
-}
-
-/* Menu Items */
 .menu {
   display: flex;
   gap: 30px;
@@ -89,12 +140,12 @@ body::-webkit-scrollbar {
 }
 
 .menu a {
-  color: var(--text-light);
+  color: var(--link);
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
   transition: color 0.25s ease, opacity 0.25s ease;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .menu a:hover {
@@ -125,8 +176,111 @@ body::-webkit-scrollbar {
   }
 }
 
+body.light nav ul li a {
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+body.light nav ul li a:hover {
+  color: #b1005a;            /* dark pink */
+  transform: scale(1.08);   /* subtle zoom */
+}
+
 /* =========================================================
-   HERO SECTION
+   THEME TOGGLE SLIDER (Icon inside big white knob)
+   ========================================================= */
+.theme-toggle-li{
+  display:flex;
+  align-items:center;
+  margin-left: 10px;
+}
+
+/* hide checkbox but keep it accessible */
+#themeSwitch{
+  position:absolute;
+  opacity:0;
+  width:1px;
+  height:1px;
+  pointer-events:none;
+}
+
+.theme-toggle{
+  display:inline-flex;
+  align-items:center;
+  cursor:pointer;
+  user-select:none;
+}
+
+.toggle-track{
+  width: 86px;
+  height: 38px;
+  border-radius: 999px;
+  background: #2d3440; /* dark pill like your image */
+  position: relative;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08),
+              0 10px 25px rgba(0,0,0,0.28);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* BIG white knob */
+.toggle-thumb{
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ffffff;
+  position:absolute;
+  top: 2px;
+  left: 2px; /* dark default => left */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+/* icons inside knob */
+.toggle-thumb span{
+  position:absolute;
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  color: #2a1c12; /* dark brown icon */
+}
+
+/* default DARK: show moon only */
+.icon-moon{ opacity: 1; transform: scale(1); }
+.icon-sun{ opacity: 0; transform: scale(0.85); }
+
+/* checked LIGHT: slide knob right + show sun only */
+#themeSwitch:checked + .toggle-track .toggle-thumb{
+  transform: translateX(48px); /* 86 - 34 - 4 = 48 */
+}
+
+#themeSwitch:checked + .toggle-track .icon-moon{
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+#themeSwitch:checked + .toggle-track .icon-sun{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Light mode track color (matches your reference vibe) */
+body.light .toggle-track{
+  background: #2d3440; /* keep dark track like your image */
+}
+
+/* optional: focus ring for keyboard users */
+.theme-toggle:focus-within .toggle-track{
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14),
+              0 0 0 3px rgba(255,0,127,0.25),
+              0 10px 25px rgba(0,0,0,0.28);
+}
+
+
+
+/* =========================================================
+   HERO SECTION SECTION
    ========================================================= */
 .hero {
   position: relative;
@@ -144,7 +298,7 @@ body::-webkit-scrollbar {
   overflow: hidden;
 }
 
-/* dark overlay for readability */
+/* overlay */
 .hero::before {
   content: "";
   position: absolute;
@@ -153,7 +307,7 @@ body::-webkit-scrollbar {
   z-index: 0;
 }
 
-/* make sure all text stays above overlay */
+/* keep hero content above overlay */
 .hero-inner,
 .hero h1,
 .hero p,
@@ -177,21 +331,8 @@ body::-webkit-scrollbar {
   color: #ffffff;
   margin-bottom: 16px;
   line-height: 1.2;
-  text-align: center;
-  display: block;
 }
 
-.hero h1 span {
-  display: inline-block;
-  text-align: center;
-  background: none;
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: #fff;
-  padding: 0;
-  margin: 0 auto;
-}
-
-/* Roles */
 .roles-tag {
   font-size: 1.15rem;
   font-weight: 500;
@@ -200,47 +341,40 @@ body::-webkit-scrollbar {
   letter-spacing: 0.3px;
 }
 
-/* Tagline */
 .intro {
   font-size: 1rem;
-  color: var(--text-muted);
+  color: #d1d5db;
   margin-bottom: 25px;
   line-height: 1.6;
 }
 
-/* Location */
 .location {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px; /* space between icon & text */
+  gap: 8px;
   font-size: 1rem;
-  color: var(--text-muted);
+  color: #d1d5db;
   margin-top: 4px;
-  margin-bottom: 42px; /* ✅ creates clean gap before Resume button */
+  margin-bottom: 42px;
   letter-spacing: 0.3px;
   opacity: 0.95;
 }
 
-
-/* Resume Button */
-/* Location icon style */
 .location i {
-  color: var(--accent1); /* ✅ uses your pink accent */
+  color: var(--accent1);
   font-size: 1.1rem;
   position: relative;
-  top: 1px; /* keeps it aligned with text */
+  top: 1px;
 }
 
-/* Resume button container */
 .actions {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 26px; /* ✅ even spacing between button and social icons */
+  gap: 26px;
   margin-top: 10px;
 }
-
 
 .btn.primary {
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
@@ -291,37 +425,93 @@ body::-webkit-scrollbar {
   fill: #ffffff;
 }
 
-/* Scroll-down Arrow */ 
-.scroll-down { 
+/* Scroll-down */
+.scroll-down {
   margin-top: 50px;
-   font-size: 1.6rem;
-    animation: bounce 1.6s infinite; 
-  }
+  font-size: 1.6rem;
+  animation: bounce 1.6s infinite;
+}
 
-  .scroll-down a {
-     color: #ffffff;
-      text-decoration: none;
-       transition: transform 0.2s ease;
-       }
+.scroll-down a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
 
-  .scroll-down a:hover {
-     transform: translateY(4px);
-     }
-     
-     .scroll-down i {
-       color: var(--text-light);
-        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
-       }
+.scroll-down a:hover {
+  transform: translateY(4px);
+}
 
-       @keyframes bounce {
-         0%, 100% { transform: translateY(0);}
-          50% { transform: translateY(8px); }
-         }
+.scroll-down i {
+  color: #ffffff;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
+}
 
-/* ABOUT SECTION */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(8px); }
+}
+
+/* =========================================================
+   HERO SECTION – LIGHT MODE ONLY
+   ========================================================= */
+body.light .hero {
+  background: url("hero_light_background.png") no-repeat center center / cover;
+  color: #2a1c12; /* dark brown text */
+}
+
+/* Light overlay for readability (instead of dark overlay) */
+body.light .hero::before {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* Headline */
+body.light .hero h1 {
+  color: #1f140d;
+}
+
+/* Roles line */
+body.light .roles-tag {
+  color: #3b2a1d;
+}
+
+/* Tagline */
+body.light .intro {
+  color: #4a3324;
+}
+
+/* Location text */
+body.light .location {
+  color: #4a3324;
+}
+
+body.light .location i {
+  color: var(--accent1); /* keep pink accent */
+}
+
+/* Scroll arrow */
+body.light .scroll-down a,
+body.light .scroll-down i {
+  color: #2a1c12;
+  filter: none;
+}
+
+/* Social icons in light mode */
+body.light .icon-bar a {
+  background: rgba(42, 28, 18, 0.08);
+  border: 1px solid rgba(42, 28, 18, 0.18);
+}
+
+body.light .icon-bar svg {
+  fill: #2a1c12;
+}
+
+/* =========================================================
+   ABOUT SECTION
+   ========================================================= */
 .about-section {
   padding: 80px 60px;
-  background: linear-gradient(to bottom, #0e0e0e, #1a1a1a);
+  background: linear-gradient(to bottom, var(--section-bg-soft), var(--section-bg));
 }
 
 .about-grid {
@@ -334,15 +524,24 @@ body::-webkit-scrollbar {
   flex-wrap: wrap;
 }
 
+/* shared image styling */
 .about-photo-wide {
   width: 48%;
   height: auto;
   max-height: 650px;
   object-fit: cover;
   border-radius: 12px;
-  border: 3px solid #222;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+  border: 3px solid rgba(0,0,0,0.15);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+  display: block;
 }
+
+/* ✅ theme-based visibility */
+.about-photo-light { display: none; }
+.about-photo-dark  { display: block; }
+
+body.light .about-photo-light { display: block; }
+body.light .about-photo-dark  { display: none; }
 
 .about-text {
   flex: 1;
@@ -352,7 +551,7 @@ body::-webkit-scrollbar {
 .about-text h4.subheader {
   text-transform: uppercase;
   font-size: 1rem;
-  color: #888;
+  color: var(--muted);
   margin-bottom: 10px;
   letter-spacing: 1px;
 }
@@ -360,18 +559,18 @@ body::-webkit-scrollbar {
 .about-text h2 {
   font-size: 2.3rem;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: var(--heading);
 }
 
 /* Typing effect */
 .typewriter {
   font-size: 2rem;
-  color: #fff;
+  color: var(--heading);
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid #fff;
+  border-right: 3px solid var(--heading);
   width: 0;
-  animation: typing 1.8s steps(30, end) forwards, blink 0.7s step-end infinite;
+  animation: typing 1.2s steps(30, end) forwards, blink 0.8s step-end infinite;
 }
 
 @keyframes typing {
@@ -383,50 +582,56 @@ body::-webkit-scrollbar {
   50% { border-color: transparent; }
 }
 
-/* Fade-in for content */
-.about-details {
+/* show/hide */
+.about-details.hidden {
   opacity: 0;
-  transition: opacity 1s ease;
   pointer-events: none;
-  height: auto;
 }
 
 .about-details.visible {
   opacity: 1;
   pointer-events: auto;
+  transition: opacity 0s ease;
 }
 
 .about-text p {
   font-size: 1.1rem;
-  color: #dddddd;
+  color: var(--muted);
   line-height: 1.8;
   margin-bottom: 20px;
 }
 
+/* =========================================================
+   JOURNEY SECTION
+   ========================================================= */
 
-
-/* ========================= JOURNEY SECTION ========================= */
 .journey-section {
   position: relative;
   width: 100%;
-  height: 100vh;
-  background: #0b0b0b;
+  height: calc(100vh - 80px);
+  background: var(--page-bg);
   overflow: hidden;
-  color: #fff;
+  color: var(--text);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   text-align: center;
-  padding-top: 80px;
+  padding-top: 20px;
+  box-sizing: border-box;
 }
 
+/* ✅ LIGHT MODE: same background behind the map */
+body.light .journey-section {
+  background-color: #fffefec5; 
+}
+
+/* Title */
 .journey-title {
   font-size: 2.8rem;
   font-weight: 800;
-  color: #f4f4f4;
+  color: var(--heading);
   margin-bottom: 40px;
-  text-shadow: 0 0 10px rgba(255,255,255,0.1);
+  text-shadow: 0 0 10px rgba(0,0,0,0.08);
   z-index: 2;
 }
 
@@ -434,25 +639,36 @@ body::-webkit-scrollbar {
 .journey-map {
   position: relative;
   width: 100%;
-  height: 100%;
+  flex: 1;
+  padding: 30px 40px;
+  box-sizing: border-box;
 }
 
+
+/* Map image (used in BOTH themes) */
 .world-map {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: none;
+  transform: scale(1.08); /* ✅ same sizing for both themes */
   opacity: 0.85;
   z-index: 0;
+  pointer-events: none;
 }
 
-/* INDIA GROUP - stacked icons (slightly higher) */
+/* ✅ Swap map image in light theme (keeps same dimensions because it's still the IMG) */
+body.light .journey-section .world-map {
+  content: url("journey_icons/world-map-light.png");
+  opacity: 0.95;
+}
+
+/* Groups */
 .india-group {
   position: absolute;
   top: 54%;
-  left: 67%;
+  left: 65%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -460,10 +676,9 @@ body::-webkit-scrollbar {
   z-index: 2;
 }
 
-/* USA GROUP - slightly lower */
 .usa-group {
   position: absolute;
-  top: 45%;
+  top: 52%;
   left: 22%;
   display: flex;
   flex-direction: row;
@@ -472,7 +687,7 @@ body::-webkit-scrollbar {
   z-index: 2;
 }
 
-/* Each journey point */
+/* Points */
 .journey-point {
   position: relative;
   display: flex;
@@ -492,18 +707,25 @@ body::-webkit-scrollbar {
   cursor: pointer;
 }
 
+/* ✅ LIGHT MODE ICON FIX: black outline like dark theme */
+body.light .journey-point img {
+  background: #ffffff;
+  border: 2px solid #000000; /* black outer outline */
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
+}
+
 .journey-point a {
   text-decoration: none;
 }
 
 .journey-point:hover img {
   transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
+  box-shadow: 0 0 20px rgba(255, 0, 127, 0.35);
 }
 
-/* Text beside each icon */
+/* Text */
 .text {
-  color: #f1f1f1;
+  color: var(--heading);
   font-size: 1.05rem;
   font-weight: 500;
   line-height: 1.4;
@@ -511,7 +733,12 @@ body::-webkit-scrollbar {
   max-width: 340px;
 }
 
-/* Tooltip styling */
+/* ✅ LIGHT MODE TEXT: darker for readability */
+body.light .journey-section .text {
+  color: #1f1f1f;
+}
+
+/* Tooltip */
 .tooltip {
   position: absolute;
   bottom: 110%;
@@ -527,7 +754,7 @@ body::-webkit-scrollbar {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
   z-index: 3;
 }
 
@@ -543,52 +770,24 @@ body::-webkit-scrollbar {
   line-height: 1.5;
 }
 
-/* Show tooltip on hover */
 .journey-point:hover .tooltip {
   opacity: 1;
   transform: translateX(-50%) translateY(-6px);
   pointer-events: auto;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .journey-title {
-    font-size: 2rem;
-  }
-
-  .journey-point img {
-    width: 50px;
-    height: 50px;
-  }
-
-  .text {
-    font-size: 0.9rem;
-  }
-
-  .india-group {
-    left: 60%;
-    top: 56%;
-    gap: 20px;
-  }
-
-  .usa-group {
-    left: 25%;
-    top: 47%;
-  }
-
-  .tooltip {
-    font-size: 0.85rem;
-  }
-}
 
 
-/* ================= EXPERIENCE SECTION ================= */
+
+/* =========================================================
+   EXPERIENCE SECTION
+   ========================================================= */
 .experience-section {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background: url("experience-background.jpg") center/cover no-repeat; /* ✅ corrected file name */
-  background-attachment: fixed; /* ✅ gives smooth scroll effect */
+  background: url("images/dark-experience-background.png") center/cover no-repeat;
+  background-attachment: fixed;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -598,12 +797,12 @@ body::-webkit-scrollbar {
   overflow: hidden;
 }
 
-/* ✅ overlay lightened slightly to make the image visible */
+/* Dark overlay */
 .experience-section::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(10, 10, 10, 0.6); /* was 0.85 */
+  background: rgba(10, 10, 10, 0.60);
   backdrop-filter: blur(2px);
   z-index: 0;
 }
@@ -629,7 +828,6 @@ body::-webkit-scrollbar {
   z-index: 2;
 }
 
-/* translucent cards */
 .experience-card {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -676,36 +874,61 @@ body::-webkit-scrollbar {
   line-height: 1.6;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .experience-title {
-    font-size: 2.2rem;
-  }
-  .experience-card {
-    padding: 20px;
-  }
-  .experience-content h3 {
-    font-size: 1.3rem;
-  }
-  .experience-content li {
-    font-size: 0.9rem;
-  }
+/* ================= LIGHT THEME OVERRIDES ================= */
+
+body.light .experience-section {
+  background: url("images/light-experience-background.png") center/cover no-repeat;
+  background-attachment: fixed;
+  color: #2b1b12; /* dark brown-ish */
 }
- 
-/* Projects Section */
+
+body.light .experience-section::before {
+  background: rgba(255, 255, 255, 0.25); /* very light overlay */
+  backdrop-filter: blur(1px);
+}
+
+body.light .experience-title {
+  color: #2b1b12;
+  text-shadow: none;
+}
+
+body.light .experience-card {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(43, 27, 18, 0.18);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+body.light .experience-content h3 {
+  color: #c21876; /* dark pink accent */
+}
+
+body.light .experience-content h4 {
+  color: rgba(43, 27, 18, 0.80);
+}
+
+body.light .duration {
+  color: rgba(43, 27, 18, 0.65);
+}
+
+body.light .experience-content li {
+  color: rgba(43, 27, 18, 0.85);
+}
+
+/* =========================================================
+   PROJECTS SECTION
+   ========================================================= */
 .projects-section {
-  background: #111;
+  background: var(--section-bg);
   padding: 80px 40px;
   text-align: center;
 }
 
 .projects-title {
   font-size: 2.5rem;
-  color: #fff;
+  color: var(--heading);
   margin-bottom: 50px;
 }
 
-/* Wrapper with buttons on left and right of full card */
 .project-wrapper {
   position: relative;
   display: flex;
@@ -715,7 +938,6 @@ body::-webkit-scrollbar {
   margin: 0 auto;
 }
 
-/* Navigation Arrows */
 .nav-btn {
   position: absolute;
   top: 50%;
@@ -723,32 +945,21 @@ body::-webkit-scrollbar {
   font-size: 3rem;
   background: none;
   border: none;
-  color: #fff;
+  color: var(--heading);
   cursor: pointer;
   padding: 10px 20px;
   transition: color 0.3s ease;
   z-index: 2;
 }
 
-.nav-left {
-  left: -60px;
-}
+.nav-left { left: -60px; }
+.nav-right { right: -60px; }
 
-.nav-right {
-  right: -60px;
-}
-
-.nav-btn:hover {
-  color: #aaa;
-}
-
-.nav-left[style*="hidden"],
-.nav-right[style*="hidden"] {
-  display: none;
-}
+.nav-btn:hover { color: #aaa; }
 
 .project-card {
-  background: #1a1a1a;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   display: flex;
   flex-direction: row;
   gap: 50px;
@@ -759,7 +970,7 @@ body::-webkit-scrollbar {
   height: 520px;
   align-items: flex-start;
   justify-content: space-between;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
 }
 
 .project-card img {
@@ -777,7 +988,7 @@ body::-webkit-scrollbar {
 
 .project-info {
   text-align: left;
-  color: #f0f0f0;
+  color: var(--text);
   max-width: 540px;
   height: 100%;
   overflow-y: auto;
@@ -786,62 +997,27 @@ body::-webkit-scrollbar {
   scrollbar-color: #999 transparent;
 }
 
-.project-info::-webkit-scrollbar {
-  width: 6px;
-}
-
-.project-info::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 3px;
-}
-
-.project-info::-webkit-scrollbar-track {
-  background: transparent;
-}
+.project-info::-webkit-scrollbar { width: 6px; }
+.project-info::-webkit-scrollbar-thumb { background-color: #888; border-radius: 3px; }
+.project-info::-webkit-scrollbar-track { background: transparent; }
 
 .project-info h3 {
   font-size: 1.7rem;
   margin-bottom: 20px;
-  color: #fff;
+  color: var(--heading);
 }
 
 .project-info p {
   white-space: pre-line;
   font-size: 1rem;
   line-height: 1.7;
-  color: #ddd;
+  color: var(--muted);
   word-wrap: break-word;
 }
 
-/* Responsive */
-@media (max-width: 1000px) {
-  .project-card {
-    flex-direction: column;
-    height: auto;
-    align-items: center;
-    padding: 30px;
-  }
-
-  .project-card img {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-  }
-
-  .project-info {
-    max-width: 100%;
-    padding: 0;
-  }
-
-  .nav-btn {
-    font-size: 2.5rem;
-    left: 0;
-    right: 0;
-  }
-}
-
-
-/* ---------------Certifications Section----------------------- */
+/* =========================================================
+   CERTIFICATIONS SECTION
+   ========================================================= */
 .certifications-section {
   background-image: url('images/spotlight-bg.png');
   background-size: cover;
@@ -855,7 +1031,7 @@ body::-webkit-scrollbar {
   text-align: center;
   font-size: 2.8rem;
   margin-bottom: 50px;
-  color: #fff;
+  color: var(--heading);
   font-family: 'Segoe UI', sans-serif;
 }
 
@@ -869,7 +1045,6 @@ body::-webkit-scrollbar {
   z-index: 2;
 }
 
-/* All cards same size & clean layout */
 .cert-card {
   background: rgba(255, 255, 255, 0.04);
   padding: 16px;
@@ -878,8 +1053,8 @@ body::-webkit-scrollbar {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   width: 100%;
-  max-width: 320px;         /* uniform card width */
-  height: 230px;            /* fixed card height */
+  max-width: 320px;
+  height: 230px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -889,7 +1064,7 @@ body::-webkit-scrollbar {
 .cert-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;         /* makes all images fill evenly */
+  object-fit: cover;
   border-radius: 10px;
   transition: transform 0.4s ease;
 }
@@ -903,7 +1078,6 @@ body::-webkit-scrollbar {
   transform: scale(1.1);
 }
 
-/* Viewer Overlay */
 .viewer-overlay {
   position: fixed;
   top: 0;
@@ -926,31 +1100,12 @@ body::-webkit-scrollbar {
   cursor: pointer;
 }
 
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 3rem;
-  color: white;
-  cursor: pointer;
-  user-select: none;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
-}
+.left { left: 60px; }
+.right { right: 60px; }
 
-.left {
-  left: 60px;
-}
-
-.right {
-  right: 60px;
-}
-
-/* Close Button - shifted below navbar */
 .close-btn {
   position: absolute;
-  top: 100px; /* stays below nav bar */
+  top: 100px;
   right: 60px;
   font-size: 2.8rem;
   color: white;
@@ -967,24 +1122,13 @@ body::-webkit-scrollbar {
   transform: scale(1.1);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .certifications-title {
-    font-size: 2.2rem;
-  }
-  .cert-card {
-    max-width: 100%;
-    height: 200px;
-  }
-}
-
-
-
-/* ####################################### Contact Section */
+/* =========================================================
+   CONTACT SECTION
+   ========================================================= */
 .contact-section {
   padding: 100px 60px;
-  background-color: #0c0c0c;
-  color: #fff;
+  background-color: var(--section-bg-soft);
+  color: var(--text);
 }
 
 .section-title {
@@ -992,22 +1136,22 @@ body::-webkit-scrollbar {
   font-size: 3rem;
   margin-bottom: 60px;
   font-family: 'Segoe UI', sans-serif;
+  color: var(--heading);
 }
 
 .contact-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0;
 }
-
 
 .contact-form-box {
   flex: 1;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.12);
   min-width: 350px;
   max-width: 800px;
 }
@@ -1017,6 +1161,7 @@ body::-webkit-scrollbar {
   margin-bottom: 30px;
   font-weight: 600;
   font-family: 'Segoe UI', sans-serif;
+  color: var(--heading);
 }
 
 .contact-form-box form {
@@ -1025,43 +1170,43 @@ body::-webkit-scrollbar {
   gap: 20px;
 }
 
-.contact-form-box input {
+.contact-form-box input,
+.contact-form-box textarea {
   width: 100%;
   padding: 14px 16px;
   border: none;
   border-radius: 6px;
-  background-color: #222;
-  color: #f0f0f0;
+  background-color: rgba(0,0,0,0.12);
+  color: var(--text);
   font-size: 1rem;
   font-family: 'Segoe UI', sans-serif;
 }
 
+body.light .contact-form-box input,
+body.light .contact-form-box textarea {
+  background-color: rgba(60, 40, 25, 0.08);
+}
+
 .contact-form-box textarea {
-  width: 100%;
-  min-height: 180px;   /* Only this is taller */
-  padding: 14px 16px;
-  border: none;
-  border-radius: 6px;
-  background-color: #222;
-  color: #f0f0f0;
-  font-size: 1rem;
-  font-family: 'Segoe UI', sans-serif;
+  min-height: 180px;
   resize: vertical;
   overflow-y: auto;
-  max-height: none;
 }
 
 .contact-form-box input::placeholder,
 .contact-form-box textarea::placeholder {
+  color: rgba(120, 90, 70, 0.75);
+}
+
+body:not(.light) .contact-form-box input::placeholder,
+body:not(.light) .contact-form-box textarea::placeholder {
   color: #aaa;
-  font-size: 1rem;
-  font-family: 'Segoe UI', sans-serif;
 }
 
 .contact-form-box button {
   padding: 14px;
-  background-color: #444;
-  color: #fff;
+  background-color: rgba(0,0,0,0.25);
+  color: var(--text);
   font-size: 1.1rem;
   border: none;
   border-radius: 6px;
@@ -1069,7 +1214,10 @@ body::-webkit-scrollbar {
   transition: background 0.3s ease;
 }
 
-.contact-form-box button:hover {
-  background-color: #666;
+body.light .contact-form-box button {
+  background-color: rgba(60, 40, 25, 0.18);
 }
 
+.contact-form-box button:hover {
+  background-color: rgba(0,0,0,0.35);
+}
