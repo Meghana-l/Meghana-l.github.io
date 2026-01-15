@@ -29,6 +29,11 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+/* Remove focus outline & caret */
+*:focus {
+  outline: none !important;
+  caret-color: transparent;
+}
 
 
 /* =========================================================
@@ -554,7 +559,7 @@ body.light .about-photo-dark  { display: none; }
   overflow: hidden;
   border-right: 3px solid var(--heading);
   width: 0;
-  animation: typing 1.2s steps(30, end) forwards, blink 0.8s step-end infinite;
+  animation: typing 1.8s steps(30, end) forwards, blink 0.8s step-end infinite;
 }
 
 @keyframes typing {
@@ -575,7 +580,7 @@ body.light .about-photo-dark  { display: none; }
 .about-details.visible {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity 0s ease;
+transition: opacity 0s ease;
 }
 
 .about-text p {
@@ -717,6 +722,45 @@ body.light .journey-point img {
   max-width: 340px;
 }
 
+/* Small + button next to Undergraduate text */
+.degree-plus{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  line-height: 1;
+  color: var(--heading);
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-1px);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.degree-plus:hover{
+  transform: translateY(-1px) scale(1.08);
+  box-shadow: 0 0 12px rgba(255, 0, 127, 0.35);
+  background: rgba(255,255,255,0.14);
+}
+
+/* Light mode: keep it readable */
+body.light .degree-plus{
+  color: #1f140d;
+  border: 1px solid rgba(31, 20, 13, 0.35);
+  background: rgba(31, 20, 13, 0.06);
+}
+
+body.light .degree-plus:hover{
+  box-shadow: 0 0 12px rgba(177, 0, 90, 0.25);
+  background: rgba(31, 20, 13, 0.10);
+}
+
+
 /* ✅ LIGHT MODE TEXT: darker for readability */
 body.light .journey-section .text {
   color: #1f1f1f;
@@ -754,11 +798,14 @@ body.light .journey-section .text {
   line-height: 1.5;
 }
 
-.journey-point:hover .tooltip {
+/* Show tooltip ONLY when hovering the icon image */
+.journey-point img:hover + .text + .tooltip,
+.journey-point img:hover + .tooltip {
   opacity: 1;
   transform: translateX(-50%) translateY(-6px);
   pointer-events: auto;
 }
+
 
 
 

@@ -147,16 +147,27 @@
         </div>
       </div>
 
-      <div class="journey-point">
-        <a href="pdfs/Meghana L- Degree Certificate.pdf" target="_blank">
-          <img src="journey_icons/college.png" alt="BMS Institute of Technology">
-        </a>
-        <div class="text">Undergraduate Degree – B.E. Information Science</div>
-        <div class="tooltip">
-          <h3>BMS Institute of Technology & Management</h3>
-          <p>Bachelor’s in Information Science Engineering<br>2019–2023<br>Bengaluru, India</p>
-        </div>
-      </div>
+<div class="journey-point">
+  <img src="journey_icons/college.png" alt="BMS Institute of Technology">
+
+  <div class="text">
+    Undergraduate Degree – B.E. Information Science
+    <a
+      class="degree-plus"
+      href="pdfs/Meghana L- Degree Certificate.pdf"
+      target="_blank"
+      rel="noopener"
+      aria-label="Open degree certificate"
+      title="Open degree certificate"
+    >+</a>
+  </div>
+
+  <div class="tooltip">
+    <h3>BMS Institute of Technology & Management</h3>
+    <p>Bachelor’s in Information Science Engineering<br>Aug 2019 – May 2023<br>Bengaluru, India</p>
+  </div>
+</div>
+
     </div>
 
     <div class="journey-group usa-group">
@@ -165,7 +176,7 @@
         <div class="text">Graduate Degree – MSc. Business Analytics</div>
         <div class="tooltip">
           <h3>University of New Haven</h3>
-          <p>Master’s in Business Analytics<br>2024–2026<br>West Haven, CT, USA</p>
+          <p>Master’s in Business Analytics<br>Aug 2024 – May 2026<br>West Haven, CT, USA</p>
         </div>
       </div>
     </div>
@@ -285,10 +296,12 @@
 
     intro.innerHTML = "Hi, this is Meghana";
 
-    setTimeout(() => {
-      aboutContent.classList.remove("hidden");
-      aboutContent.classList.add("visible");
-    }, 3000);
+    intro.addEventListener("animationend", (e) => {
+      if (e.animationName === "typing") {
+        aboutContent.classList.remove("hidden");
+        aboutContent.classList.add("visible");
+      }
+    });
   });
 </script>
 
@@ -395,8 +408,30 @@ nextBtn.addEventListener("click", () => {
   }
 });
 
+/* ✅ Keyboard navigation */
+document.addEventListener("keydown", (e) => {
+  const tag = document.activeElement?.tagName?.toLowerCase();
+  if (tag === "input" || tag === "textarea") return;
+
+  if (e.key === "ArrowLeft") {
+    if (currentProject > 0) {
+      currentProject--;
+      loadProject(currentProject);
+    }
+  }
+
+  if (e.key === "ArrowRight") {
+    if (currentProject < projects.length - 1) {
+      currentProject++;
+      loadProject(currentProject);
+    }
+  }
+});
+
 loadProject(currentProject);
 </script>
+
+
 
 <!-- Certificates Script -->
 <script>
