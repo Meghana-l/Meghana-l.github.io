@@ -302,44 +302,46 @@
 
 <!-- Projects Script -->
 <script>
-const projects = [
-  {
-    title: "Port Authority Bus Terminal Passenger Prediction",
-    description: `An advanced data analytics project built to forecast passenger flow and operational reliability for the Port Authority Bus Terminal (2025-2030). It integrates MTA bus performance, weather, and traffic datasets using SQL Server and R to model future demand through regression, classification, and clustering techniques. The Power BI dashboard features forecast charts, carrier-wise distribution visuals, and risk classification indicators, helping stakeholders plan resources, manage failures, and enhance passenger experience through data-driven insights.`,
-    image: "images/PortAuthority.png",
-    github: "https://github.com/Meghana-l/PortAuthority-BusTerminal-Prediction"
-  },
-  {
-    title: "Food Insecurity Dashboard - Capital Area Food Bank (CAFB) Dataset",
-    description: `An interactive Excel dashboard built to analyze food insecurity across Washington DC, Maryland, and Virginia using Capital Area Food Bank data (2014-2015). It visualizes pounds of food needed, distributed, and unmet through dynamic pivot tables and calculated KPIs such as Coverage % and Food Insecurity Rate. The dashboard includes comparison charts, a filled state map, and a Top-15 unmet tracts list to highlight regional disparities and guide targeted resource allocation, giving stakeholders a data-driven view of hunger distribution and coverage trends.`,
-    image: "images/CAFB_HungerDashbaord.png",
-    github: "https://github.com/Meghana-l/Measuring-Food-Insecurity-in-the-Capital-Area-Excel-Dashboard"
-  },
-  {
-    title: "S&P 500 Performance & Risk Analysis",
-    description: `This project helps to analyze the Performance and Risk-Return Profile of S&P 500 Companies to Aid Investment Decision-Making.
+document.addEventListener("DOMContentLoaded", () => {
+
+  const projects = [
+    {
+      title: "Port Authority Bus Terminal Passenger Prediction",
+      description: `An advanced data analytics project built to forecast passenger flow and operational reliability for the Port Authority Bus Terminal (2025-2030). It integrates MTA bus performance, weather, and traffic datasets using SQL Server and R to model future demand through regression, classification, and clustering techniques. The Power BI dashboard features forecast charts, carrier-wise distribution visuals, and risk classification indicators, helping stakeholders plan resources, manage failures, and enhance passenger experience through data-driven insights.`,
+      image: "images/PortAuthority.png",
+      github: "https://github.com/Meghana-l/PortAuthority-BusTerminal-Prediction"
+    },
+    {
+      title: "Food Insecurity Dashboard - Capital Area Food Bank (CAFB) Dataset",
+      description: `An interactive Excel dashboard built to analyze food insecurity across Washington DC, Maryland, and Virginia using Capital Area Food Bank data (2014-2015). It visualizes pounds of food needed, distributed, and unmet through dynamic pivot tables and calculated KPIs such as Coverage % and Food Insecurity Rate. The dashboard includes comparison charts, a filled state map, and a Top-15 unmet tracts list to highlight regional disparities and guide targeted resource allocation, giving stakeholders a data-driven view of hunger distribution and coverage trends.`,
+      image: "images/CAFB_HungerDashbaord.png",
+      github: "https://github.com/Meghana-l/Measuring-Food-Insecurity-in-the-Capital-Area-Excel-Dashboard"
+    },
+    {
+      title: "S&P 500 Performance & Risk Analysis",
+      description: `This project helps to analyze the Performance and Risk-Return Profile of S&P 500 Companies to Aid Investment Decision-Making.
 
 This Power BI dashboard helps investors and analysts evaluate the performance, risk, and return potential of S&P 500 companies. By analyzing key metrics such as 10-year % change, 52-week % change, Beta, Profit Margin, and Yield, users can identify high-performing sectors and companies while assessing risk exposure.`,
-    image: "images/Screenshot 2025-07-14 213623.png",
-    github: "https://github.com/Meghana-l/PowerBI_Project_spindex"
-  },
-  {
-    title: "British Airways Review using Tableau",
-    description: `This project is an interactive Dashboard that helps a user to analyse the various parameters of British Airways, like Overall rating, Staff service, Food services, Value for money etc., across the Globe over the past few years.
+      image: "images/Screenshot 2025-07-14 213623.png",
+      github: "https://github.com/Meghana-l/PowerBI_Project_spindex"
+    },
+    {
+      title: "British Airways Review using Tableau",
+      description: `This project is an interactive Dashboard that helps a user to analyse the various parameters of British Airways, like Overall rating, Staff service, Food services, Value for money etc., across the Globe over the past few years.
 
 The end user using this Dashboard will be able to pick a metric that they want to view, with a simple click. The end user will also have other useful filters to find the exact data points that they are looking for. Each of the visuals are dynamic filters themselves, so you can click on the date, the map or select the specific Aircraft that you are interested in.`,
-    image: "images/Screenshot 2025-07-14 214357.png",
-    github: "https://github.com/Meghana-l/Tableau_EndToEnd_Prjct"
-  },
-  {
-    title: "Coffee Sales Interactive Dashboard using Excel",
-    description: `This Excel dashboard provides a user-friendly way to analyze coffee sales data. Its interactive design allows users to filter the data by several key criteria, including time-period, coffee roast type, cup size, and customer loyalty status. These filters enable users to drill down into the data and explore specific trends and customer preferences.`,
-    image: "images/Screenshot 2025-07-14 215036.png",
-    github: "https://github.com/Meghana-l/MSExcel_EndToEnd_Project"
-  },
-  {
-    title: "Data Analytics end-to-end Project to meet a business request",
-    description: `This project showcases the development of a dynamic sales dashboard based on a business request from a Sales Manager. Using data from the AdventureWorksDW2022 data warehouse, the following was done:
+      image: "images/Screenshot 2025-07-14 214357.png",
+      github: "https://github.com/Meghana-l/Tableau_EndToEnd_Prjct"
+    },
+    {
+      title: "Coffee Sales Interactive Dashboard using Excel",
+      description: `This Excel dashboard provides a user-friendly way to analyze coffee sales data. Its interactive design allows users to filter the data by several key criteria, including time-period, coffee roast type, cup size, and customer loyalty status. These filters enable users to drill down into the data and explore specific trends and customer preferences.`,
+      image: "images/Screenshot 2025-07-14 215036.png",
+      github: "https://github.com/Meghana-l/MSExcel_EndToEnd_Project"
+    },
+    {
+      title: "Data Analytics end-to-end Project to meet a business request",
+      description: `This project showcases the development of a dynamic sales dashboard based on a business request from a Sales Manager. Using data from the AdventureWorksDW2022 data warehouse, the following was done:
 
 - Data Cleaning & Transformation: Utilized SQL Server Management Studio (SSMS) to cleanse and standardize internet sales data, focusing on accuracy across key dimensions such as product, customer, and time. 
 
@@ -350,94 +352,88 @@ The end user using this Dashboard will be able to pick a metric that they want t
 - Business Impact: Delivered actionable insights through visual reporting, helping stakeholders track actual performance, evaluate key sales drivers, and make informed decisions based on historical trends and budget comparisons. 
 
 This end-to-end business intelligence solution highlights the capabilities in data warehousing, SQL data transformation, and dashboard creation aligned with business objectives.`,
-    image: "images/Screenshot 2025-07-14 215503.png",
-    github: "https://github.com/Meghana-l/DataAnalystPortfolio"
-  },
-  {
-    title: "Database Management Portfolio",
-    description: `This is a collection of projects/practitioner work that reflects my skills in building efficient database systems, transforming and loading data, designing warehouse models, and performing multidimensional data analysis. 
+      image: "images/Screenshot 2025-07-14 215503.png",
+      github: "https://github.com/Meghana-l/DataAnalystPortfolio"
+    },
+    {
+      title: "Database Management Portfolio",
+      description: `This is a collection of projects/practitioner work that reflects my skills in building efficient database systems, transforming and loading data, designing warehouse models, and performing multidimensional data analysis. 
 
 The work is inspired by real-world scenarios and developed as part of my advanced coursework in Database Management.`,
-    image: "images/Screenshot 2025-07-14 215933.png",
-    github: "https://github.com/Meghana-l/Database-Management-Portfolio"
-  },
-  {
-    title: "Excel Dashboarding Project",
-    description: `An interactive Excel dashboard designed to monitor key call centre metrics such as call volume, average handle time, customer satisfaction, and agent performance. It uses a Power Pivot data model linking Calls and Customers tables through Customer ID, enabling dynamic analysis with DAX measures and slicers for filters like Representative, Day of Week, and Fiscal Year. The dashboard features KPI cards, trend charts, and conditional formatting to highlight performance insights in real time, giving managers a clear, data-driven view of operational efficiency and customer experience.`,
-    image: "images/excel_dashboard.png",
-    github: "https://github.com/Meghana-l/Excel-Dashboarding-Project"
+      image: "images/Screenshot 2025-07-14 215933.png",
+      github: "https://github.com/Meghana-l/Database-Management-Portfolio"
+    },
+    {
+      title: "Excel Dashboarding Project",
+      description: `An interactive Excel dashboard designed to monitor key call centre metrics such as call volume, average handle time, customer satisfaction, and agent performance. It uses a Power Pivot data model linking Calls and Customers tables through Customer ID, enabling dynamic analysis with DAX measures and slicers for filters like Representative, Day of Week, and Fiscal Year. The dashboard features KPI cards, trend charts, and conditional formatting to highlight performance insights in real time, giving managers a clear, data-driven view of operational efficiency and customer experience.`,
+      image: "images/excel_dashboard.png",
+      github: "https://github.com/Meghana-l/Excel-Dashboarding-Project"
+    }
+  ];
+
+  let currentProject = 0;
+  const contentDiv = document.getElementById("projectContent");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  function loadProject(index) {
+    const project = projects[index];
+
+    contentDiv.innerHTML = `
+      <a href="${project.github}" target="_blank" title="Link to GitHub">
+        <img src="${project.image}" alt="${project.title}" loading="eager" />
+      </a>
+      <div class="project-info">
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+      </div>
+    `;
+
+    prevBtn.style.visibility = index === 0 ? "hidden" : "visible";
+    nextBtn.style.visibility = index === projects.length - 1 ? "hidden" : "visible";
   }
-];
 
-let currentProject = 0;
-const contentDiv = document.getElementById("projectContent");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-
-function loadProject(index) {
-  const project = projects[index];
-  contentDiv.innerHTML = `
-    <a href="${project.github}" target="_blank" title="Link to GitHub">
-      <img src="${project.image}" alt="${project.title}" />
-    </a>
-    <div class="project-info">
-      <h3>${project.title}</h3>
-      <p>${project.description}</p>
-    </div>
-  `;
-  prevBtn.style.visibility = index === 0 ? "hidden" : "visible";
-  nextBtn.style.visibility = index === projects.length - 1 ? "hidden" : "visible";
-}
-
-prevBtn.addEventListener("click", () => {
-  if (currentProject > 0) {
-    currentProject--;
-    loadProject(currentProject);
-  }
-});
-
-nextBtn.addEventListener("click", () => {
-  if (currentProject < projects.length - 1) {
-    currentProject++;
-    loadProject(currentProject);
-  }
-});
-
-/* ✅ Keyboard navigation */
-document.addEventListener("keydown", (e) => {
-  const tag = document.activeElement?.tagName?.toLowerCase();
-  if (tag === "input" || tag === "textarea") return;
-
-  // If certificate viewer is open, don't let projects hijack arrows
-  const viewer = document.getElementById("viewer");
-  if (viewer && viewer.style.display === "flex") return;
-
-  // Only respond when Projects section is in view
-  const projectsSection = document.getElementById("projects");
-  if (!projectsSection) return;
-
-  const rect = projectsSection.getBoundingClientRect();
-  const inView = rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.4;
-  if (!inView) return;
-
-  if (e.key === "ArrowLeft") {
-    e.preventDefault();
+  prevBtn.addEventListener("click", () => {
     if (currentProject > 0) {
       currentProject--;
       loadProject(currentProject);
     }
-  }
+  });
 
-  if (e.key === "ArrowRight") {
-    e.preventDefault();
+  nextBtn.addEventListener("click", () => {
     if (currentProject < projects.length - 1) {
       currentProject++;
       loadProject(currentProject);
     }
-  }
-}, { passive: false });
+  });
 
+  // ✅ Keyboard navigation ONLY when projects section is visible
+  document.addEventListener("keydown", (e) => {
+    const tag = document.activeElement?.tagName?.toLowerCase();
+    if (tag === "input" || tag === "textarea") return;
+
+    const projectsSection = document.getElementById("projects");
+    const r = projectsSection.getBoundingClientRect();
+    const inView = r.top < window.innerHeight * 0.7 && r.bottom > window.innerHeight * 0.3;
+    if (!inView) return;
+
+    if (e.key === "ArrowLeft" && currentProject > 0) {
+      currentProject--;
+      loadProject(currentProject);
+    }
+
+    if (e.key === "ArrowRight" && currentProject < projects.length - 1) {
+      currentProject++;
+      loadProject(currentProject);
+    }
+  });
+
+  // ✅ Initial render (now guaranteed to work)
+  loadProject(currentProject);
+
+});
 </script>
+
 
 
 
