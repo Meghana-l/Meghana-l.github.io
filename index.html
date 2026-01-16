@@ -283,7 +283,7 @@
   });
 </script>
 
-<!-- TYPEWRITER + ABOUT DISPLAY -->
+<!-- TYPEWRITER + ABOUT DISPLAY script-->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const intro = document.getElementById("meghana-intro");
@@ -408,7 +408,20 @@ document.addEventListener("keydown", (e) => {
   const tag = document.activeElement?.tagName?.toLowerCase();
   if (tag === "input" || tag === "textarea") return;
 
+  // If certificate viewer is open, don't let projects hijack arrows
+  const viewer = document.getElementById("viewer");
+  if (viewer && viewer.style.display === "flex") return;
+
+  // Only respond when Projects section is in view
+  const projectsSection = document.getElementById("projects");
+  if (!projectsSection) return;
+
+  const rect = projectsSection.getBoundingClientRect();
+  const inView = rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.4;
+  if (!inView) return;
+
   if (e.key === "ArrowLeft") {
+    e.preventDefault();
     if (currentProject > 0) {
       currentProject--;
       loadProject(currentProject);
@@ -416,14 +429,14 @@ document.addEventListener("keydown", (e) => {
   }
 
   if (e.key === "ArrowRight") {
+    e.preventDefault();
     if (currentProject < projects.length - 1) {
       currentProject++;
       loadProject(currentProject);
     }
   }
-});
+}, { passive: false });
 
-loadProject(currentProject);
 </script>
 
 
@@ -529,6 +542,21 @@ loadProject(currentProject);
   });
 })();
 </script>
+
+<script>
+document.addEventListener("keydown", (e) => {
+  // Don't interfere while typing
+  const tag = document.activeElement?.tagName?.toLowerCase();
+  if (tag === "input" || tag === "textarea") return;
+
+  // Stop browser from scrolling sections with arrow keys
+  if (["ArrowUp", "ArrowDown"].includes(e.key)) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+</script>
+
 
 </body>
 </html>
