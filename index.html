@@ -19,9 +19,9 @@
 
 <!-- ================= HEADER / NAV ================= -->
 <header id="site-header">
-  <div class="container nav">
-    <div class="nav-spacer"></div>
-    <nav>
+ <div class="container nav">
+  <div class="nav-logo">Meghana Lakshminarayana</div>
+  <nav>
       <ul class="menu">
         <li><a href="#about">About</a></li>
         <li><a href="#journey">My Academic Journey</a></li>
@@ -30,18 +30,13 @@
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#contact">Contact</a></li>
 
-        <!-- ✅ Slider Toggle -->
-        <li class="theme-toggle-li">
-  <label class="theme-toggle" aria-label="Toggle theme">
-    <input type="checkbox" id="themeSwitch" />
-    <span class="toggle-track">
-      <span class="toggle-thumb">
-        <span class="icon-moon">☾</span>
-        <span class="icon-sun">☀︎</span>
-      </span>
-    </span>
-  </label>
+        <!-- Dark/light theme Toggle -->
+<li class="theme-icon-li">
+  <button id="themeToggleBtn" aria-label="Toggle theme">
+    <i id="themeIcon" class="fa-solid fa-sun"></i>
+  </button>
 </li>
+
       </ul>
     </nav>
   </div>
@@ -478,35 +473,61 @@ loadProject(currentProject);
   function openPDFInNewTab() {
     window.open(certificates[currentIndex].pdf, '_blank');
   }
+
+  // Keyboard nav when the viewer is open
+  document.addEventListener("keydown", function (e) {
+  const viewer = document.querySelector(".viewer-overlay");
+
+  // Only work when the viewer is open
+  if (!viewer || viewer.style.display !== "flex") return;
+
+  switch (e.key) {
+    case "ArrowRight":
+      document.querySelector(".right")?.click();
+      break;
+
+    case "ArrowLeft":
+      document.querySelector(".left")?.click();
+      break;
+
+    case "Escape":
+      document.querySelector(".close-btn")?.click();
+      break;
+  }
+});
+
 </script>
 
 <!-- Dark/Light Theme Script -->
 <script>
-  (function () {
-    const STORAGE_KEY = "themeMode";
+(function () {
+  const STORAGE_KEY = "themeMode";
 
-    function applyTheme(mode) {
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("themeToggleBtn");
+    const icon = document.getElementById("themeIcon");
+
+    function applyTheme(mode){
       document.body.classList.toggle("light", mode === "light");
       localStorage.setItem(STORAGE_KEY, mode);
 
-      // checkbox should reflect theme
-      const sw = document.getElementById("themeSwitch");
-      if (sw) sw.checked = (mode === "light");
+      // Dark mode -> show SUN (click to go light)
+      // Light mode -> show MOON (click to go dark)
+      if(mode === "light"){
+        icon.className = "fa-regular fa-moon";
+      } else {
+        icon.className = "fa-solid fa-sun";
+      }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      applyTheme(saved === "light" ? "light" : "dark"); // default dark
+    const saved = localStorage.getItem(STORAGE_KEY) || "dark";
+    applyTheme(saved);
 
-      const sw = document.getElementById("themeSwitch");
-      if (!sw) return;
-
-      sw.addEventListener("change", () => {
-        // ✅ when checked -> LIGHT, when unchecked -> DARK
-        applyTheme(sw.checked ? "light" : "dark");
-      });
+    btn.addEventListener("click", () => {
+      applyTheme(document.body.classList.contains("light") ? "dark" : "light");
     });
-  })();
+  });
+})();
 </script>
 
 </body>
