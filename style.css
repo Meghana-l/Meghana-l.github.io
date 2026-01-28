@@ -811,72 +811,201 @@ body.light .journey-section .text {
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
 }
 
-.experience-container {
+/* =========================================================
+   NEW: EXPERIENCE LIST LAYOUT (contained, like your reference)
+   ========================================================= */
+.experience-list-wrap {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
   width: 100%;
   max-width: 1100px;
   z-index: 2;
-}
 
-.experience-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-  padding: 30px 40px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
   backdrop-filter: blur(6px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.35);
+
+  /* Keeps all rows inside the Experience page */
+  max-height: calc(100vh - 260px);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.experience-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 40px rgba(255, 0, 127, 0.35);
+/* Hide scrollbars but keep scroll */
+.experience-list-wrap::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.experience-list-wrap {
+  scrollbar-width: none; /* Firefox */
 }
 
-.experience-content h3 {
-  font-size: 1.6rem;
+.exp-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 22px;
+
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  padding: 22px 26px;
+  cursor: pointer;
+
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.exp-row:last-child {
+  border-bottom: none;
+}
+
+/* Hover highlight like your reference */
+.exp-row:hover {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(255, 0, 127, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Left: years */
+.exp-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(245, 245, 245, 0.75);
+  font-size: 0.95rem;
+  letter-spacing: 0.2px;
+}
+
+.exp-dash {
+  opacity: 0.55;
+}
+
+/* Right: role + company */
+.exp-right {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exp-role {
+  font-size: 1.05rem;
   font-weight: 700;
   color: #ff4db8;
-  margin-bottom: 6px;
+  line-height: 1.2;
 }
 
-.experience-content h4 {
+.exp-company {
+  font-size: 0.98rem;
+  color: #e9e9e9;
+  font-weight: 600;
+}
+
+.exp-sub {
+  font-size: 0.90rem;
+  color: rgba(225, 225, 225, 0.75);
+}
+
+/* =========================================================
+   MODAL (translucent window like your screenshot)
+   ========================================================= */
+.exp-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+.exp-modal.is-open {
+  display: block;
+}
+
+.exp-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(3px);
+}
+
+.exp-modal-card {
+  position: relative;
+  max-width: 920px;
+  width: calc(100% - 60px);
+  margin: 110px auto 0;
+  padding: 34px 42px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 0 45px rgba(255, 0, 127, 0.25), 0 0 30px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+/* Close button */
+.exp-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.exp-modal-close:hover {
+  transform: scale(1.05);
+  background: rgba(255, 0, 127, 0.18);
+}
+
+.exp-modal-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ff4db8;
+  margin-bottom: 8px;
+}
+
+.exp-modal-org {
   font-size: 1.1rem;
   color: #e1e1e1;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  font-weight: 600;
 }
 
-.duration {
+.exp-modal-duration {
   font-size: 0.95rem;
   color: #cfcfcf;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
-.experience-content ul {
+.exp-modal-list {
   margin: 0;
   padding-left: 20px;
 }
 
-.experience-content li {
-  margin-bottom: 8px;
+.exp-modal-list li {
+  margin-bottom: 10px;
   color: #d5d5d5;
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-/* ================= LIGHT THEME OVERRIDES ================= */
-
+/* =========================================================
+   LIGHT THEME OVERRIDES
+   ========================================================= */
 body.light .experience-section {
   background: url("images/light-experience-background.png") center/cover no-repeat;
   background-attachment: fixed;
-  color: #2b1b12; /* dark brown-ish */
+  color: #2b1b12;
 }
 
 body.light .experience-section::before {
-  background: rgba(255, 255, 255, 0.25); /* very light overlay */
+  background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(1px);
 }
 
@@ -885,27 +1014,77 @@ body.light .experience-title {
   text-shadow: none;
 }
 
-body.light .experience-card {
-  background: rgba(255, 255, 255, 0.55);
+/* List container */
+body.light .experience-list-wrap {
+  background: rgba(255, 255, 255, 0.60);
   border: 1px solid rgba(43, 27, 18, 0.18);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
-body.light .experience-content h3 {
-  color: #c21876; /* dark pink accent */
+/* Rows */
+body.light .exp-row {
+  border-bottom: 1px solid rgba(43, 27, 18, 0.10);
 }
 
-body.light .experience-content h4 {
-  color: rgba(43, 27, 18, 0.80);
+body.light .exp-row:hover {
+  background: rgba(255, 255, 255, 0.70);
+  box-shadow: inset 0 0 0 1px rgba(194, 24, 118, 0.35);
 }
 
-body.light .duration {
+body.light .exp-left {
+  color: rgba(43, 27, 18, 0.70);
+}
+
+body.light .exp-role {
+  color: #c21876;
+}
+
+body.light .exp-company {
+  color: rgba(43, 27, 18, 0.85);
+}
+
+body.light .exp-sub {
+  color: rgba(43, 27, 18, 0.70);
+}
+
+/* Modal (light) */
+body.light .exp-modal-backdrop {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+body.light .exp-modal-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(43, 27, 18, 0.18);
+  box-shadow: 0 0 35px rgba(194, 24, 118, 0.18), 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+body.light .exp-modal-close {
+  background: rgba(255, 255, 255, 0.55);
+  color: #2b1b12;
+  border: 1px solid rgba(43, 27, 18, 0.18);
+}
+
+body.light .exp-modal-close:hover {
+  background: rgba(194, 24, 118, 0.10);
+}
+
+body.light .exp-modal-title {
+  color: #c21876;
+}
+
+body.light .exp-modal-org {
+  color: rgba(43, 27, 18, 0.85);
+}
+
+body.light .exp-modal-duration {
   color: rgba(43, 27, 18, 0.65);
 }
 
-body.light .experience-content li {
+body.light .exp-modal-list li {
   color: rgba(43, 27, 18, 0.85);
 }
+
 
 /* =========================================================
    PROJECTS SECTION

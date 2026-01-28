@@ -182,33 +182,84 @@
 <section id="experience" class="experience-section">
   <h2 class="experience-title">Experience</h2>
 
-  <div class="experience-container">
-    <div class="experience-card">
-      <div class="experience-content">
-        <h3>Teaching Assistant</h3>
-        <h4>University of New Haven | West Haven, CT</h4>
-        <p class="duration">Aug 2025 – Present</p>
-        <ul>
-          <li>Assist professors in the Business Analytics program with teaching and academic support.</li>
-          <li>Guide students in R programming as part of the curriculum.</li>
-          <li>Support preparation of learning materials, grading, and research tasks.</li>
-        </ul>
-      </div>
-    </div>
+  <!-- List container (contained inside page) -->
+  <div class="experience-list-wrap">
 
-    <div class="experience-card">
-      <div class="experience-content">
-        <h3>Student Worker</h3>
-        <h4>Sodexo – University of New Haven | West Haven, CT</h4>
-        <p class="duration">Aug 2025 – Dec 2025</p>
-        <ul>
-          <li>Work in a fast-paced team environment managing point-of-sale systems with accuracy and speed.</li>
-          <li>Demonstrate accountability and professionalism while balancing multiple daily tasks.</li>
-        </ul>
+    <!-- Row 1 -->
+    <button class="exp-row"
+      type="button"
+      data-title="Data Administrator Intern"
+      data-org="DAE (Digital Academy of Excellence) | New Haven, CT"
+      data-duration="Jan 2026 – Present"
+      data-bullets="Support PowerSchool SIS administration by maintaining accurate student records across enrollment, attendance, schedules, grades, and demographics.|Build and maintain internal reports and dashboards for program tracking and regular reporting needs.|Prepare and clean data for import/export workflows and assist with candidate application and enrollment process tracking.">
+      <div class="exp-left">
+        <span class="exp-year">Jan 2026</span>
+        <span class="exp-dash">—</span>
+        <span class="exp-year">Present</span>
       </div>
+      <div class="exp-right">
+        <div class="exp-role">Data Administrator Intern</div>
+        <div class="exp-company">DAE</div>
+        <div class="exp-sub">New Haven, CT</div>
+      </div>
+    </button>
+
+    <!-- Row 2 -->
+    <button class="exp-row"
+      type="button"
+      data-title="Teaching Assistant"
+      data-org="University of New Haven | West Haven, CT"
+      data-duration="Aug 2025 – Present"
+      data-bullets="Assist professors in the Business Analytics program with teaching and academic support.|Guide students in R programming as part of the curriculum.|Support preparation of learning materials, grading, and research tasks.">
+      <div class="exp-left">
+        <span class="exp-year">Aug 2025</span>
+        <span class="exp-dash">—</span>
+        <span class="exp-year">Present</span>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Teaching Assistant</div>
+        <div class="exp-company">University of New Haven</div>
+        <div class="exp-sub">West Haven, CT</div>
+      </div>
+    </button>
+
+    <!-- Row 3 -->
+    <button class="exp-row"
+      type="button"
+      data-title="Student Worker"
+      data-org="Sodexo – University of New Haven | West Haven, CT"
+      data-duration="Aug 2025 – Dec 2025"
+      data-bullets="Work in a fast-paced team environment managing point-of-sale systems with accuracy and speed.|Demonstrate accountability and professionalism while balancing multiple daily tasks.">
+      <div class="exp-left">
+        <span class="exp-year">Aug 2025</span>
+        <span class="exp-dash">—</span>
+        <span class="exp-year">Dec 2025</span>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Student Worker</div>
+        <div class="exp-company">Sodexo – University of New Haven</div>
+        <div class="exp-sub">West Haven, CT</div>
+      </div>
+    </button>
+
+  </div>
+
+  <!-- Modal -->
+  <div class="exp-modal" id="expModal" aria-hidden="true">
+    <div class="exp-modal-backdrop" data-close="true"></div>
+
+    <div class="exp-modal-card" role="dialog" aria-modal="true" aria-labelledby="expModalTitle">
+      <button class="exp-modal-close" type="button" aria-label="Close" data-close="true">×</button>
+
+      <h3 class="exp-modal-title" id="expModalTitle">Title</h3>
+      <h4 class="exp-modal-org" id="expModalOrg">Org</h4>
+      <p class="exp-modal-duration" id="expModalDuration">Duration</p>
+
+      <ul class="exp-modal-list" id="expModalList"></ul>
     </div>
   </div>
 </section>
+
 
 <!-------------- PROJECTS SECTION ------------------->
 <section class="projects-section" id="projects">
@@ -551,6 +602,65 @@ document.addEventListener("keydown", (e) => {
   }
 }, { passive: false });
 
+</script>
+
+
+<!-- EXPERIENCE Script -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("expModal");
+  if (!modal) return;
+
+  const titleEl = document.getElementById("expModalTitle");
+  const orgEl = document.getElementById("expModalOrg");
+  const durationEl = document.getElementById("expModalDuration");
+  const listEl = document.getElementById("expModalList");
+
+  const openModal = (btn) => {
+    const title = btn.getAttribute("data-title") || "";
+    const org = btn.getAttribute("data-org") || "";
+    const duration = btn.getAttribute("data-duration") || "";
+    const bulletsRaw = btn.getAttribute("data-bullets") || "";
+
+    titleEl.textContent = title;
+    orgEl.textContent = org;
+    durationEl.textContent = duration;
+
+    listEl.innerHTML = "";
+    const bullets = bulletsRaw.split("|").map(s => s.trim()).filter(Boolean);
+    bullets.forEach((b) => {
+      const li = document.createElement("li");
+      li.textContent = b;
+      listEl.appendChild(li);
+    });
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  document.querySelectorAll(".exp-row").forEach((row) => {
+    row.addEventListener("click", () => openModal(row));
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target.dataset && e.target.dataset.close === "true") {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+});
 </script>
 
 
