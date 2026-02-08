@@ -276,28 +276,88 @@
   </div>
 </section>
 
+
 <!-- CERTIFICATIONS SECTION -->
 <section class="certifications-section" id="certifications">
   <h2 class="certifications-title">Certifications</h2>
-  <div class="cert-grid">
-    <div class="cert-card" onclick="openViewer(0)"><img src="images/course_1.png" alt="Certificate 1" /></div>
-    <div class="cert-card" onclick="openViewer(1)"><img src="images/Course_2.png" alt="Certificate 2" /></div>
-    <div class="cert-card" onclick="openViewer(2)"><img src="images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png" alt="Certificate 3" /></div>
-    <div class="cert-card" onclick="openViewer(3)"><img src="images/Meghana.L_1BY19IS094_IoT.png" alt="Certificate 4" /></div>
-    <div class="cert-card" onclick="openViewer(4)"><img src="images/My_Learning___NVIDIA.png" alt="Certificate 5" /></div>
-    <div class="cert-card" onclick="openViewer(5)"><img src="images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png" alt="Certificate 6" /></div>
-    <div class="cert-card" onclick="openViewer(6)"><img src="images/course_r.png" alt="Certificate 7" /></div>
-    <div class="cert-card" onclick="openViewer(7)"><img src="images/excel_2019.png" alt="Certificate 8" /></div>
-    <div class="cert-card" onclick="openViewer(8)"><img src="images/tableau_cert_prep.png" alt="Certificate 9" /></div>
+
+  <!-- Carousel -->
+  <div class="cert-carousel-wrapper">
+    <button class="cert-nav-btn" type="button" onclick="prevCerts()">❮</button>
+
+    <div class="cert-carousel">
+      <div class="cert-track" id="certTrack">
+
+        <div class="cert-card" onclick="openViewer(0)">
+          <img src="images/IIBA - ECBA certificate.png" alt="Entry Certificate in Business Analysis - IIBA" />
+          <p class="cert-name">Entry Certificate in Business Analysis - IIBA</p>
+        </div>
+
+        <div class="cert-card" onclick="openViewer(0)">
+          <img src="images/course_1.png" alt="Foundations of User Experience (UX) Design - Coursera" />
+          <p class="cert-name">Foundations of User Experience (UX) Design – Coursera</p>
+        </div>
+
+        <div class="cert-card" onclick="openViewer(1)">
+          <img src="images/course_2.png" alt="Start the UX Design Process: Empathize, Design and Ideate - Coursera" />
+          <p class="cert-name">Start the UX Design Process: Empathize, Design and Ideate – Coursera</p>
+        </div>
+
+        <div class="cert-card" onclick="openViewer(2)">
+          <img src="images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png" alt="Artificial Intelligence - Unschool" />
+          <p class="cert-name">Artificial Intelligence – Unschool</p>
+        </div>
+
+        <div class="cert-card" onclick="openViewer(3)">
+          <img src="images/Meghana.L_1BY19IS094_IoT.png" alt="Internet Of Things with hands-On" />
+          <p class="cert-name">Internet Of Things with Hands-On</p>
+        </div>
+
+        <div class="cert-card" onclick="openViewer(4)">
+          <img src="images/My_Learning___NVIDIA.png" alt="Building LLM Applications with Prompt Engineering - NVIDIA" />
+          <p class="cert-name">Building LLM Applications with Prompt Engineering – NVIDIA</p>
+        </div>
+
+        <div class="cert-card" onclick="openViewer(5)">
+          <img src="images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png" alt="Expectations & Challenges in IT Industry" />
+          <p class="cert-name">Expectations & Challenges in IT Industry</p>
+        </div>
+
+        <div class="cert-card" onclick="openViewer(6)">
+          <img src="images/course_r.png" alt="R for Data Science: Analysis and Visualization - LinkedIn Certification" />
+          <p class="cert-name">R for Data Science: Analysis and Visualization – LinkedIn</p>
+        </div>
+
+        <div class="cert-card" onclick="openViewer(7)">
+          <img src="images/excel_2019.png" alt="Learning Excel 2019 - LinkedIn Certification" />
+          <p class="cert-name">Learning Excel 2019 – LinkedIn</p>
+        </div>
+
+        <div class="cert-card" onclick="openViewer(8)">
+          <img src="images/tableau_cert_prep.png" alt="Tableau Certified Data Analyst - LinkedIn Certification" />
+          <p class="cert-name">Tableau Certified Data Analyst – LinkedIn</p>
+        </div>
+
+      </div>
+    </div>
+
+    <button class="cert-nav-btn" type="button" onclick="nextCerts()">❯</button>
   </div>
 
-  <div class="viewer-overlay" id="viewer">
-    <span class="close-btn" onclick="closeViewer()">×</span>
+  <!-- Viewer Overlay -->
+<div class="viewer-overlay" id="viewer">
+  <span class="close-btn" onclick="closeViewer()">×</span>
+
+  <div class="viewer-content">
     <img id="viewer-image" src="" alt="Zoomed Certificate" onclick="openPDFInNewTab()" />
-    <span class="nav-btn left" id="prev-btn" onclick="prevImage()">❮</span>
-    <span class="nav-btn right" id="next-btn" onclick="nextImage()">❯</span>
   </div>
+
+  <span class="nav-btn left" id="prev-btn" onclick="prevImage()">❮</span>
+  <span class="nav-btn right" id="next-btn" onclick="nextImage()">❯</span>
+</div>
+
 </section>
+
 
 <!-- CONTACT SECTION -->
 <section class="contact-section" id="contact">
@@ -351,7 +411,9 @@
   });
 </script>
 
-<!-- Projects Script -->
+
+
+<!-- PROJECT SCRIPT -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -444,121 +506,262 @@ The work is inspired by real-world scenarios and developed as part of my advance
     nextBtn.style.visibility = index === projects.length - 1 ? "hidden" : "visible";
   }
 
-  prevBtn.addEventListener("click", () => {
+  function inProjectsView() {
+    const projectsSection = document.getElementById("projects");
+    if (!projectsSection) return false;
+    const r = projectsSection.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.7 && r.bottom > window.innerHeight * 0.3;
+  }
+
+  prevBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (currentProject > 0) {
       currentProject--;
       loadProject(currentProject);
     }
   });
 
-  nextBtn.addEventListener("click", () => {
+  nextBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (currentProject < projects.length - 1) {
       currentProject++;
       loadProject(currentProject);
     }
   });
 
-  // ✅ Keyboard navigation ONLY when projects section is visible
   document.addEventListener("keydown", (e) => {
     const tag = document.activeElement?.tagName?.toLowerCase();
     if (tag === "input" || tag === "textarea") return;
+    if (!inProjectsView()) return;
 
-    const projectsSection = document.getElementById("projects");
-    const r = projectsSection.getBoundingClientRect();
-    const inView = r.top < window.innerHeight * 0.7 && r.bottom > window.innerHeight * 0.3;
-    if (!inView) return;
-
-    if (e.key === "ArrowLeft" && currentProject > 0) {
-      currentProject--;
-      loadProject(currentProject);
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      if (currentProject > 0) {
+        currentProject--;
+        loadProject(currentProject);
+      }
     }
 
-    if (e.key === "ArrowRight" && currentProject < projects.length - 1) {
-      currentProject++;
-      loadProject(currentProject);
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      if (currentProject < projects.length - 1) {
+        currentProject++;
+        loadProject(currentProject);
+      }
     }
-  });
-
-  // ✅ Initial render (now guaranteed to work)
+  }, { passive: false });
   loadProject(currentProject);
-
 });
 </script>
 
 
 
-
-<!-- Certificates Script -->
 <script>
-  const certificates = [
-    { image: 'images/course_1.png', pdf: 'pdfs/course 1.pdf' },
-    { image: 'images/Course_2.png', pdf: 'pdfs/Course 2.pdf' },
-    { image: 'images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png', pdf: 'pdfs/Meghana L_Artificial Intelligence_Unschool Certificate2021.pdf' },
-    { image: 'images/Meghana.L_1BY19IS094_IoT.png', pdf: 'pdfs/Meghana.L 1BY19IS094_IoT.pdf' },
-    { image: 'images/My_Learning___NVIDIA.png', pdf: 'pdfs/My Learning _ NVIDIA.pdf' },
-    { image: 'images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png', pdf: 'pdfs/Certificate for Meghana L for _Alumni Session  - _Expectat..._.pdf' },
-    { image: 'images/course_r.png', pdf: 'pdfs/CertificateOfCompletion_R for Data Science Analysis and Visualization.pdf' },
-    { image: 'images/excel_2019.png', pdf: 'pdfs/CertificateOfCompletion_Learning Excel 2019.pdf' },
-    { image: 'images/tableau_cert_prep.png', pdf: 'pdfs/CertificateOfCompletion_Tableau Certified Data Analyst Cert Prep.pdf' }
-  ];
+const certificates = [
+  {
+    image: "images/IIBA - ECBA certificate.png",
+    pdf: "pdfs/IIBA - ECBA certificate.pdf",
+    title: "Entry Certificate in Business Analysis – IIBA",
+    credentialUrl: "https://badges.iiba.org/5a124e1a-7ca9-461b-bee8-629dfc02caa5#acc.DIMjGCg5"
+  },
+  { image: "images/course_1.png", pdf: "pdfs/course 1.pdf", title: "Foundations of User Experience (UX) Design – Coursera" },
+  { image: "images/Course_2.png", pdf: "pdfs/Course 2.pdf", title: "Start the UX Design Process: Empathize, Design and Ideate – Coursera" },
+  { image: "images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png", pdf: "pdfs/Meghana L_Artificial Intelligence_Unschool Certificate2021.pdf", title: "Artificial Intelligence – Unschool" },
+  { image: "images/Meghana.L_1BY19IS094_IoT.png", pdf: "pdfs/Meghana.L 1BY19IS094_IoT.pdf", title: "Internet Of Things with Hands-On" },
+  { image: "images/My_Learning___NVIDIA.png", pdf: "pdfs/My Learning _ NVIDIA.pdf", title: "Building LLM Applications with Prompt Engineering – NVIDIA" },
+  { image: "images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png", pdf: "pdfs/Certificate for Meghana L for _Alumni Session  - _Expectat..._.pdf", title: "Expectations & Challenges in IT Industry" },
+  { image: "images/course_r.png", pdf: "pdfs/CertificateOfCompletion_R for Data Science Analysis and Visualization.pdf", title: "R for Data Science: Analysis and Visualization – LinkedIn" },
+  { image: "images/excel_2019.png", pdf: "pdfs/CertificateOfCompletion_Learning Excel 2019.pdf", title: "Learning Excel 2019 – LinkedIn" },
+  { image: "images/tableau_cert_prep.png", pdf: "pdfs/CertificateOfCompletion_Tableau Certified Data Analyst Cert Prep.pdf", title: "Tableau Certified Data Analyst – LinkedIn" }
+];
 
-  let currentIndex = 0;
+let currentIndex = 0;
+let certIndex = 0;
 
-  function openViewer(index) {
-    currentIndex = index;
-    const viewer = document.getElementById("viewer");
-    const img = document.getElementById("viewer-image");
-    img.src = certificates[index].image;
-    viewer.style.display = "flex";
-    updateNavButtons();
+function ensureViewerLinkEl() {
+  const viewerContent = document.querySelector(".viewer-overlay .viewer-content");
+  if (!viewerContent) return null;
+
+  let linkEl = document.getElementById("viewer-credential-link");
+  if (!linkEl) {
+    linkEl = document.createElement("a");
+    linkEl.id = "viewer-credential-link";
+    linkEl.className = "viewer-credential-link";
+    linkEl.target = "_blank";
+    linkEl.rel = "noopener noreferrer";
+    linkEl.textContent = "View credential";
+    viewerContent.appendChild(linkEl);
+  }
+  return linkEl;
+}
+
+function updateCredentialLink() {
+  const cert = certificates[currentIndex];
+  const linkEl = ensureViewerLinkEl();
+  if (!linkEl) return;
+
+  if (cert && cert.credentialUrl) {
+    linkEl.href = cert.credentialUrl;
+    linkEl.style.display = "inline-flex";
+  } else {
+    linkEl.style.display = "none";
+    linkEl.removeAttribute("href");
+  }
+}
+
+function openViewer(index) {
+  currentIndex = index;
+  const viewer = document.getElementById("viewer");
+  const img = document.getElementById("viewer-image");
+  img.src = certificates[index].image;
+  viewer.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  updateViewerButtons();
+  updateCredentialLink();
+}
+
+function closeViewer() {
+  const viewer = document.getElementById("viewer");
+  viewer.style.display = "none";
+  document.body.style.overflow = "";
+}
+
+function prevImage() {
+  if (currentIndex > 0) openViewer(currentIndex - 1);
+}
+
+function nextImage() {
+  if (currentIndex < certificates.length - 1) openViewer(currentIndex + 1);
+}
+
+function updateViewerButtons() {
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
+  prevBtn.style.display = currentIndex === 0 ? "none" : "block";
+  nextBtn.style.display = currentIndex === certificates.length - 1 ? "none" : "block";
+}
+
+function openPDFInNewTab() {
+  window.open(certificates[currentIndex].pdf, "_blank");
+}
+
+function certVisibleCount() {
+  if (window.innerWidth <= 600) return 1;
+  if (window.innerWidth <= 900) return 2;
+  return 3;
+}
+
+function getTrackGap(track) {
+  const styles = window.getComputedStyle(track);
+  const gap = parseFloat(styles.gap || styles.columnGap || "0");
+  return Number.isFinite(gap) ? gap : 0;
+}
+
+function updateCarouselButtons(maxIndex) {
+  const wrapper = document.querySelector(".cert-carousel-wrapper");
+  if (!wrapper) return;
+  const btns = wrapper.querySelectorAll(".cert-nav-btn");
+  if (btns.length < 2) return;
+
+  const leftBtn = btns[0];
+  const rightBtn = btns[1];
+
+  leftBtn.classList.toggle("is-hidden", certIndex === 0);
+  rightBtn.classList.toggle("is-hidden", certIndex >= maxIndex);
+}
+
+function moveCerts() {
+  const track = document.getElementById("certTrack");
+  if (!track) return;
+
+  const card = track.querySelector(".cert-card");
+  if (!card) return;
+
+  const visible = certVisibleCount();
+  const total = track.children.length;
+
+  const maxIndex = Math.max(0, total - visible);
+  certIndex = Math.min(Math.max(certIndex, 0), maxIndex);
+
+  const gap = getTrackGap(track);
+  const cardW = card.getBoundingClientRect().width;
+
+  track.style.transform = `translateX(-${(cardW + gap) * certIndex}px)`;
+  updateCarouselButtons(maxIndex);
+}
+
+function nextCerts() {
+  const track = document.getElementById("certTrack");
+  if (!track) return;
+
+  const visible = certVisibleCount();
+  const total = track.children.length;
+  const maxIndex = Math.max(0, total - visible);
+
+  certIndex = Math.min(certIndex + visible, maxIndex);
+  moveCerts();
+}
+
+function prevCerts() {
+  const visible = certVisibleCount();
+  certIndex = Math.max(certIndex - visible, 0);
+  moveCerts();
+}
+
+function inCertsView() {
+  const certsSection = document.getElementById("certifications");
+  if (!certsSection) return false;
+  const r = certsSection.getBoundingClientRect();
+  return r.top < window.innerHeight * 0.7 && r.bottom > window.innerHeight * 0.3;
+}
+
+document.addEventListener("keydown", function (e) {
+  const tag = document.activeElement?.tagName?.toLowerCase();
+  if (tag === "input" || tag === "textarea") return;
+
+  const viewer = document.getElementById("viewer");
+  const viewerOpen = viewer && window.getComputedStyle(viewer).display !== "none";
+
+  if (viewerOpen) {
+    if (e.key === "ArrowRight") { e.preventDefault(); nextImage(); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); prevImage(); }
+    if (e.key === "Escape") { e.preventDefault(); closeViewer(); }
+    return;
   }
 
-  function closeViewer() {
-    document.getElementById("viewer").style.display = "none";
-  }
+  if (!inCertsView()) return;
 
-  function prevImage() {
-    if (currentIndex > 0) openViewer(currentIndex - 1);
-  }
+  if (e.key === "ArrowRight") { e.preventDefault(); nextCerts(); }
+  if (e.key === "ArrowLeft") { e.preventDefault(); prevCerts(); }
+}, { passive: false });
 
-  function nextImage() {
-    if (currentIndex < certificates.length - 1) openViewer(currentIndex + 1);
-  }
-
-  function updateNavButtons() {
-    document.getElementById("prev-btn").style.display = currentIndex === 0 ? "none" : "block";
-    document.getElementById("next-btn").style.display = currentIndex === certificates.length - 1 ? "none" : "block";
-  }
-
-  function openPDFInNewTab() {
-    window.open(certificates[currentIndex].pdf, '_blank');
-  }
-
-  // Keyboard nav when the viewer is open
-  document.addEventListener("keydown", function (e) {
-  const viewer = document.querySelector(".viewer-overlay");
-
-  // Only work when the viewer is open
-  if (!viewer || viewer.style.display !== "flex") return;
-
-  switch (e.key) {
-    case "ArrowRight":
-      document.querySelector(".right")?.click();
-      break;
-
-    case "ArrowLeft":
-      document.querySelector(".left")?.click();
-      break;
-
-    case "Escape":
-      document.querySelector(".close-btn")?.click();
-      break;
-  }
+document.addEventListener("click", function (e) {
+  const viewer = document.getElementById("viewer");
+  if (!viewer) return;
+  if (viewer.style.display !== "flex") return;
+  if (e.target === viewer) closeViewer();
 });
 
+window.addEventListener("load", function () {
+  certIndex = 0;
+  moveCerts();
+});
+
+window.addEventListener("resize", function () {
+  const track = document.getElementById("certTrack");
+  if (!track) return;
+  const visible = certVisibleCount();
+  const total = track.children.length;
+  const maxIndex = Math.max(0, total - visible);
+  certIndex = Math.min(certIndex, maxIndex);
+  moveCerts();
+});
 </script>
 
-<!-- Dark/Light Theme Script -->
+
+<!-- DARK/LIGHT THEME Script -->
 <script>
 (function () {
   const STORAGE_KEY = "themeMode";
@@ -571,8 +774,6 @@ The work is inspired by real-world scenarios and developed as part of my advance
       document.body.classList.toggle("light", mode === "light");
       localStorage.setItem(STORAGE_KEY, mode);
 
-      // Dark mode -> show SUN (click to go light)
-      // Light mode -> show MOON (click to go dark)
       if(mode === "light"){
         icon.className = "fa-regular fa-moon";
       } else {
@@ -588,20 +789,6 @@ The work is inspired by real-world scenarios and developed as part of my advance
     });
   });
 })();
-</script>
-
-<script>
-document.addEventListener("keydown", (e) => {
-  // Don't interfere while typing
-  const tag = document.activeElement?.tagName?.toLowerCase();
-  if (tag === "input" || tag === "textarea") return;
-
-  // Stop browser from scrolling sections with arrow keys
-  if (["ArrowUp", "ArrowDown"].includes(e.key)) {
-    e.preventDefault();
-  }
-}, { passive: false });
-
 </script>
 
 

@@ -1187,113 +1187,335 @@ body.light .exp-modal-list li {
   word-wrap: break-word;
 }
 
+
 /* =========================================================
-   CERTIFICATIONS SECTION
+   CERTIFICATIONS SECTION 
    ========================================================= */
-.certifications-section {
-  background-image: url('images/spotlight-bg.png');
+
+/* Section should sit like Projects: title near top, not vertically centered */
+.certifications-section{
+  background-image: var(--cert-bg, url("images/Cert_dark.png"));
   background-size: cover;
   background-position: center;
-  padding: 80px 40px;
+  background-repeat: no-repeat;
+
+  min-height: 100vh;
+  padding: 120px 40px 90px;   /* more top padding like Projects section */
   position: relative;
   z-index: 1;
-}
-
-.certifications-title {
-  text-align: center;
-  font-size: 2.8rem;
-  margin-bottom: 50px;
-  color: var(--heading);
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  width: 90%;
-  margin: 0 auto;
-  justify-items: center;
-  z-index: 2;
-}
-
-.cert-card {
-  background: rgba(255, 255, 255, 0.04);
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  width: 100%;
-  max-width: 320px;
-  height: 230px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
+
+  /* remove center-vertical layout */
+  display: block;
 }
 
-.cert-card img {
+/* Theme bg */
+body.dark, html.dark, [data-theme="dark"] { --cert-bg: url("images/Cert_dark.png"); }
+body.light, html.light, [data-theme="light"] { --cert-bg: url("images/Cert_light.png"); }
+
+/* Subtle overlay (keep medal visible) */
+.certifications-section::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255,0,127,0.10), transparent 60%),
+    linear-gradient(to bottom, rgba(0,0,0,0.18), rgba(0,0,0,0.45));
+  pointer-events:none;
+  z-index:0;
+}
+body.light .certifications-section::after,
+html.light .certifications-section::after,
+[data-theme="light"] .certifications-section::after{
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255,0,127,0.06), transparent 60%),
+    linear-gradient(to bottom, rgba(255,255,255,0.18), rgba(255,255,255,0.42));
+}
+
+/* Title position like other sections */
+.certifications-title{
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-size: 3rem;
+  margin: 0 0 56px;
+  color: var(--heading);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ===== Carousel layout ===== */
+.cert-carousel-wrapper{
+  position: relative;
+  z-index: 2;
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.cert-carousel{
+  overflow: hidden;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.4s ease;
+  border-radius: 18px;
+  padding: 10px 0;
 }
 
-.cert-card:hover {
+.cert-track{
+  display: flex;
+  gap: 34px;                 /* a bit more breathing room */
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+
+/* Bigger 3-at-a-time cards */
+.cert-card{
+  background: rgba(255,255,255,0.04);
+  border-radius: 14px;
+  box-shadow: 0 0 22px rgba(255,255,255,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  overflow: hidden;
+
+  /* 3 visible */
+  min-width: calc((100% - 68px) / 3);
+  padding: 18px 18px 16px;
+}
+
+/* ✅ remove the “white container” look in the section cards */
+.cert-card img{
+  width: 100%;
+  height: 235px;             /* bigger */
+  object-fit: contain;
+
+  border-radius: 12px;
+  background: transparent;   /* <-- no white / framed container */
+  padding: 0;                /* <-- remove padding that looks like a frame */
+  box-shadow: none;
+  transition: transform 0.35s ease;
+}
+
+.cert-name{
+  margin-top: 14px;
+  text-align: center;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--heading);
+  max-width: 96%;
+}
+
+.cert-card:hover{
   transform: translateY(-6px);
-  box-shadow: 0 0 35px rgba(255, 0, 127, 0.3);
+  box-shadow: 0 0 35px rgba(255,0,127,0.28);
+}
+.cert-card:hover img{ transform: scale(1.04); }
+
+/* ===== Section arrows: match Projects style (no bubble) ===== */
+.cert-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: #fff;
+  font-size: 70px;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+  opacity: 0.9;
 }
 
-.cert-card:hover img {
-  transform: scale(1.1);
+.cert-nav-btn:hover{
+  opacity: 1;
+  transform: translateY(-50%) scale(1.05);
 }
 
-.viewer-overlay {
+.cert-carousel-wrapper .cert-nav-btn:first-of-type{ left: -80px; }   /* ❮ */
+.cert-carousel-wrapper .cert-nav-btn:last-of-type{ right: -80px; }   /* ❯ */
+
+
+.cert-nav-btn.is-hidden{
+  display: none !important;
+}
+
+/* ===== Viewer Overlay (UPDATED: bigger, arrows + X like your example) ===== */
+.viewer-overlay{
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(8, 8, 8, 0.9);
+  inset: 0;
+  background: rgba(0,0,0,0.92);
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 999;
-  flex-direction: column;
+  z-index: 9999;
 }
 
-.viewer-overlay img {
-  max-width: 80%;
-  max-height: 80%;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+.viewer-overlay .viewer-content{
+  position: relative;
+  width: min(1050px, 78vw);   /* bigger than before */
+  height: min(720px, 72vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.viewer-overlay img#viewer-image{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 14px;
+
+  background: transparent;    
+  padding: 0;
+
+  box-shadow: 0 22px 70px rgba(0,0,0,0.65);
   cursor: pointer;
 }
 
-.left { left: 60px; }
-.right { right: 60px; }
+.viewer-overlay .close-btn{
+  position: fixed;
+  top: 120px;                 
+  right: 70px;
 
-
-.close-btn {
-  position: absolute;
-  top: 100px;
-  right: 60px;
-  font-size: 2.8rem;
-  color: white;
+  font-size: 34px;
+  color: #fff;
   cursor: pointer;
   user-select: none;
-  background-color: rgba(0, 0, 0, 0.35);
-  border-radius: 50%;
-  padding: 6px 14px;
-  transition: all 0.2s ease;
+  z-index: 10000;
+
+  background: transparent;
+  padding: 8px 10px;
+  opacity: 0.95;
+
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.viewer-overlay .close-btn:hover{
+  opacity: 1;
+  transform: scale(1.06);
 }
 
-.close-btn:hover {
-  background-color: rgba(255, 0, 127, 0.4);
-  transform: scale(1.1);
+
+.viewer-overlay .nav-btn{
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: #fff;
+  font-size: 66px;
+  line-height: 1;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10000;
+  padding: 10px 14px;
+  opacity: 0.92;
+  text-shadow: 0 12px 35px rgba(0,0,0,0.60);
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
+.viewer-overlay .nav-btn:hover{
+  opacity: 1;
+  transform: translateY(-50%) scale(1.05);
+}
+.viewer-overlay .nav-btn.left{ left: 55px; }
+.viewer-overlay .nav-btn.right{ right: 55px; }
+
+/* NEW: credential link (only shows for ECBA certificate) */
+.viewer-overlay .viewer-credential-link{
+  position: absolute;
+  left: 50%;
+  bottom: -44px;
+  transform: translateX(-50%);
+  display: none;
+
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.98rem;
+
+  color: #fff;
+  background: rgba(255,255,255,0.10);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+
+  transition: transform 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+  opacity: 0.95;
+}
+.viewer-overlay .viewer-credential-link:hover{
+  opacity: 1;
+  transform: translateX(-50%) scale(1.03);
+  background: rgba(255,0,127,0.30);
+}
+
+/*=============  Responsive ================== */
+@media (max-width: 900px){
+  .cert-card{ min-width: calc((100% - 34px) / 2); }
+  .cert-card img{ height: 250px; }
+
+  .cert-nav-btn{ font-size: 58px; }
+  .cert-carousel-wrapper .cert-nav-btn:first-of-type{ left: -18px; }
+  .cert-carousel-wrapper .cert-nav-btn:last-of-type{ right: -18px; }
+
+  .viewer-overlay .close-btn{
+    top: 28px;
+    right: 28px;
+    font-size: 5rem;
+    padding: 10px 18px;
+  }
+
+  .viewer-overlay .nav-btn{ font-size: 58px; }
+  .viewer-overlay .nav-btn.left{ left: 22px; }
+  .viewer-overlay .nav-btn.right{ right: 22px; }
+
+  .viewer-overlay .viewer-credential-link{
+    bottom: -40px;
+    font-size: 0.95rem;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 600px){
+  .certifications-section{ padding: 110px 18px 80px; }
+  .cert-card{ min-width: 100%; }
+  .cert-card img{ height: 260px; }
+  .cert-name{ font-size: 1rem; }
+  .cert-nav-btn{ font-size: 54px; }
+
+  .viewer-overlay .viewer-content{ position: relative; }
+
+  .viewer-overlay .close-btn{
+    top: 22px;
+    right: 16px;
+    font-size: 5rem;
+    padding: 10px 16px;
+  }
+
+  .viewer-overlay .nav-btn{ font-size: 54px; }
+  .viewer-overlay .nav-btn.left{ left: 10px; }
+  .viewer-overlay .nav-btn.right{ right: 10px; }
+
+  .viewer-overlay .viewer-credential-link{
+    bottom: -38px;
+    font-size: 0.92rem;
+    padding: 10px 14px;
+  }
+}
+
+body.light .certifications-section .cert-nav-btn,
+html.light .certifications-section .cert-nav-btn,
+[data-theme="light"] .certifications-section .cert-nav-btn{
+  color: rgba(0,0,0,0.85);
+  text-shadow: none;
+}
+
+
+
 
 /* =========================================================
    CONTACT SECTION
