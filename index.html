@@ -612,12 +612,16 @@ function updateCredentialLink() {
 }
 
 function openViewer(index) {
+  if (index < 0 || index >= certificates.length) return;
   currentIndex = index;
+
   const viewer = document.getElementById("viewer");
   const img = document.getElementById("viewer-image");
+
   img.src = certificates[index].image;
   viewer.style.display = "flex";
   document.body.style.overflow = "hidden";
+
   updateViewerButtons();
   updateCredentialLink();
 }
@@ -717,6 +721,18 @@ function inCertsView() {
   return r.top < window.innerHeight * 0.7 && r.bottom > window.innerHeight * 0.3;
 }
 
+function bindCertificateClicks() {
+  const track = document.getElementById("certTrack");
+  if (!track) return;
+
+  const cards = track.querySelectorAll(".cert-card");
+  cards.forEach((card, i) => {
+    card.onclick = function () {
+      openViewer(i);
+    };
+  });
+}
+
 document.addEventListener("keydown", function (e) {
   const tag = document.activeElement?.tagName?.toLowerCase();
   if (tag === "input" || tag === "textarea") return;
@@ -746,6 +762,7 @@ document.addEventListener("click", function (e) {
 
 window.addEventListener("load", function () {
   certIndex = 0;
+  bindCertificateClicks();
   moveCerts();
 });
 
@@ -759,6 +776,7 @@ window.addEventListener("resize", function () {
   moveCerts();
 });
 </script>
+
 
 
 <!-- DARK/LIGHT THEME Script -->
