@@ -321,10 +321,12 @@ body.light header#site-header .theme-icon-li button i#themeIcon{
 
 .actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;        
   align-items: center;
-  gap: 26px;
+  gap: 16px;                  
   margin-top: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .btn.primary {
@@ -343,6 +345,24 @@ body.light header#site-header .theme-icon-li button i#themeIcon{
 .btn.primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 30px rgba(166, 77, 244, 0.5);
+}
+
+.btn.secondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  border-radius: 40px;
+  padding: 14px 34px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-block;
+}
+
+.btn.secondary:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 /* Social Icons */
@@ -455,6 +475,16 @@ body.light .icon-bar a {
 
 body.light .icon-bar svg {
   fill: #2a1c12;
+}
+
+body.light .btn.secondary {
+  color: #1f140d;
+  border-color: rgba(42, 28, 18, 0.5);
+}
+
+body.light .btn.secondary:hover {
+  border-color: #1f140d;
+  background: rgba(42, 28, 18, 0.08);
 }
 
 /* =========================================================
