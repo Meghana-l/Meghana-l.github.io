@@ -329,6 +329,11 @@ body.light header#site-header .theme-icon-li button i#themeIcon{
   justify-content: center;
 }
 
+.actions .btn {
+  min-width: 220px;
+  text-align: center;
+}
+
 .btn.primary {
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   color: #fff;
@@ -345,18 +350,6 @@ body.light header#site-header .theme-icon-li button i#themeIcon{
 .btn.primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 30px rgba(166, 77, 244, 0.5);
-}
-
-.btn.secondary {
-  background: transparent;
-  color: #fff;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  font-weight: 600;
-  border-radius: 40px;
-  padding: 14px 34px;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  display: inline-block;
 }
 
 .btn.secondary:hover {
