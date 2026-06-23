@@ -2,909 +2,403 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Meghana | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meghana Lakshminarayana — Data &amp; AI</title>
+  <meta name="description" content="Meghana Lakshminarayana. Data and AI, automation, and analytics. I bring AI into everyday work to make it smarter and a little less painful." />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
-
-  <!-- ✅ makes sure toggle works reliably -->
-  <script src="script.js" defer></script>
 </head>
-
 <body>
 
-<!-- ================= HEADER / NAV ================= -->
-<header id="site-header">
- <div class="container nav">
-  <div class="nav-logo">Meghana Lakshminarayana</div>
-  <nav>
-      <ul class="menu">
-        <li><a href="#about">About</a></li>
-        <li><a href="#journey">My Academic Journey</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#contact">Contact</a></li>
-
-        <!-- Dark/light theme Toggle -->
-<li class="theme-icon-li">
-  <button id="themeToggleBtn" aria-label="Toggle theme">
-    <i id="themeIcon" class="fa-solid fa-sun"></i>
-  </button>
-</li>
-
-      </ul>
-    </nav>
+<!-- NAV -->
+<nav id="site-nav" aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="#hero" class="nav-logo">Meghana L.</a>
+    <div class="nav-links">
+      <a href="#about">Who I Am</a>
+      <a href="#whatido">What I Do</a>
+      <a href="#work">My Work</a>
+      <a href="#why">Why Me</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-</header>
+</nav>
 
-<!-- ================= HERO SECTION ================= -->
-<section id="home" class="hero">
-  <div class="hero-inner">
-
-    <h1><span>Meghana Lakshminarayana Swamy</span></h1>
-
-    <p class="roles-tag">Data Engineer | Business Analyst | Business Enthusiast | Creative Builder</p>
-
-    <p class="intro">
-      Turning raw data into meaningful insights and real-world solutions.
-    </p>
-
-    <p class="location">
-      <i class="fa-solid fa-location-dot"></i>
-      New York Metropolitan Area, USA
-    </p>
-
-<div class="actions">
-  <a href="Meghana_Resume_2026.pdf" target="_blank" class="btn primary">Download Resume</a>
-  <a href="LoR_Meghana.pdf" target="_blank" class="btn primary">View Recommendation Letter</a>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about">Who I Am</a>
+  <a href="#whatido">What I Do</a>
+  <a href="#experience">Experience</a>
+  <a href="#work">My Work</a>
+  <a href="#why">Why Me</a>
+  <a href="#certifications">Certifications</a>
+  <a href="#contact">Contact</a>
 </div>
 
-    <div class="icon-bar">
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=meghana.drlnswamy@gmail.com" target="_blank" aria-label="Email">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-      </a>
 
-      <a href="https://www.linkedin.com/in/meghana-swamy" target="_blank" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5v-7.33c0-1.75-.03-4-2.44-4-2.44 0-2.82 1.9-2.82 3.86V24h-5V8z"/></svg>
-      </a>
+<!-- ============================ HERO ============================ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-name reveal">Meghana Lakshminarayana</div>
 
-      <a href="https://github.com/Meghana-l" target="_blank" aria-label="GitHub">
-        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.2-3.37-1.2-.46-1.16-1.12-1.47-1.12-1.47-.92-.63.07-.62.07-.62 1.02.07 1.56 1.05 1.56 1.05.9 1.54 2.37 1.1 2.95.84.09-.66.35-1.1.63-1.36-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.9-1.3 2.74-1.02 2.74-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
-      </a>
+      <div class="hero-center">
+        <h1 class="hero-title reveal d1">My Life<br>Lives In <em>AI</em></h1>
+        <div class="hero-photo-stack reveal d2">
+          <div class="sq sq1"></div>
+          <div class="sq sq2"></div>
+          <img src="images/Meghana_8.jpeg" alt="Meghana Lakshminarayana" />
+        </div>
+        <div class="hero-tags reveal d3">
+          <span class="hero-tag">Data</span>
+          <span class="hero-tag">AI</span>
+          <span class="hero-tag">Automation</span>
+          <span class="hero-tag">Analytics</span>
+        </div>
+        <div class="hero-cta reveal d4">
+          <a href="#work" class="btn btn-camel">See My Work</a>
+        </div>
+      </div>
 
-      <a href="https://www.instagram.com/meg._hannah/" target="_blank" aria-label="Instagram">
-        <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3a5.75 5.75 0 1 1 0 11.5 5.75 5.75 0 0 1 0-11.5zm0 1.5a4.25 4.25 0 1 0 0 8.5 4.25 4.25 0 0 0 0-8.5zm5.5-.75a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
-      </a>
-    </div>
-
-    <div class="scroll-down">
-      <a href="#about" aria-label="Scroll down"><i class="fa-solid fa-chevron-down"></i></a>
+      <div class="hero-tagline reveal">I make AI do the boring work,<br>but that's the interesting part.</div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT SECTION -->
-<section class="about-section" id="about">
-  <div class="about-grid">
 
-    <!-- About image: dark + light -->
-    <img src="images/meghana4.jpeg" alt="About Meghana" class="about-photo-wide about-photo-dark">
-    <img src="images/Meghana_8.jpeg" alt="About Meghana" class="about-photo-wide about-photo-light">
-
-    <div class="about-text">
-      <h4 class="subheader">About</h4>
-      <h2 class="typewriter" id="meghana-intro"></h2>
-
-      <div class="about-details hidden" id="aboutContent">
-        <p>
-          I’m a Business Analytics graduate student at the University of New Haven, with a background in Information Science Engineering and a deep interest in solving real-world problems through data. I enjoy working at the intersection of logic and creativity—digging into datasets, uncovering patterns, and turning raw information into visuals or reports that actually drive decisions.
-        </p>
-        <p>
-          Along the way, I’ve built up experience with tools like Power BI, SQL, Excel, and Tableau. I’ve also worked extensively with Visual Studio 2022 to design and run ETL packages, and I’ve used Microsoft SQL Server and SSMS for writing queries and managing data warehouses. These skills help me go beyond just analysis—I can structure data pipelines, clean and transform datasets, and create dashboards that make sense to any audience.
-        </p>
-        <p>
-          Outside academics, I’ve been involved in campus life in more hands-on ways and contributing to student engagement activities. It’s this mix of data, design, and communication that I really enjoy bringing into every project I work on.
-        </p>
+<!-- ============================ TABLE OF CONTENTS ============================ -->
+<section id="toc">
+  <div class="container">
+    <div class="toc-top reveal">
+      <h2 class="display-head" style="font-size:clamp(32px,5vw,56px)">Table of<br>Content</h2>
+      <div class="toc-wave">
+        <svg viewBox="0 0 400 36" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0 18 Q 25 2 50 18 T 100 18 T 150 18 T 200 18 T 250 18 T 300 18 T 350 18 T 400 18" stroke="currentColor" stroke-width="2.5" fill="none"/>
+          <path d="M0 28 Q 25 12 50 28 T 100 28 T 150 28 T 200 28 T 250 28 T 300 28 T 350 28 T 400 28" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+        </svg>
       </div>
     </div>
-
+    <div class="toc-grid">
+      <a href="#about" class="toc-card reveal d1"><span>01</span>Who Am I?</a>
+      <a href="#whatido" class="toc-card reveal d2"><span>02</span>What I Do?</a>
+      <a href="#work" class="toc-card reveal d3"><span>03</span>What I've Built?</a>
+      <a href="#why" class="toc-card reveal d4"><span>04</span>My Perspective</a>
+    </div>
   </div>
 </section>
 
 
-<!-- ================= JOURNEY SECTION ================= -->
-<section id="journey" class="journey-section">
-  <h2 class="journey-title">My Journey</h2>
-
-  <div class="journey-map" id="journey-timeline">
-    <img src="journey_icons/world-map.png" alt="World Map" class="world-map">
-
-    <div class="journey-group india-group">
-      <div class="journey-point">
-        <img src="journey_icons/school.png" alt="Sindhi High School">
-        <div class="text">School – Grades 1 to 10</div>
-        <div class="tooltip">
-          <h3>Sindhi High School</h3>
-          <p>1st – 10th Grade<br>2007–2017<br>Bengaluru, India</p>
+<!-- ============================ WHO AM I ============================ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <p class="eyebrow reveal"><span class="num">01</span> Who am I</p>
+        <h2 class="display-head reveal" style="margin-bottom:32px">Who<br>Am I?</h2>
+        <div class="about-text">
+          <p class="reveal d1">Hi, I'm <strong>Meghana</strong>. A data and AI person who genuinely enjoys a good business problem. I think like an engineer and speak the language of business.</p>
+          <p class="reveal d2">I hold a Master's in Business Analytics from the University of New Haven and a background in Information Science Engineering. My favorite kind of work lives right where <strong>data, AI, and automation</strong> meet real decisions.</p>
+        </div>
+        <div class="about-meta reveal d3">
+          <div class="about-stat"><div class="n">3.84</div><div class="l">GPA, MS Analytics</div></div>
+          <div class="about-stat"><div class="n">12+</div><div class="l">Projects shipped</div></div>
+          <div class="about-stat"><div class="n">2</div><div class="l">Competition wins</div></div>
         </div>
       </div>
 
-      <div class="journey-point">
-        <img src="journey_icons/highschool.png" alt="Deeksha Learning Center Yelahanka">
-        <div class="text">School - Grades 11 & 12</div>
-        <div class="tooltip">
-          <h3>Deeksha Learning Center Yelahanka</h3>
-          <p>11th & 12th Grade<br>2017–2019<br>Bengaluru, India</p>
+      <div class="about-side reveal d2">
+        <img src="images/meghana4.jpeg" alt="Meghana" class="about-photo" />
+        <div class="resume-block">
+          <div class="rb-head">My Documents</div>
+          <div class="rb-btns">
+            <a href="Meghana_Resume_2026.pdf" target="_blank" class="btn btn-clay">Résumé ↓</a>
+            <a href="LoR_Meghana.pdf" target="_blank" class="btn btn-outline">Recommendation Letter ↓</a>
+          </div>
         </div>
       </div>
-
-<div class="journey-point">
-  <img src="journey_icons/college.png" alt="BMS Institute of Technology">
-
-  <div class="text">
-    Undergraduate Degree – B.E. Information Science
-    <a
-      class="degree-plus"
-      href="pdfs/Meghana L- Degree Certificate.pdf"
-      target="_blank"
-      rel="noopener"
-      aria-label="Open degree certificate"
-      title="Open degree certificate"
-    >+</a>
+    </div>
   </div>
+</section>
 
-  <div class="tooltip">
-    <h3>BMS Institute of Technology & Management</h3>
-    <p>Bachelor’s in Information Science Engineering<br>Aug 2019 – May 2023<br>Bengaluru, India</p>
+
+<!-- ============================ WHAT I DO ============================ -->
+<section id="whatido">
+  <div class="container">
+    <div class="wid-grid">
+      <div>
+        <p class="eyebrow reveal"><span class="num">02</span> What I do</p>
+        <h2 class="display-head reveal" style="margin-bottom:40px">What<br>I Do?</h2>
+
+        <div class="wid-block reveal d1">
+          <div class="wid-label">What I do</div>
+          <p>I bring AI into everyday work. I look for the slow, manual, repetitive parts of a business and use data and AI to make them faster, smarter, and a little less painful.</p>
+        </div>
+        <div class="wid-block reveal d2">
+          <div class="wid-label">How I do it</div>
+          <p>I start with the real problem, then reach for the right tool. Sometimes that is SQL and a clean dashboard. Often it is an AI workflow, a RAG app, or an automation that quietly does the work in the background.</p>
+        </div>
+        <div class="wid-block reveal d3">
+          <div class="wid-label">Why it matters</div>
+          <p>AI is not a buzzword to me. It is how I think. I want teams to spend less time on busywork and more time on the decisions that actually move things forward.</p>
+        </div>
+
+        <div class="wid-focus reveal d4">
+          <div class="focus-box">AI Automation</div>
+          <div class="focus-box">Data &amp; Analytics</div>
+          <div class="focus-box">AI Powered Apps</div>
+          <div class="focus-box">Smarter Workflows</div>
+        </div>
+      </div>
+
+      <div class="wid-visual reveal d2">
+        <div class="sq-bg"></div>
+        <img src="images/Meghana_NYC.jpeg" alt="Meghana in New York City" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================ EXPERIENCE ============================ -->
+<section id="experience">
+  <div class="container">
+    <p class="eyebrow reveal">A bit of background</p>
+    <h2 class="display-head reveal sec-head">Experience</h2>
+
+    <div class="exp-list">
+      <div class="exp-row reveal d1">
+        <div class="exp-when">2026 to Present</div>
+        <div>
+          <div class="exp-role">AI Business Analyst</div>
+          <div class="exp-org">ConvoSatya</div>
+          <div class="exp-what">Turning AI product signals into insights teams can act on, and bridging what the technology can do with what the business actually needs.</div>
+        </div>
+      </div>
+      <div class="exp-row reveal d2">
+        <div class="exp-when">Jan 2026 to May 2026</div>
+        <div>
+          <div class="exp-role">Data Administrator Intern</div>
+          <div class="exp-org">Digital Academy of Excellence</div>
+          <div class="exp-what">Built reporting and clean data workflows for a learning platform, keeping records accurate and easy for the team to work with.</div>
+        </div>
+      </div>
+      <div class="exp-row reveal d3">
+        <div class="exp-when">Aug 2025 to May 2026</div>
+        <div>
+          <div class="exp-role">Teaching Assistant</div>
+          <div class="exp-org">University of New Haven</div>
+          <div class="exp-what">Guided graduate students through analytics and R, and supported faculty across the Business Analytics program.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================ MY WORK ============================ -->
+<section id="work">
+  <div class="container">
+    <p class="eyebrow reveal"><span class="num">03</span> What I've built</p>
+    <h2 class="display-head reveal" style="margin-bottom:14px">My Work</h2>
+    <p class="work-note reveal d1">Click on any image to open the project on GitHub. Hover to see what it is.</p>
+
+    <div class="proj-grid">
+      <a href="https://github.com/Meghana-l/market-intelligence-agent" target="_blank" class="proj-tile reveal d1">
+        <img src="images/ARIA.png" alt="" />
+        <div class="proj-overlay"><span>ARIA<small>AI Stock Market Agent · RAG · LLM</small></span></div>
+      </a>
+      <a href="https://github.com/Meghana-l/PortAuthority-NY-NJ-TrafficFlow_CapstoneProject" target="_blank" class="proj-tile reveal d2">
+        <img src="images/PANYNJ.jpg" alt="" />
+        <div class="proj-overlay"><span>Port Authority Traffic<small>Capstone · Power BI · ML</small></span></div>
+      </a>
+      <a href="https://github.com/Meghana-l/aladdin-onboarding-accelerator" target="_blank" class="proj-tile reveal d3">
+        <img src="images/aladdin.png" alt="" />
+        <div class="proj-overlay"><span>Aladdin Onboarding<small>Claude API · Python</small></span></div>
+      </a>
+      <a href="https://github.com/Meghana-l/breakdesk" target="_blank" class="proj-tile reveal d1">
+        <img src="images/breakdesk.png" alt="" />
+        <div class="proj-overlay"><span>BreakDesk<small>Trade Reconciliation · FinTech</small></span></div>
+      </a>
+      <a href="https://github.com/Meghana-l/insurance-edw" target="_blank" class="proj-tile reveal d2">
+        <img src="images/nfg.png" alt="" />
+        <div class="proj-overlay"><span>Insurance EDW<small>Data Warehouse · Dashboard</small></span></div>
+      </a>
+      <a href="https://github.com/Meghana-l/PortAuthority-BusTerminal-Prediction" target="_blank" class="proj-tile reveal d3">
+        <img src="images/PortAuthority.png" alt="" />
+        <div class="proj-overlay"><span>Bus Terminal Prediction<small>SQL Server · R · Power BI</small></span></div>
+      </a>
+      <a href="https://github.com/Meghana-l/Measuring-Food-Insecurity-in-the-Capital-Area-Excel-Dashboard" target="_blank" class="proj-tile reveal d1">
+        <img src="images/CAFB_HungerDashbaord.png" alt="" />
+        <div class="proj-overlay"><span>Food Insecurity Dashboard<small>Excel · Data Viz</small></span></div>
+      </a>
+      <a href="https://github.com/Meghana-l/PowerBI_Project_spindex" target="_blank" class="proj-tile reveal d2">
+        <img src="images/Screenshot 2025-07-14 213623.png" alt="" />
+        <div class="proj-overlay"><span>S&amp;P 500 Risk Analysis<small>Power BI · Finance</small></span></div>
+      </a>
+      <a href="https://github.com/Meghana-l/Tableau_EndToEnd_Prjct" target="_blank" class="proj-tile reveal d3">
+        <img src="images/Screenshot 2025-07-14 214357.png" alt="" />
+        <div class="proj-overlay"><span>British Airways Review<small>Tableau</small></span></div>
+      </a>
+      <a href="https://github.com/Meghana-l/MSExcel_EndToEnd_Project" target="_blank" class="proj-tile reveal d1">
+        <img src="images/Screenshot 2025-07-14 215036.png" alt="" />
+        <div class="proj-overlay"><span>Coffee Sales Dashboard<small>Excel</small></span></div>
+      </a>
+      <a href="https://github.com/Meghana-l/DataAnalystPortfolio" target="_blank" class="proj-tile reveal d2">
+        <img src="images/Screenshot 2025-07-14 215503.png" alt="" />
+        <div class="proj-overlay"><span>Sales Intelligence<small>AdventureWorks · SQL · Power BI</small></span></div>
+      </a>
+      <a href="https://github.com/Meghana-l/Excel-Dashboarding-Project" target="_blank" class="proj-tile reveal d3">
+        <img src="images/excel_dashboard.png" alt="" />
+        <div class="proj-overlay"><span>Call Centre Dashboard<small>Excel · Power Pivot</small></span></div>
+      </a>
+    </div>
+
+    <div class="wins-row">
+      <a href="https://www.linkedin.com/posts/meghana-swamy_hacknewhaven2026-mlh-ai-activity-7445557368668626944-5Ud-" target="_blank" rel="noopener" class="win reveal d1">
+        <div class="win-ic">🏆</div>
+        <div class="win-body">
+          <h4>Best Use of Solana</h4>
+          <p>Won the Solana track at Hack New Haven 2026 by building a working blockchain solution in under 24 hours.</p>
+          <span class="win-link"><i class="fa-brands fa-linkedin-in"></i> View the post</span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/posts/meghana-swamy_what-an-amazing-journey-this-has-been-i-activity-7396266345270558720-JVHE" target="_blank" rel="noopener" class="win reveal d2">
+        <div class="win-ic">🥈</div>
+        <div class="win-body">
+          <h4>Second Place, Case Competition</h4>
+          <p>Pitched a business strategy backed by data to a panel of industry judges and placed second.</p>
+          <span class="win-link"><i class="fa-brands fa-linkedin-in"></i> View the post</span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/posts/meghana-swamy_graduation-mastersinbusinessanalytics-unh-activity-7465128011999223808-io5c" target="_blank" rel="noopener" class="win reveal d3">
+        <div class="win-ic">🎓</div>
+        <div class="win-body">
+          <h4>GPA 3.84</h4>
+          <p>Earned a 3.84 in my Master's while working, building, and competing on the side.</p>
+          <span class="win-link"><i class="fa-brands fa-linkedin-in"></i> View the post</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================ MY PERSPECTIVE ============================ -->
+<section id="why">
+  <div class="container">
+    <p class="eyebrow reveal"><span class="num">04</span> My perspective is different</p>
+    <h2 class="display-head reveal sec-head">My Perspective<br><em>is different</em></h2>
+
+    <div class="why-grid">
+      <div class="why-item reveal d1">
+        <div class="why-box">I build, not just analyze</div>
+        <p>I ship working tools, from AI agents to automations, not only slides and reports.</p>
+      </div>
+      <div class="why-item reveal d2">
+        <div class="why-box">AI is my default</div>
+        <p>When I see a manual task, my first instinct is to ask how AI could just do it better.</p>
+      </div>
+      <div class="why-item reveal d3">
+        <div class="why-box">Business first, tech second</div>
+        <p>Engineering background, business instincts. I speak to people and to the data.</p>
+      </div>
+      <div class="why-item reveal d1">
+        <div class="why-box">Decisions, not dead ends</div>
+        <p>Everything I make is built to end in something a team can actually act on.</p>
+      </div>
+      <div class="why-item reveal d2">
+        <div class="why-box">Calm with ambiguity</div>
+        <p>Give me a messy question and a pile of data, and I will find the signal in it.</p>
+      </div>
+      <div class="why-item reveal d3">
+        <div class="why-box">A global lens</div>
+        <p>From Bengaluru to the United States, I adapt to new teams and contexts fast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================ CERTIFICATIONS ============================ -->
+<section id="certifications">
+  <div class="container">
+    <p class="eyebrow reveal">Credentials</p>
+    <h2 class="display-head reveal sec-head">Certifications</h2>
+
+    <div class="cert-grid">
+      <div class="cert-card reveal d1"><img src="images/IBM_Management_Consultant.png" alt="IBM Management Consultant" loading="lazy" /><p class="cert-name">IBM Management Consultant · Coursera</p></div>
+      <div class="cert-card reveal d2"><img src="images/IIBA - ECBA certificate.png" alt="IIBA ECBA" loading="lazy" /><p class="cert-name">Business Analysis, ECBA · IIBA</p></div>
+      <div class="cert-card reveal d2"><img src="images/My_Learning___NVIDIA.png" alt="NVIDIA" loading="lazy" /><p class="cert-name">LLM Apps with Prompt Engineering · NVIDIA</p></div>
+      <div class="cert-card reveal d3"><img src="images/tableau_cert_prep.png" alt="Tableau" loading="lazy" /><p class="cert-name">Tableau Certified Data Analyst · LinkedIn</p></div>
+      <div class="cert-card reveal d4"><img src="images/course_r.png" alt="R" loading="lazy" /><p class="cert-name">R for Data Science · LinkedIn</p></div>
+      <div class="cert-card reveal d5"><img src="images/excel_2019.png" alt="Excel" loading="lazy" /><p class="cert-name">Learning Excel 2019 · LinkedIn</p></div>
+      <div class="cert-card reveal d1"><img src="images/course_1.png" alt="UX" loading="lazy" /><p class="cert-name">Foundations of UX Design · Coursera</p></div>
+      <div class="cert-card reveal d2"><img src="images/Course_2.png" alt="UX Process" loading="lazy" /><p class="cert-name">UX Design Process · Coursera</p></div>
+      <div class="cert-card reveal d3"><img src="images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png" alt="AI" loading="lazy" /><p class="cert-name">Artificial Intelligence · Unschool</p></div>
+      <div class="cert-card reveal d4"><img src="images/Meghana.L_1BY19IS094_IoT.png" alt="IoT" loading="lazy" /><p class="cert-name">Internet of Things, Hands On</p></div>
+      <div class="cert-card reveal d5"><img src="images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png" alt="Alumni" loading="lazy" /><p class="cert-name">Challenges in the IT Industry</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="cert-lightbox" id="cert-lightbox" role="dialog" aria-modal="true" aria-label="Certificate viewer">
+  <div class="clb-inner">
+    <button class="clb-close" id="lb-close" aria-label="Close">×</button>
+    <img src="" alt="" id="lb-img" />
+    <p class="clb-title" id="lb-title"></p>
+    <div class="clb-actions">
+      <a href="#" target="_blank" class="btn btn-clay" id="lb-pdf" style="font-size:17px;padding:10px 22px;"><i class="fa-regular fa-file-pdf"></i>&nbsp; View PDF</a>
+      <a href="#" target="_blank" class="btn btn-outline" id="lb-cred" style="font-size:17px;padding:10px 22px;display:none;">View Credential</a>
+      <div class="clb-nav">
+        <button class="clb-arrow" id="lb-prev" aria-label="Previous">‹</button>
+        <button class="clb-arrow" id="lb-next" aria-label="Next">›</button>
+      </div>
+    </div>
   </div>
 </div>
 
-    </div>
 
-    <div class="journey-group usa-group">
-      <div class="journey-point">
-        <img src="journey_icons/masters.png" alt="University of New Haven">
-        <div class="text">Graduate Degree – MSc. Business Analytics</div>
-        <div class="tooltip">
-          <h3>University of New Haven</h3>
-          <p>Master’s in Business Analytics<br>Aug 2024 – May 2026<br>West Haven, CT, USA</p>
-        </div>
+<!-- ============================ CONTACT ============================ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-center">
+      <p class="eyebrow reveal"><span class="num">05</span> Let's talk</p>
+      <h2 class="display-head reveal" style="margin-bottom:16px">Let's Talk.</h2>
+      <p class="contact-sub reveal d1">Send me a note.</p>
+      <p class="contact-statement reveal d2">I'm open to roles across analytics, data, AI, finance, automation, and consulting. If you're building something where smarter data and AI could help, I would love to be part of it. I'm easy to talk to, and I bring a fresh, AI first way of thinking to every team I join.</p>
+      <div class="contact-badges reveal d3">
+        <span class="contact-badge">📍 Open to relocation</span>
+        <span class="contact-badge">🟢 Available now</span>
+        <span class="contact-badge">🎓 STEM OPT</span>
+        <span class="contact-badge">🌎 Across the US</span>
+      </div>
+      <div class="contact-links reveal d3">
+        <a href="mailto:meghana.drlnswamy@gmail.com" class="contact-link"><i class="fa-regular fa-envelope"></i> Send me a note</a>
+        <a href="https://www.linkedin.com/in/meghana-swamy" target="_blank" class="contact-link"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+        <a href="Meghana_Resume_2026.pdf" target="_blank" class="contact-link"><i class="fa-regular fa-file-lines"></i> Résumé</a>
+      </div>
+      <div class="contact-social reveal d4">
+        <a href="https://www.linkedin.com/in/meghana-swamy" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://github.com/Meghana-l" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="mailto:meghana.drlnswamy@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+        <a href="https://www.instagram.com/meg._hannah/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= EXPERIENCE SECTION ================= -->
-<section id="experience" class="experience-section">
-  <h2 class="experience-title">Experience</h2>
 
-  <!-- List container (contained inside page) -->
-  <div class="experience-list-wrap">
+<footer>
+  <p>Designed &amp; built by Meghana Lakshminarayana, 2026</p>
+</footer>
 
-    <!-- Row 1 -->
-    <button class="exp-row"
-      type="button"
-      data-title="Data Administrator Intern"
-      data-org="DAE (Digital Academy of Excellence) | New Haven, CT"
-      data-duration="Jan 2026 – May 2026"
-      data-bullets="Support PowerSchool SIS administration by maintaining accurate student records across enrollment, attendance, schedules, grades, and demographics.|Build and maintain internal reports and dashboards for program tracking and regular reporting needs.|Prepare and clean data for import/export workflows and assist with candidate application and enrollment process tracking.">
-      <div class="exp-left">
-        <span class="exp-year">Jan 2026</span>
-        <span class="exp-dash">—</span>
-        <span class="exp-year">May 2026</span>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Data Administrator Intern</div>
-        <div class="exp-company">DAE</div>
-        <div class="exp-sub">New Haven, CT</div>
-      </div>
-    </button>
-
-    <!-- Row 2 -->
-    <button class="exp-row"
-      type="button"
-      data-title="Teaching Assistant"
-      data-org="University of New Haven | West Haven, CT"
-      data-duration="Aug 2025 – May 2026"
-      data-bullets="Assist professors in the Business Analytics program with teaching and academic support.|Guide students in R programming as part of the curriculum.|Support preparation of learning materials, grading, and research tasks.">
-      <div class="exp-left">
-        <span class="exp-year">Aug 2025</span>
-        <span class="exp-dash">—</span>
-        <span class="exp-year">May 2026</span>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Teaching Assistant</div>
-        <div class="exp-company">University of New Haven</div>
-        <div class="exp-sub">West Haven, CT</div>
-      </div>
-    </button>
-
-    <!-- Row 3 -->
-    <button class="exp-row"
-      type="button"
-      data-title="Student Worker"
-      data-org="Sodexo – University of New Haven | West Haven, CT"
-      data-duration="Aug 2025 – Dec 2025"
-      data-bullets="Work in a fast-paced team environment managing point-of-sale systems with accuracy and speed.|Demonstrate accountability and professionalism while balancing multiple daily tasks.">
-      <div class="exp-left">
-        <span class="exp-year">Aug 2025</span>
-        <span class="exp-dash">—</span>
-        <span class="exp-year">Dec 2025</span>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Student Worker</div>
-        <div class="exp-company">Sodexo – University of New Haven</div>
-        <div class="exp-sub">West Haven, CT</div>
-      </div>
-    </button>
-
-  </div>
-
-  <!-- Modal -->
-  <div class="exp-modal" id="expModal" aria-hidden="true">
-    <div class="exp-modal-backdrop" data-close="true"></div>
-
-    <div class="exp-modal-card" role="dialog" aria-modal="true" aria-labelledby="expModalTitle">
-      <button class="exp-modal-close" type="button" aria-label="Close" data-close="true">×</button>
-
-      <h3 class="exp-modal-title" id="expModalTitle">Title</h3>
-      <h4 class="exp-modal-org" id="expModalOrg">Org</h4>
-      <p class="exp-modal-duration" id="expModalDuration">Duration</p>
-
-      <ul class="exp-modal-list" id="expModalList"></ul>
-    </div>
-  </div>
-</section>
-
-
-<!-------------- PROJECTS SECTION ------------------->
-<section class="projects-section" id="projects">
-  <h2 class="projects-title">Projects</h2>
-
-  <div class="project-wrapper">
-    <button id="prevBtn" class="nav-btn nav-left">&#10094;</button>
-
-    <div class="project-card" id="projectContent">
-      <!-- JS loads project -->
-    </div>
-
-    <button id="nextBtn" class="nav-btn nav-right">&#10095;</button>
-  </div>
-</section>
-
-
-<!-- CERTIFICATIONS SECTION -->
-<section class="certifications-section" id="certifications">
-  <h2 class="certifications-title">Certifications</h2>
-
-  <!-- Carousel -->
-  <div class="cert-carousel-wrapper">
-    <button class="cert-nav-btn" type="button" onclick="prevCerts()">❮</button>
-
-    <div class="cert-carousel">
-      <div class="cert-track" id="certTrack">
-
-        <div class="cert-card" onclick="openViewer(0)">
-          <img src="images/IIBA - ECBA certificate.png" alt="Entry Certificate in Business Analysis - IIBA" />
-          <p class="cert-name">Entry Certificate in Business Analysis - IIBA</p>
-        </div>
-
-        <div class="cert-card" onclick="openViewer(0)">
-          <img src="images/course_1.png" alt="Foundations of User Experience (UX) Design - Coursera" />
-          <p class="cert-name">Foundations of User Experience (UX) Design – Coursera</p>
-        </div>
-
-        <div class="cert-card" onclick="openViewer(1)">
-          <img src="images/Course_2.png" alt="Start the UX Design Process: Empathize, Design and Ideate - Coursera" />
-          <p class="cert-name">Start the UX Design Process: Empathize, Design and Ideate – Coursera</p>
-        </div>
-
-        <div class="cert-card" onclick="openViewer(2)">
-          <img src="images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png" alt="Artificial Intelligence - Unschool" />
-          <p class="cert-name">Artificial Intelligence – Unschool</p>
-        </div>
-
-        <div class="cert-card" onclick="openViewer(3)">
-          <img src="images/Meghana.L_1BY19IS094_IoT.png" alt="Internet Of Things with hands-On" />
-          <p class="cert-name">Internet Of Things with Hands-On</p>
-        </div>
-
-        <div class="cert-card" onclick="openViewer(4)">
-          <img src="images/My_Learning___NVIDIA.png" alt="Building LLM Applications with Prompt Engineering - NVIDIA" />
-          <p class="cert-name">Building LLM Applications with Prompt Engineering – NVIDIA</p>
-        </div>
-
-        <div class="cert-card" onclick="openViewer(5)">
-          <img src="images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png" alt="Expectations & Challenges in IT Industry" />
-          <p class="cert-name">Expectations & Challenges in IT Industry</p>
-        </div>
-
-        <div class="cert-card" onclick="openViewer(6)">
-          <img src="images/course_r.png" alt="R for Data Science: Analysis and Visualization - LinkedIn Certification" />
-          <p class="cert-name">R for Data Science: Analysis and Visualization – LinkedIn</p>
-        </div>
-
-        <div class="cert-card" onclick="openViewer(7)">
-          <img src="images/excel_2019.png" alt="Learning Excel 2019 - LinkedIn Certification" />
-          <p class="cert-name">Learning Excel 2019 – LinkedIn</p>
-        </div>
-
-        <div class="cert-card" onclick="openViewer(8)">
-          <img src="images/tableau_cert_prep.png" alt="Tableau Certified Data Analyst - LinkedIn Certification" />
-          <p class="cert-name">Tableau Certified Data Analyst – LinkedIn</p>
-        </div>
-
-      </div>
-    </div>
-
-    <button class="cert-nav-btn" type="button" onclick="nextCerts()">❯</button>
-  </div>
-
-  <!-- Viewer Overlay -->
-<div class="viewer-overlay" id="viewer">
-  <span class="close-btn" onclick="closeViewer()">×</span>
-
-  <div class="viewer-content">
-    <img id="viewer-image" src="" alt="Zoomed Certificate" onclick="openPDFInNewTab()" />
-  </div>
-
-  <span class="nav-btn left" id="prev-btn" onclick="prevImage()">❮</span>
-  <span class="nav-btn right" id="next-btn" onclick="nextImage()">❯</span>
-</div>
-
-</section>
-
-
-<!-- CONTACT SECTION -->
-<section class="contact-section" id="contact">
-  <h2 class="section-title">Contact</h2>
-
-  <div class="contact-container">
-    <div class="contact-form-box">
-      <h3 class="form-heading">Contact Me</h3>
-      <form id="contact-form">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <textarea name="message" placeholder="Your Message" required></textarea>
-        <button type="submit">Send</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  emailjs.init("r7TMuXNdWWMSVexgb");
-
-  document.getElementById("contact-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    emailjs.sendForm("service_ro7a2p9", "template_3vbag6a", this)
-      .then(() => {
-        alert("Message sent successfully!");
-        this.reset();
-      }, (error) => {
-        alert("Failed to send message. Please try again.");
-        console.error(error);
-      });
-  });
-</script>
-
-<!-- TYPEWRITER + ABOUT DISPLAY script-->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const intro = document.getElementById("meghana-intro");
-    const aboutContent = document.getElementById("aboutContent");
-
-    intro.innerHTML = "Hi, this is Meghana";
-
-    intro.addEventListener("animationend", (e) => {
-      if (e.animationName === "typing") {
-        aboutContent.classList.remove("hidden");
-        aboutContent.classList.add("visible");
-      }
-    });
-  });
-</script>
-
-
-
-<!-- PROJECT SCRIPT -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  const projects = [
-     {
-      title: "Port Authority of New York & New Jersey — Traffic Intelligence & Forecasting",
-      description: `This project is a comprehensive data analytics and machine learning study for the Port Authority of New York and New Jersey, analyzing bridge and tunnel traffic data across 8 facilities from January 2015 through May 2025 (29,445 facility-day records). The project answers five key business questions using three predictive models, an interactive Power BI dashboard, and a live web application deployed on Vercel.`,
-      image: "images/PANYNJ.jpg",
-      github: "https://github.com/Meghana-l/PortAuthority-NY-NJ-TrafficFlow_CapstoneProject"
-     },
-     {
-      title: "Insurance EDW Data Quality Monitor & Actuarial Reporting Dashboard",
-      description: `A production-style web application simulating an Enterprise Data Warehouse workflow for insurance actuarial data management. The project covers the full lifecycle of insurance policy data — from platform ingestion through quality validation to executive reporting.
-                     
-      Live web - https://nassau-5gcbf7dz5-meghanalnswamydr-5532s-projects.vercel.app/`,
-      image: "images/nfg.png",
-      github: "https://github.com/Meghana-l/insurance-edw"
-     },
-     {
-      title: "Aladdin Client Onboarding Accelerator",
-      description: `AI-powered reference data validation tool simulating an Aladdin client onboarding pipeline. A Python reconciliation engine checks 140 securities across fixed income, equities, derivatives and private markets against Aladdin conventions. Claude API classifies each issue with root cause and recommended fix.
-
-      Live web - https://meghana-l.github.io/aladdin-onboarding-accelerator/`,
-      image: "images/aladdin.png",
-      github: "https://github.com/Meghana-l/aladdin-onboarding-accelerator"
-     },
-    {
-      title: "BreakDesk — Trade Reconciliation & Exception Management",
-      description: `A working trade reconciliation and exception management tool built to mirror what an ops team at a global hedge fund deals with every day — multi-asset trade matching, break detection, exception triage, and reporting.
-
-      Live web - meghana-l.github.io/breakdesk`,
-      image: "images/breakdesk.png",
-      github: "https://github.com/Meghana-l/breakdesk"
-     },
-     {
-      title: "ARIA — Autonomous Research & Intelligence Agent",
-      description: `ARIA is an AI-powered stock market intelligence web app. Ask any question about the market in plain English — ARIA fetches live data, retrieves relevant context using RAG, and delivers a structured analysis with real-time prices, news, sentiment, and an investment calculator.`,
-      image: "images/ARIA.png",
-      github: "https://github.com/Meghana-l/market-intelligence-agent"
-    },
-    {
-      title: "Port Authority Bus Terminal Passenger Prediction",
-      description: `An advanced data analytics project built to forecast passenger flow and operational reliability for the Port Authority Bus Terminal (2025-2030). It integrates MTA bus performance, weather, and traffic datasets using SQL Server and R to model future demand through regression, classification, and clustering techniques. The Power BI dashboard features forecast charts, carrier-wise distribution visuals, and risk classification indicators, helping stakeholders plan resources, manage failures, and enhance passenger experience through data-driven insights.`,
-      image: "images/PortAuthority.png",
-      github: "https://github.com/Meghana-l/PortAuthority-BusTerminal-Prediction"
-    },
-    {
-      title: "Food Insecurity Dashboard - Capital Area Food Bank (CAFB) Dataset",
-      description: `An interactive Excel dashboard built to analyze food insecurity across Washington DC, Maryland, and Virginia using Capital Area Food Bank data (2014-2015). It visualizes pounds of food needed, distributed, and unmet through dynamic pivot tables and calculated KPIs such as Coverage % and Food Insecurity Rate. The dashboard includes comparison charts, a filled state map, and a Top-15 unmet tracts list to highlight regional disparities and guide targeted resource allocation, giving stakeholders a data-driven view of hunger distribution and coverage trends.`,
-      image: "images/CAFB_HungerDashbaord.png",
-      github: "https://github.com/Meghana-l/Measuring-Food-Insecurity-in-the-Capital-Area-Excel-Dashboard"
-    },
-    {
-      title: "S&P 500 Performance & Risk Analysis",
-      description: `This project helps to analyze the Performance and Risk-Return Profile of S&P 500 Companies to Aid Investment Decision-Making.
-
-This Power BI dashboard helps investors and analysts evaluate the performance, risk, and return potential of S&P 500 companies. By analyzing key metrics such as 10-year % change, 52-week % change, Beta, Profit Margin, and Yield, users can identify high-performing sectors and companies while assessing risk exposure.`,
-      image: "images/Screenshot 2025-07-14 213623.png",
-      github: "https://github.com/Meghana-l/PowerBI_Project_spindex"
-    },
-    {
-      title: "British Airways Review using Tableau",
-      description: `This project is an interactive Dashboard that helps a user to analyse the various parameters of British Airways, like Overall rating, Staff service, Food services, Value for money etc., across the Globe over the past few years.
-
-The end user using this Dashboard will be able to pick a metric that they want to view, with a simple click. The end user will also have other useful filters to find the exact data points that they are looking for. Each of the visuals are dynamic filters themselves, so you can click on the date, the map or select the specific Aircraft that you are interested in.`,
-      image: "images/Screenshot 2025-07-14 214357.png",
-      github: "https://github.com/Meghana-l/Tableau_EndToEnd_Prjct"
-    },
-    {
-      title: "Coffee Sales Interactive Dashboard using Excel",
-      description: `This Excel dashboard provides a user-friendly way to analyze coffee sales data. Its interactive design allows users to filter the data by several key criteria, including time-period, coffee roast type, cup size, and customer loyalty status. These filters enable users to drill down into the data and explore specific trends and customer preferences.`,
-      image: "images/Screenshot 2025-07-14 215036.png",
-      github: "https://github.com/Meghana-l/MSExcel_EndToEnd_Project"
-    },
-    {
-      title: "Data Analytics end-to-end Project to meet a business request",
-      description: `This project showcases the development of a dynamic sales dashboard based on a business request from a Sales Manager. Using data from the AdventureWorksDW2022 data warehouse, the following was done:
-
-- Data Cleaning & Transformation: Utilized SQL Server Management Studio (SSMS) to cleanse and standardize internet sales data, focusing on accuracy across key dimensions such as product, customer, and time. 
-
-- Data Extraction: Extracted the cleaned data for further analysis and visualization. 
-
-- Dashboard Development: Designed an interactive Power BI dashboard enabling users to filter sales performance by product, customer, and salesperson. Included visualizations for sales trends over time and comparisons against the 2021 budget. 
-
-- Business Impact: Delivered actionable insights through visual reporting, helping stakeholders track actual performance, evaluate key sales drivers, and make informed decisions based on historical trends and budget comparisons. 
-
-This end-to-end business intelligence solution highlights the capabilities in data warehousing, SQL data transformation, and dashboard creation aligned with business objectives.`,
-      image: "images/Screenshot 2025-07-14 215503.png",
-      github: "https://github.com/Meghana-l/DataAnalystPortfolio"
-    },
-    {
-      title: "Database Management Portfolio",
-      description: `This is a collection of projects/practitioner work that reflects my skills in building efficient database systems, transforming and loading data, designing warehouse models, and performing multidimensional data analysis. 
-
-The work is inspired by real-world scenarios and developed as part of my advanced coursework in Database Management.`,
-      image: "images/Screenshot 2025-07-14 215933.png",
-      github: "https://github.com/Meghana-l/Database-Management-Portfolio"
-    },
-    {
-      title: "Excel Dashboarding Project",
-      description: `An interactive Excel dashboard designed to monitor key call centre metrics such as call volume, average handle time, customer satisfaction, and agent performance. It uses a Power Pivot data model linking Calls and Customers tables through Customer ID, enabling dynamic analysis with DAX measures and slicers for filters like Representative, Day of Week, and Fiscal Year. The dashboard features KPI cards, trend charts, and conditional formatting to highlight performance insights in real time, giving managers a clear, data-driven view of operational efficiency and customer experience.`,
-      image: "images/excel_dashboard.png",
-      github: "https://github.com/Meghana-l/Excel-Dashboarding-Project"
-    }
-  ];
-
-  let currentProject = 0;
-  const contentDiv = document.getElementById("projectContent");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-
-  function loadProject(index) {
-    const project = projects[index];
-
-    contentDiv.innerHTML = `
-      <a href="${project.github}" target="_blank" title="Link to GitHub">
-        <img src="${project.image}" alt="${project.title}" loading="eager" />
-      </a>
-      <div class="project-info">
-        <h3>${project.title}</h3>
-        <p>${project.description}</p>
-      </div>
-    `;
-
-    prevBtn.style.visibility = index === 0 ? "hidden" : "visible";
-    nextBtn.style.visibility = index === projects.length - 1 ? "hidden" : "visible";
-  }
-
-  function inProjectsView() {
-    const projectsSection = document.getElementById("projects");
-    if (!projectsSection) return false;
-    const r = projectsSection.getBoundingClientRect();
-    return r.top < window.innerHeight * 0.7 && r.bottom > window.innerHeight * 0.3;
-  }
-
-  prevBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (currentProject > 0) {
-      currentProject--;
-      loadProject(currentProject);
-    }
-  });
-
-  nextBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (currentProject < projects.length - 1) {
-      currentProject++;
-      loadProject(currentProject);
-    }
-  });
-
-  document.addEventListener("keydown", (e) => {
-    const tag = document.activeElement?.tagName?.toLowerCase();
-    if (tag === "input" || tag === "textarea") return;
-    if (!inProjectsView()) return;
-
-    if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      if (currentProject > 0) {
-        currentProject--;
-        loadProject(currentProject);
-      }
-    }
-
-    if (e.key === "ArrowRight") {
-      e.preventDefault();
-      if (currentProject < projects.length - 1) {
-        currentProject++;
-        loadProject(currentProject);
-      }
-    }
-  }, { passive: false });
-  loadProject(currentProject);
-});
-</script>
-
-
-<!-- CERTIFICATES SCRIPT -->
-<script>
-const certificates = [
-  {
-    image: "images/IIBA - ECBA certificate.png",
-    pdf: "pdfs/IIBA - ECBA certificate.pdf",
-    title: "Entry Certificate in Business Analysis – IIBA",
-    credentialUrl: "https://badges.iiba.org/5a124e1a-7ca9-461b-bee8-629dfc02caa5#acc.DIMjGCg5"
-  },
-  { image: "images/course_1.png", pdf: "pdfs/course 1.pdf", title: "Foundations of User Experience (UX) Design – Coursera" },
-  { image: "images/Course_2.png", pdf: "pdfs/Course 2.pdf", title: "Start the UX Design Process: Empathize, Design and Ideate – Coursera" },
-  { image: "images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png", pdf: "pdfs/Meghana L_Artificial Intelligence_Unschool Certificate2021.pdf", title: "Artificial Intelligence – Unschool" },
-  { image: "images/Meghana.L_1BY19IS094_IoT.png", pdf: "pdfs/Meghana.L 1BY19IS094_IoT.pdf", title: "Internet Of Things with Hands-On" },
-  { image: "images/My_Learning___NVIDIA.png", pdf: "pdfs/My Learning _ NVIDIA.pdf", title: "Building LLM Applications with Prompt Engineering – NVIDIA" },
-  { image: "images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png", pdf: "pdfs/Certificate for Meghana L for _Alumni Session  - _Expectat..._.pdf", title: "Expectations & Challenges in IT Industry" },
-  { image: "images/course_r.png", pdf: "pdfs/CertificateOfCompletion_R for Data Science Analysis and Visualization.pdf", title: "R for Data Science: Analysis and Visualization – LinkedIn" },
-  { image: "images/excel_2019.png", pdf: "pdfs/CertificateOfCompletion_Learning Excel 2019.pdf", title: "Learning Excel 2019 – LinkedIn" },
-  { image: "images/tableau_cert_prep.png", pdf: "pdfs/CertificateOfCompletion_Tableau Certified Data Analyst Cert Prep.pdf", title: "Tableau Certified Data Analyst – LinkedIn" }
-];
-
-let currentIndex = 0;
-let certIndex = 0;
-
-function ensureViewerLinkEl() {
-  const viewerContent = document.querySelector(".viewer-overlay .viewer-content");
-  if (!viewerContent) return null;
-
-  let linkEl = document.getElementById("viewer-credential-link");
-  if (!linkEl) {
-    linkEl = document.createElement("a");
-    linkEl.id = "viewer-credential-link";
-    linkEl.className = "viewer-credential-link";
-    linkEl.target = "_blank";
-    linkEl.rel = "noopener noreferrer";
-    linkEl.textContent = "View credential";
-    viewerContent.appendChild(linkEl);
-  }
-  return linkEl;
-}
-
-function updateCredentialLink() {
-  const cert = certificates[currentIndex];
-  const linkEl = ensureViewerLinkEl();
-  if (!linkEl) return;
-
-  if (cert && cert.credentialUrl) {
-    linkEl.href = cert.credentialUrl;
-    linkEl.style.display = "inline-flex";
-  } else {
-    linkEl.style.display = "none";
-    linkEl.removeAttribute("href");
-  }
-}
-
-function openViewer(index) {
-  if (index < 0 || index >= certificates.length) return;
-  currentIndex = index;
-
-  const viewer = document.getElementById("viewer");
-  const img = document.getElementById("viewer-image");
-
-  img.src = certificates[index].image;
-  viewer.style.display = "flex";
-  document.body.style.overflow = "hidden";
-
-  updateViewerButtons();
-  updateCredentialLink();
-}
-
-function closeViewer() {
-  const viewer = document.getElementById("viewer");
-  viewer.style.display = "none";
-  document.body.style.overflow = "";
-}
-
-function prevImage() {
-  if (currentIndex > 0) openViewer(currentIndex - 1);
-}
-
-function nextImage() {
-  if (currentIndex < certificates.length - 1) openViewer(currentIndex + 1);
-}
-
-function updateViewerButtons() {
-  const prevBtn = document.getElementById("prev-btn");
-  const nextBtn = document.getElementById("next-btn");
-  prevBtn.style.display = currentIndex === 0 ? "none" : "block";
-  nextBtn.style.display = currentIndex === certificates.length - 1 ? "none" : "block";
-}
-
-function openPDFInNewTab() {
-  window.open(certificates[currentIndex].pdf, "_blank");
-}
-
-function certVisibleCount() {
-  if (window.innerWidth <= 600) return 1;
-  if (window.innerWidth <= 900) return 2;
-  return 3;
-}
-
-function getTrackGap(track) {
-  const styles = window.getComputedStyle(track);
-  const gap = parseFloat(styles.gap || styles.columnGap || "0");
-  return Number.isFinite(gap) ? gap : 0;
-}
-
-function updateCarouselButtons(maxIndex) {
-  const wrapper = document.querySelector(".cert-carousel-wrapper");
-  if (!wrapper) return;
-  const btns = wrapper.querySelectorAll(".cert-nav-btn");
-  if (btns.length < 2) return;
-
-  const leftBtn = btns[0];
-  const rightBtn = btns[1];
-
-  leftBtn.classList.toggle("is-hidden", certIndex === 0);
-  rightBtn.classList.toggle("is-hidden", certIndex >= maxIndex);
-}
-
-function moveCerts() {
-  const track = document.getElementById("certTrack");
-  if (!track) return;
-
-  const card = track.querySelector(".cert-card");
-  if (!card) return;
-
-  const visible = certVisibleCount();
-  const total = track.children.length;
-
-  const maxIndex = Math.max(0, total - visible);
-  certIndex = Math.min(Math.max(certIndex, 0), maxIndex);
-
-  const gap = getTrackGap(track);
-  const cardW = card.getBoundingClientRect().width;
-
-  track.style.transform = `translateX(-${(cardW + gap) * certIndex}px)`;
-  updateCarouselButtons(maxIndex);
-}
-
-function nextCerts() {
-  const track = document.getElementById("certTrack");
-  if (!track) return;
-
-  const visible = certVisibleCount();
-  const total = track.children.length;
-  const maxIndex = Math.max(0, total - visible);
-
-  certIndex = Math.min(certIndex + visible, maxIndex);
-  moveCerts();
-}
-
-function prevCerts() {
-  const visible = certVisibleCount();
-  certIndex = Math.max(certIndex - visible, 0);
-  moveCerts();
-}
-
-function inCertsView() {
-  const certsSection = document.getElementById("certifications");
-  if (!certsSection) return false;
-  const r = certsSection.getBoundingClientRect();
-  return r.top < window.innerHeight * 0.7 && r.bottom > window.innerHeight * 0.3;
-}
-
-function bindCertificateClicks() {
-  const track = document.getElementById("certTrack");
-  if (!track) return;
-
-  const cards = track.querySelectorAll(".cert-card");
-  cards.forEach((card, i) => {
-    card.onclick = function () {
-      openViewer(i);
-    };
-  });
-}
-
-document.addEventListener("keydown", function (e) {
-  const tag = document.activeElement?.tagName?.toLowerCase();
-  if (tag === "input" || tag === "textarea") return;
-
-  const viewer = document.getElementById("viewer");
-  const viewerOpen = viewer && window.getComputedStyle(viewer).display !== "none";
-
-  if (viewerOpen) {
-    if (e.key === "ArrowRight") { e.preventDefault(); nextImage(); }
-    if (e.key === "ArrowLeft") { e.preventDefault(); prevImage(); }
-    if (e.key === "Escape") { e.preventDefault(); closeViewer(); }
-    return;
-  }
-
-  if (!inCertsView()) return;
-
-  if (e.key === "ArrowRight") { e.preventDefault(); nextCerts(); }
-  if (e.key === "ArrowLeft") { e.preventDefault(); prevCerts(); }
-}, { passive: false });
-
-document.addEventListener("click", function (e) {
-  const viewer = document.getElementById("viewer");
-  if (!viewer) return;
-  if (viewer.style.display !== "flex") return;
-  if (e.target === viewer) closeViewer();
-});
-
-window.addEventListener("load", function () {
-  certIndex = 0;
-  bindCertificateClicks();
-  moveCerts();
-});
-
-window.addEventListener("resize", function () {
-  const track = document.getElementById("certTrack");
-  if (!track) return;
-  const visible = certVisibleCount();
-  const total = track.children.length;
-  const maxIndex = Math.max(0, total - visible);
-  certIndex = Math.min(certIndex, maxIndex);
-  moveCerts();
-});
-</script>
-
-
-
-<!-- DARK/LIGHT THEME Script -->
-<script>
-(function () {
-  const STORAGE_KEY = "themeMode";
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.getElementById("themeToggleBtn");
-    const icon = document.getElementById("themeIcon");
-
-    function applyTheme(mode){
-      document.body.classList.toggle("light", mode === "light");
-      localStorage.setItem(STORAGE_KEY, mode);
-
-      if(mode === "light"){
-        icon.className = "fa-regular fa-moon";
-      } else {
-        icon.className = "fa-solid fa-sun";
-      }
-    }
-
-    const saved = localStorage.getItem(STORAGE_KEY) || "dark";
-    applyTheme(saved);
-
-    btn.addEventListener("click", () => {
-      applyTheme(document.body.classList.contains("light") ? "dark" : "light");
-    });
-  });
-})();
-</script>
-
-
-<!-- EXPERIENCE Script -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("expModal");
-  if (!modal) return;
-
-  const titleEl = document.getElementById("expModalTitle");
-  const orgEl = document.getElementById("expModalOrg");
-  const durationEl = document.getElementById("expModalDuration");
-  const listEl = document.getElementById("expModalList");
-
-  const openModal = (btn) => {
-    const title = btn.getAttribute("data-title") || "";
-    const org = btn.getAttribute("data-org") || "";
-    const duration = btn.getAttribute("data-duration") || "";
-    const bulletsRaw = btn.getAttribute("data-bullets") || "";
-
-    titleEl.textContent = title;
-    orgEl.textContent = org;
-    durationEl.textContent = duration;
-
-    listEl.innerHTML = "";
-    const bullets = bulletsRaw.split("|").map(s => s.trim()).filter(Boolean);
-    bullets.forEach((b) => {
-      const li = document.createElement("li");
-      li.textContent = b;
-      listEl.appendChild(li);
-    });
-
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  };
-
-  const closeModal = () => {
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  };
-
-  document.querySelectorAll(".exp-row").forEach((row) => {
-    row.addEventListener("click", () => openModal(row));
-  });
-
-  modal.addEventListener("click", (e) => {
-    if (e.target.dataset && e.target.dataset.close === "true") {
-      closeModal();
-    }
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("is-open")) {
-      closeModal();
-    }
-  });
-});
-</script>
-
-
+<script src="script.js"></script>
 </body>
 </html>

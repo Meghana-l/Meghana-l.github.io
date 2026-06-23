@@ -1,274 +1,121 @@
-// =====================================================
-// ONE script to rule them all:
-// 1) Theme toggle (dark/light) + persistence
-// 2) Page-by-page scroll + keyboard navigation
-// 3) Theme-switch safe stabilization (no glitches)
-// =====================================================
-
-(() => {
-  // ---- Kill any old instance if it exists (prevents duplicates) ----
-  if (window.__portfolioController && typeof window.__portfolioController.destroy === "function") {
-    window.__portfolioController.destroy();
-  }
-
-  // ---------------- THEME ----------------
-  const THEME_KEY = "themeMode";
-
-  function applyTheme(mode) {
-    document.body.classList.toggle("light", mode === "light");
-    localStorage.setItem(THEME_KEY, mode);
-
-    const sw = document.getElementById("themeSwitch");
-    if (sw) sw.checked = (mode === "light");
-
-    // after theme swap, stabilize scroll
-    stabilizeAfterThemeSwitch();
-  }
-
-  function initTheme() {
-    const saved = localStorage.getItem(THEME_KEY);
-    applyTheme(saved === "light" ? "light" : "dark");
-
-    const sw = document.getElementById("themeSwitch");
-    if (!sw) return;
-
-    sw.addEventListener("change", () => {
-      applyTheme(sw.checked ? "light" : "dark");
-    });
-  }
-
-  // ---------------- SCROLL / NAV ----------------
-  const HEADER_OFFSET = 80;
-  const WHEEL_ACCUM_THRESHOLD = 60;
-  const WHEEL_RESET_MS = 140;
-  const MAX_LOCK_MS = 900;
-
-  let sections = [];
-  let currentIndex = 0;
-
-  let locked = false;
-  let lockTimer = null;
-
-  let wheelAccum = 0;
-  let wheelResetTimer = null;
-
-  let listenersAttached = false;
-  let themeStabilizeTimer = null;
-
-  function getSections() {
-    return Array.from(document.querySelectorAll("section[id]"));
-  }
-
-  function clamp(n, min, max) {
-    return Math.max(min, Math.min(max, n));
-  }
-
-  function isOverlayOpen() {
-    const viewer = document.getElementById("viewer");
-    return viewer && viewer.style.display === "flex";
-  }
-
-  function isTyping() {
-    const el = document.activeElement;
-    if (!el) return false;
-    const tag = (el.tagName || "").toLowerCase();
-    return tag === "input" || tag === "textarea" || el.isContentEditable;
-  }
-
-  function isInsideScrollable(target) {
-    if (!target) return false;
-
-    const projectInfo = target.closest?.(".project-info");
-    if (projectInfo && projectInfo.scrollHeight > projectInfo.clientHeight) return true;
-
-    const ta = target.closest?.("textarea");
-    if (ta) return true;
-
-    return false;
-  }
-
-  function nearestSectionIndex() {
-    let bestIdx = 0;
-    let bestDist = Infinity;
-
-    sections.forEach((sec, idx) => {
-      const rect = sec.getBoundingClientRect();
-      const dist = Math.abs(rect.top - HEADER_OFFSET);
-      if (dist < bestDist) {
-        bestDist = dist;
-        bestIdx = idx;
+/* ============================================================
+   SCROLL REVEAL (fade + slide)
+   ============================================================ */
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
       }
     });
+  },
+  { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+);
 
-    return bestIdx;
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+});
+
+/* ============================================================
+   NAV — scroll state
+   ============================================================ */
+const nav = document.getElementById('site-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger?.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', open);
+});
+mobileMenu?.querySelectorAll('a').forEach((a) =>
+  a.addEventListener('click', () => mobileMenu.classList.remove('open'))
+);
+
+/* ============================================================
+   SUBTLE PARALLAX (hero decorative squares) — desktop only
+   ============================================================ */
+const heroStack = document.querySelector('.hero-photo-stack');
+let ticking = false;
+
+function applyParallax() {
+  const y = window.scrollY;
+  if (heroStack && window.innerWidth > 600) {
+    const sq1 = heroStack.querySelector('.sq1');
+    const sq2 = heroStack.querySelector('.sq2');
+    if (sq1) sq1.style.transform = `translateY(${y * 0.06}px)`;
+    if (sq2) sq2.style.transform = `translateY(${y * -0.04}px)`;
   }
+  ticking = false;
+}
 
-  function syncState() {
-    sections = getSections();
-    if (!sections.length) return;
-    currentIndex = nearestSectionIndex();
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(applyParallax);
+    ticking = true;
   }
+}, { passive: true });
 
-  function clearTimers() {
-    if (lockTimer) clearTimeout(lockTimer);
-    lockTimer = null;
+/* ============================================================
+   CERTIFICATIONS — LIGHTBOX
+   ============================================================ */
+const certificates = [
+  { image: 'images/IBM_Management_Consultant.png', pdf: 'pdfs/IBM_Management_Consultant.pdf', title: 'IBM Management Consultant Professional Certificate, Coursera', credential: 'https://www.coursera.org/account/accomplishments/professional-cert/XAUKX0J9NCH6' },
+  { image: 'images/IIBA - ECBA certificate.png', pdf: 'pdfs/IIBA - ECBA certificate.pdf', title: 'Entry Certificate in Business Analysis, IIBA', credential: 'https://badges.iiba.org/5a124e1a-7ca9-461b-bee8-629dfc02caa5#acc.DIMjGCg5' },
+  { image: 'images/My_Learning___NVIDIA.png', pdf: 'pdfs/My Learning _ NVIDIA.pdf', title: 'Building LLM Applications with Prompt Engineering, NVIDIA' },
+  { image: 'images/tableau_cert_prep.png', pdf: 'pdfs/CertificateOfCompletion_Tableau Certified Data Analyst Cert Prep.pdf', title: 'Tableau Certified Data Analyst Cert Prep, LinkedIn' },
+  { image: 'images/course_r.png', pdf: 'pdfs/CertificateOfCompletion_R for Data Science Analysis and Visualization.pdf', title: 'R for Data Science: Analysis and Visualization, LinkedIn' },
+  { image: 'images/excel_2019.png', pdf: 'pdfs/CertificateOfCompletion_Learning Excel 2019.pdf', title: 'Learning Excel 2019, LinkedIn' },
+  { image: 'images/course_1.png', pdf: 'pdfs/course 1.pdf', title: 'Foundations of User Experience (UX) Design, Coursera' },
+  { image: 'images/Course_2.png', pdf: 'pdfs/Course 2.pdf', title: 'Start the UX Design Process: Empathize, Define and Ideate, Coursera' },
+  { image: 'images/Meghana_L_Artificial_Intelligence_Unschool_Certificate2021.png', pdf: 'pdfs/Meghana L_Artificial Intelligence_Unschool Certificate2021.pdf', title: 'Artificial Intelligence, Unschool' },
+  { image: 'images/Meghana.L_1BY19IS094_IoT.png', pdf: 'pdfs/Meghana.L 1BY19IS094_IoT.pdf', title: 'Internet of Things with Hands On' },
+  { image: 'images/Certificate_for_Meghana_L_for__Alumni_Session__-__Expectat..._.png', pdf: 'pdfs/Certificate for Meghana L for _Alumni Session  - _Expectat..._.pdf', title: 'Expectations and Challenges in the IT Industry' }
+];
 
-    if (wheelResetTimer) clearTimeout(wheelResetTimer);
-    wheelResetTimer = null;
+let currentCertIndex = 0;
+const lightbox = document.getElementById('cert-lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbTitle = document.getElementById('lb-title');
+const lbPdfBtn = document.getElementById('lb-pdf');
+const lbCredBtn = document.getElementById('lb-cred');
+
+function openLightbox(index) {
+  if (index < 0 || index >= certificates.length) return;
+  currentCertIndex = index;
+  const cert = certificates[index];
+  lbImg.src = cert.image;
+  lbTitle.textContent = cert.title;
+  lbPdfBtn.href = cert.pdf;
+  if (cert.credential) {
+    lbCredBtn.href = cert.credential;
+    lbCredBtn.style.display = 'inline-flex';
+  } else {
+    lbCredBtn.style.display = 'none';
   }
-
-  function lockInput() {
-    locked = true;
-    if (lockTimer) clearTimeout(lockTimer);
-    lockTimer = setTimeout(() => {
-      locked = false;
-    }, MAX_LOCK_MS);
-  }
-
-  function unlockInput() {
-    locked = false;
-    if (lockTimer) clearTimeout(lockTimer);
-    lockTimer = null;
-  }
-
-  function jumpToIndex(idx, behavior = "smooth") {
-    if (!sections.length) return;
-
-    currentIndex = nearestSectionIndex();
-    currentIndex = clamp(idx, 0, sections.length - 1);
-
-    const targetTop =
-      window.scrollY + sections[currentIndex].getBoundingClientRect().top - HEADER_OFFSET;
-
-    lockInput();
-    window.scrollTo({ top: targetTop, behavior });
-
-    setTimeout(() => {
-      syncState();
-      unlockInput();
-    }, behavior === "smooth" ? 380 : 140);
-  }
-
-  function next() { jumpToIndex(currentIndex + 1, "smooth"); }
-  function prev() { jumpToIndex(currentIndex - 1, "smooth"); }
-
-  function onWheel(e) {
-    if (isOverlayOpen()) return;
-    if (isTyping()) return;
-    if (isInsideScrollable(e.target)) return;
-
-    if (locked) {
-      e.preventDefault();
-      return;
-    }
-
-    wheelAccum += e.deltaY;
-
-    if (wheelResetTimer) clearTimeout(wheelResetTimer);
-    wheelResetTimer = setTimeout(() => { wheelAccum = 0; }, WHEEL_RESET_MS);
-
-    // don’t block native scroll unless we will navigate
-    if (Math.abs(wheelAccum) < WHEEL_ACCUM_THRESHOLD) return;
-
-    e.preventDefault();
-
-    const dir = wheelAccum > 0 ? 1 : -1;
-    wheelAccum = 0;
-
-    if (dir === 1) next();
-    else prev();
-  }
-
-  function onKeyDown(e) {
-    if (isOverlayOpen()) return;
-    if (isTyping()) return;
-
-    const k = e.key;
-    const nextKeys = ["ArrowDown", "PageDown", " "];
-    const prevKeys = ["ArrowUp", "PageUp"];
-
-    if (![...nextKeys, ...prevKeys, "Home", "End"].includes(k)) return;
-
-    e.preventDefault();
-
-    if (locked) return;
-    if (e.repeat) return;
-
-    if (nextKeys.includes(k)) return next();
-    if (prevKeys.includes(k)) return prev();
-    if (k === "Home") return jumpToIndex(0, "smooth");
-    if (k === "End") return jumpToIndex(sections.length - 1, "smooth");
-  }
-
-  function attachListeners() {
-    if (listenersAttached) return;
-    window.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("keydown", onKeyDown);
-    listenersAttached = true;
-  }
-
-  function detachListeners() {
-    if (!listenersAttached) return;
-    window.removeEventListener("wheel", onWheel, { passive: false });
-    window.removeEventListener("keydown", onKeyDown);
-    listenersAttached = false;
-  }
-
-  // ✅ Stabilize after theme change (cancel smooth + snap instantly)
-  function stabilizeAfterThemeSwitch() {
-    if (themeStabilizeTimer) clearTimeout(themeStabilizeTimer);
-
-    themeStabilizeTimer = setTimeout(() => {
-      clearTimers();
-      wheelAccum = 0;
-      unlockInput();
-
-      if (document.activeElement && typeof document.activeElement.blur === "function") {
-        document.activeElement.blur();
-      }
-
-      const html = document.documentElement;
-      const prevBehavior = html.style.scrollBehavior;
-      html.style.scrollBehavior = "auto";
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          syncState();
-          jumpToIndex(nearestSectionIndex(), "auto");
-
-          setTimeout(() => {
-            html.style.scrollBehavior = prevBehavior || "";
-            syncState();
-            unlockInput();
-          }, 220);
-        });
-      });
-    }, 50);
-  }
-
-  function initScroll() {
-    syncState();
-    attachListeners();
-
-    window.addEventListener("resize", syncState);
-    window.addEventListener("hashchange", () => setTimeout(syncState, 250));
-  }
-
-  function destroy() {
-    detachListeners();
-    clearTimers();
-
-    window.removeEventListener("resize", syncState);
-
-    if (themeStabilizeTimer) clearTimeout(themeStabilizeTimer);
-    themeStabilizeTimer = null;
-  }
-
-  window.__portfolioController = { destroy };
-
-  // ---------------- INIT ----------------
-  document.addEventListener("DOMContentLoaded", () => {
-    initScroll();
-    initTheme(); // theme init calls stabilize too
-  });
-})();
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lb-close')?.addEventListener('click', closeLightbox);
+document.getElementById('lb-prev')?.addEventListener('click', () => openLightbox(currentCertIndex - 1));
+document.getElementById('lb-next')?.addEventListener('click', () => openLightbox(currentCertIndex + 1));
+lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', (e) => {
+  if (!lightbox?.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') openLightbox(currentCertIndex - 1);
+  if (e.key === 'ArrowRight') openLightbox(currentCertIndex + 1);
+});
+document.querySelectorAll('.cert-card').forEach((card, i) =>
+  card.addEventListener('click', () => openLightbox(i))
+);
